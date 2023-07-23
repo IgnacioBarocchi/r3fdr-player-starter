@@ -4,7 +4,10 @@ import { Vector3 } from "three";
 /**
  * Camera Movement
  */
-export default function (state: RootState, cowPosition: Vector3) {
+export default function updateCameraMovement(
+  state: RootState,
+  cowPosition: Vector3
+) {
   const cameraPosition = new Vector3();
   cameraPosition.copy(cowPosition);
 

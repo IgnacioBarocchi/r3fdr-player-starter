@@ -1,6 +1,6 @@
 import { Keys } from "../../../../lib/keysMap";
 
-export default function (
+export default function getImpulse(
   linvelY: number,
   keys: Keys,
   numberOfKeysPressed: number,
