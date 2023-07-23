@@ -4,7 +4,7 @@ import { AppContext } from "../../containers/context/AppContext";
 import { CameraOptions } from "./@types/CameraOptions";
 import { Canvas } from "@react-three/fiber";
 import { Perf } from "r3f-perf";
-import SpacialBase from "../../scenarios/SpacialBase/SpacialBase";
+import SpacialBase from "../../containers/scenarios/SpacialBase/SpacialBase";
 import keysMap from "../../lib/keysMap";
 import { useContext } from "react";
 

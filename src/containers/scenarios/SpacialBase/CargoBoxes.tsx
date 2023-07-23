@@ -4,9 +4,12 @@ import {
   CuboidCollider,
   RigidBody,
 } from "@react-three/rapier";
-import { GroundPresets, getTextureMapsResult } from "../../lib/textureHelper";
+import {
+  GroundPresets,
+  getTextureMapsResult,
+} from "../../../lib/textureHelper";
 
-import { Hitboxes } from "../../lib/object3DHelper";
+import { Hitboxes } from "../../../lib/object3DHelper";
 import { useState } from "react";
 
 const CargoBoxes = () => {

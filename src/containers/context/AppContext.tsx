@@ -17,7 +17,8 @@ const defaultConfig = {
   USE_ORBIT_CONTROLS: DEV,
   USE_SCENE_LIGHTS: !DEV,
   DEBUG_APP: DEV,
-  GRAPHICS: "HIGH", //DEV ? "LOW" : "NORMAL",
+  GRAPHICS: DEV ? "LOW" : "NORMAL",
+  USING_MOBILE_DEVICE: window.innerWidth <= 768,
 };
 
 interface State {
@@ -27,6 +28,7 @@ interface State {
   USE_SCENE_LIGHTS: boolean;
   DEBUG_APP: boolean;
   GRAPHICS: string;
+  USING_MOBILE_DEVICE: boolean;
 }
 
 const AppContext = createContext<{
@@ -69,21 +71,3 @@ const useAppConfig = () => {
 };
 
 export { AppContext, AppProvider, useAppConfig, UPDATE_GRAPHICS };
-
-/*
-import { FC, ReactNode, createContext } from "react";
-const { DEV, PROD } = import.meta.env;
-const config = {
-  USE_FULL_SCREEN: PROD,
-  MONITOR_PERFORMANCE: DEV,
-  USE_ORBIT_CONTROLS: !PROD,
-  USE_SCENE_LIGHTS: PROD,
-  DEBUG_APP: DEV,
-  GRAPHICS: DEV ? "LOW" : "NORMAL",
-};
-const AppContext = createContext(config);
-const AppProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  return <AppContext.Provider value={config}>{children}</AppContext.Provider>;
-};
-export { AppContext, AppProvider };
-*/

@@ -1,5 +1,8 @@
 import { Box, useTexture } from "@react-three/drei";
-import { GroundPresets, getTextureMapsResult } from "../../lib/textureHelper";
+import {
+  GroundPresets,
+  getTextureMapsResult,
+} from "../../../lib/textureHelper";
 
 import { RigidBody } from "@react-three/rapier";
 

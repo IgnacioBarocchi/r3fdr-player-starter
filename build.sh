@@ -3,11 +3,5 @@
 # Exit on any command failure
 set -e
 
-# Install dependencies
-npm install
-
 # Build the React project
 npm run build
-
-# Add the generated build files to the staging area
-git add build

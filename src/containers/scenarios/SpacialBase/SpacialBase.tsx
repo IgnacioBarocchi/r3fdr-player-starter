@@ -1,8 +1,8 @@
-import { AppContext } from "../../containers/context/AppContext";
+import { AppContext } from "../../context/AppContext";
 import CargoBoxes from "./CargoBoxes";
 import { Physics } from "@react-three/rapier";
-import Platform from "./Platform";
-import Robot from "../../components/Entities/Robot";
+import Robot from "../../../components/Entities/Robot";
+import platformMapData from "./platformMapData";
 import { useContext } from "react";
 import { useControls } from "leva";
 
@@ -15,8 +15,13 @@ const SpacialBase = () => {
 
   return (
     <Physics timeStep="vary" debug={DEBUG_APP}>
+      {platformMapData.flat().map((data, i) => {
+        console.log(data);
+        const { Chunk, props } = data.get();
+        // @ts-ignore
+        return <Chunk key={`c-${i}`} {...props} />;
+      })}
       <Robot useOrbitControls={USE_ORBIT_CONTROLS && mockOrbitControls} />
-      <Platform />
       <CargoBoxes />
     </Physics>
   );
