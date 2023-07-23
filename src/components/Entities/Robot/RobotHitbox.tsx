@@ -57,7 +57,7 @@ const RobotHitbox: FC<RobotHitboxProps> = ({ state, orientation }) => {
           autoplay
           loop={false}
           distance={1}
-          url="/sounds/Cow/kick.mp3"
+          url="/sounds/Robot/kick.mp3"
         />
       </>
     );
@@ -71,7 +71,7 @@ const RobotHitbox: FC<RobotHitboxProps> = ({ state, orientation }) => {
           autoplay
           loop={false}
           distance={1}
-          url="/sounds/Cow/kick.mp3"
+          url="/sounds/Robot/kick.mp3"
         />
       </>
     );

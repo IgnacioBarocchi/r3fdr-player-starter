@@ -23,7 +23,7 @@ const CargoBoxes = () => {
   const collisionEnterHandler = (({ other: { rigidBodyObject } }) => {
     setSoundUrl(
       [Hitboxes.FIST, Hitboxes.GEAR].includes(String(rigidBodyObject?.name))
-        ? "/sounds/CowPen/cow-hit-cell.mp3"
+        ? "/sounds/Doodads/robot-hit-cell.mp3"
         : ""
     );
   }) as CollisionEnterHandler;

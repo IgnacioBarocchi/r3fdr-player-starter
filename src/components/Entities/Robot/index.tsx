@@ -27,7 +27,7 @@ import { useFrame } from "@react-three/fiber";
 import { useMachine } from "@xstate/react";
 
 const Robot: FC<{ useOrbitControls: boolean }> = ({ useOrbitControls }) => {
-  const cowBody = useRef<RapierRigidBody>(null);
+  const robotBody = useRef<RapierRigidBody>(null);
   // todo orientation with signals
   const [orientation, setOrientation] = useState(Math.PI);
   const [_, getKeys] = useKeyboardControls() as unknown as [null, () => Keys];
@@ -39,7 +39,7 @@ const Robot: FC<{ useOrbitControls: boolean }> = ({ useOrbitControls }) => {
   );
 
   useFrame((rootState, delta) => {
-    if (!cowBody.current) return;
+    if (!robotBody.current) return;
     const keys = getKeys() as unknown as Keys;
     const numberOfKeysPressed = Object.values(keys).filter((key) => key).length;
 
@@ -47,7 +47,8 @@ const Robot: FC<{ useOrbitControls: boolean }> = ({ useOrbitControls }) => {
       numberOfKeysPressed > 0 ? getMachineStateFromInputtedKeys(keys) : "idle"
     );
 
-    const linearVelocityYaxis: number | undefined = cowBody.current?.linvel().y;
+    const linearVelocityYaxis: number | undefined =
+      robotBody.current?.linvel().y;
     const impulse = getImpulse(
       linearVelocityYaxis,
       keys,
@@ -55,26 +56,26 @@ const Robot: FC<{ useOrbitControls: boolean }> = ({ useOrbitControls }) => {
       delta
     );
 
-    cowBody.current.setLinvel(impulse, false);
+    robotBody.current.setLinvel(impulse, false);
 
     updateOrientation(orientation, setOrientation, keys);
 
     const quaternionRotation = new Quaternion();
     quaternionRotation.setFromEuler(new Euler(0, orientation, 0));
-    cowBody.current.setRotation(quaternionRotation, false);
+    robotBody.current.setRotation(quaternionRotation, false);
 
-    const cowVectorialPosition = cowBody.current.translation();
+    const robotVectorialPosition = robotBody.current.translation();
 
     if (!useOrbitControls) {
       updateCameraMovement(
         rootState,
-        cowVectorialPosition as unknown as Vector3
+        robotVectorialPosition as unknown as Vector3
       );
     }
   });
 
   return (
-    <RigidBody lockRotations={true} colliders={false} ref={cowBody}>
+    <RigidBody lockRotations={true} colliders={false} ref={robotBody}>
       <Bounding args={[0.2, 0.6]} position={[0, 0.8, 0.2]} />
       <Sensor args={[0.2, 2]} position={[0, 0.5, 0]} sensor />
       <Robot3DModel state={machineState.value} />
@@ -88,7 +89,7 @@ const Robot: FC<{ useOrbitControls: boolean }> = ({ useOrbitControls }) => {
           autoplay
           loop
           distance={10}
-          url="/sounds/Cow/step.mp3"
+          url="/sounds/Robot/step.mp3"
         />
       )}
     </RigidBody>
