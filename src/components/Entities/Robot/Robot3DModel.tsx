@@ -32,7 +32,6 @@ const Robot3DModel: FC<{ state: StateValue }> = ({ state }) => {
   useMemo(() => {
     if (GRAPHICS === "LOW") return;
 
-    console.log("g" + GRAPHICS);
     scene.traverse((obj) => {
       obj.castShadow = true;
 

@@ -11,7 +11,7 @@ export const stateEvents = {
   ROBOT_JUMP: "ROBOT_JUMP",
 } as const;
 
-export const RobotMachineStates = {
+export const RobotMachineStateValues = {
   idle: "idle",
   punch: "punch",
   shoot: "shoot",
@@ -20,7 +20,7 @@ export const RobotMachineStates = {
   death: "death",
 } as const;
 
-const { idle, punch, shoot, jump, walk, death } = RobotMachineStates;
+const { idle, punch, shoot, jump, walk, death } = RobotMachineStateValues;
 
 const getRobotMachine = (actions: { [x: string]: AnimationAction | null }) => {
   const nonLoopables = [
@@ -31,7 +31,9 @@ const getRobotMachine = (actions: { [x: string]: AnimationAction | null }) => {
   const [punchCooldown, jumpCooldown] = nonLoopables.map(
     (animation) => getAnimationClipMilliseconds(actions, animation) ?? 1000
   );
+
   return createMachine({
+    /** @xstate-layout N4IgpgJg5mDOIC5gF8A0IB2B7CdGigEMBbMAYQAtCAnQgYwBcxr8QAHLWASwa6w1YAPRAFoAbOgCeosQDoADIsUBGAMwBWAEwBOTWM2rVyNCCKlKNek2qyuEADZhWHbr35DE67bO3aAHOoBACxiYkF+YRIg0ghq3tr6mprKXv5emn7G6GbkVLSMzLJsAK4YdBTOnDx8AkggwgheCn7yAOy+6m1aLUFSiJpNQQNBrUHy2m3J6kFZpiS5lgU2sBRYWAyVrjUejfFpwaHhkX0IfsqyI35BQcrtGQOtmrM5FvnWsgBWxcRsm9XudQaTV8AQOYQiIROqluPnGmlaqiC6mUejE6iMJheeSshQA7oR7ABrP5uWqgIF7UHTQ4QqIxVQTWR+TRIlmjEIDDHZeavHE2XCEBgVOouf5k+qIIYnZT+C4heSacZieRjIbGYxAA */
     predictableActionArguments: true,
     id: "gameCharacter",
     initial: "idle",

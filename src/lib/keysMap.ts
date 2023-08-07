@@ -6,6 +6,9 @@ export interface Keys {
   jump: boolean;
   punch: boolean;
   shoot: boolean;
+  cam1: boolean;
+  cam2: boolean;
+  cam3: boolean;
 }
 
 export const PlayerInputActions = {
@@ -29,6 +32,9 @@ const keysMap = [
   { name: jump, keys: ["Space"] },
   { name: punch, keys: ["KeyJ"] },
   { name: shoot, keys: ["KeyK"] },
+  { name: "cam1", keys: ["1"] },
+  { name: "cam2", keys: ["2"] },
+  { name: "cam3", keys: ["3"] },
 ];
 
 export default keysMap;

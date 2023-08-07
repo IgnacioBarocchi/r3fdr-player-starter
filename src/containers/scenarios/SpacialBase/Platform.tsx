@@ -12,6 +12,7 @@ const Platform = () => {
     GroundPresets.SCIFI_METAL,
     50
   );
+
   return (
     <RigidBody colliders={"cuboid"} type={"fixed"}>
       <Box args={[50, 0.1, 50]} receiveShadow>

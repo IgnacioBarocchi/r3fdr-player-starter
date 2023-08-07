@@ -1,13 +1,15 @@
-import { Box, useTexture } from "@react-three/drei";
+import { Box, Text, useTexture } from "@react-three/drei";
 import { FC, memo } from "react";
 import { GroundPresets, getTextureMapsResult } from "../../lib/textureHelper";
 
+import CargoBoxes from "../../containers/scenarios/SpacialBase/CargoBoxes";
 import { RigidBody } from "@react-three/rapier";
 
 const FloorChunk: FC<FloorChunkProps> = ({
   size = 16,
   chunkPosition,
   showConnection,
+  hasTarget,
 }) => {
   const { map, normalMap, roughnessMap } = getTextureMapsResult(
     useTexture,
@@ -17,15 +19,17 @@ const FloorChunk: FC<FloorChunkProps> = ({
 
   return (
     <group position={chunkPosition}>
-      <RigidBody colliders={"cuboid"} type={"fixed"}>
+      <RigidBody colliders={"cuboid"} type={"fixed"} name={"FLOOR"}>
         {showConnection && (
-          <Box args={[1, 1, 1]} receiveShadow>
-            <meshStandardMaterial
-              map={map}
-              normalMap={normalMap}
-              roughnessMap={roughnessMap}
-            />
-          </Box>
+          <Text
+            scale={[0.5, 0.5, 0.5]}
+            position={[0, 1, 0]}
+            color="red"
+            anchorX="center"
+            anchorY="middle"
+          >
+            *
+          </Text>
         )}
         <Box args={[size, 0.1, size]} receiveShadow>
           <meshStandardMaterial
@@ -35,6 +39,7 @@ const FloorChunk: FC<FloorChunkProps> = ({
           />
         </Box>
       </RigidBody>
+      {hasTarget && <CargoBoxes />}
     </group>
   );
 };
@@ -45,4 +50,5 @@ export interface FloorChunkProps {
   size?: number;
   chunkPosition: [number, number, number] | undefined;
   showConnection: boolean;
+  hasTarget: boolean;
 }

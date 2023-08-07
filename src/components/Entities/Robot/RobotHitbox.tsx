@@ -3,7 +3,7 @@ import Gear3DModel from "./Gear3DModel";
 import Hitbox from "../../utility/Hitbox/Hitbox";
 import { Hitboxes } from "../../../lib/object3DHelper";
 import { PositionalAudio } from "@react-three/drei";
-import { RobotMachineStates } from "../../../machines/getRobotMachine";
+import { RobotMachineStateValues } from "../../../machines/getRobotMachine";
 import { StateValue } from "xstate";
 
 const PunchCollider: FC<HitboxColliderProps> = ({ orientation }) => {
@@ -48,7 +48,7 @@ const ProjectileCollider: FC<HitboxColliderProps> = ({ orientation }) => {
 };
 
 const RobotHitbox: FC<RobotHitboxProps> = ({ state, orientation }) => {
-  if (state === RobotMachineStates.punch)
+  if (state === RobotMachineStateValues.punch)
     return (
       <>
         <PunchCollider orientation={orientation} />
@@ -62,7 +62,7 @@ const RobotHitbox: FC<RobotHitboxProps> = ({ state, orientation }) => {
       </>
     );
 
-  if (state === RobotMachineStates.shoot)
+  if (state === RobotMachineStateValues.shoot)
     return (
       <>
         <ProjectileCollider orientation={orientation} />

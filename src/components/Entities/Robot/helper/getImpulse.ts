@@ -4,7 +4,8 @@ export default function getImpulse(
   linvelY: number,
   keys: Keys,
   numberOfKeysPressed: number,
-  delta: number
+  delta: number,
+  onTheGround: boolean
 ) {
   let { forward, backward, leftward, rightward, jump } = keys;
   const scaler = 20;
@@ -18,10 +19,10 @@ export default function getImpulse(
   if (forward && backward && numberOfKeysPressed === 2) forward = false;
 
   if (leftward && rightward && numberOfKeysPressed === 2) leftward = false;
-
+  // console.log(linvelY);
   let impulse = {
     x: leftward ? -normalizedSpeed : rightward ? normalizedSpeed : 0,
-    y: jump ? 2 : linvelY,
+    y: jump && onTheGround ? 2 : linvelY,
     z: forward ? -normalizedSpeed : backward ? normalizedSpeed : 0,
   };
 

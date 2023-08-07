@@ -1,4 +1,4 @@
-import { Box, useTexture } from "@react-three/drei";
+import { Box, Text, useTexture } from "@react-three/drei";
 import { FC, memo } from "react";
 import FloorChunk, { FloorChunkProps } from "../FloorChunk";
 import { GroundPresets, getTextureMapsResult } from "../../lib/textureHelper";
@@ -11,6 +11,7 @@ const WallChunk: FC<WallChunkProps> = ({
   layout,
   chunkPosition,
   showConnection,
+  hasTarget,
 }) => {
   const { map, normalMap, roughnessMap } = getTextureMapsResult(
     useTexture,
@@ -23,6 +24,15 @@ const WallChunk: FC<WallChunkProps> = ({
   return (
     <group position={chunkPosition}>
       <RigidBody colliders={"cuboid"} type={"fixed"}>
+        <Text
+          scale={[0.5, 0.5, 0.5]}
+          position={[0, 1, 0]}
+          color="white"
+          anchorX="center"
+          anchorY="middle"
+        >
+          A
+        </Text>
         <Box
           args={[size, 5, 0.1]}
           receiveShadow
@@ -37,6 +47,7 @@ const WallChunk: FC<WallChunkProps> = ({
         </Box>
       </RigidBody>
       <FloorChunk
+        hasTarget={hasTarget}
         size={size}
         chunkPosition={undefined}
         showConnection={showConnection}

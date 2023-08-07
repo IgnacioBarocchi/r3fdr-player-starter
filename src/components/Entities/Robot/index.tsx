@@ -13,7 +13,7 @@ import {
   useKeyboardControls,
 } from "@react-three/drei";
 import getRobotMachine, {
-  RobotMachineStates,
+  RobotMachineStateValues,
 } from "../../../machines/getRobotMachine";
 
 import { Keys } from "../../../lib/keysMap";
@@ -28,6 +28,7 @@ import { useMachine } from "@xstate/react";
 
 const Robot: FC<{ useOrbitControls: boolean }> = ({ useOrbitControls }) => {
   const robotBody = useRef<RapierRigidBody>(null);
+  const isOnFloor = useRef<boolean>(true);
   // todo orientation with signals
   const [orientation, setOrientation] = useState(Math.PI);
   const [_, getKeys] = useKeyboardControls() as unknown as [null, () => Keys];
@@ -53,9 +54,12 @@ const Robot: FC<{ useOrbitControls: boolean }> = ({ useOrbitControls }) => {
       linearVelocityYaxis,
       keys,
       numberOfKeysPressed,
-      delta
+      delta,
+      true
     );
 
+    if (machineState.value === RobotMachineStateValues.jump)
+      isOnFloor.current = false;
     robotBody.current.setLinvel(impulse, false);
 
     updateOrientation(orientation, setOrientation, keys);
@@ -69,21 +73,32 @@ const Robot: FC<{ useOrbitControls: boolean }> = ({ useOrbitControls }) => {
     if (!useOrbitControls) {
       updateCameraMovement(
         rootState,
-        robotVectorialPosition as unknown as Vector3
+        robotVectorialPosition as unknown as Vector3,
+        keys
       );
     }
   });
 
   return (
-    <RigidBody lockRotations={true} colliders={false} ref={robotBody}>
+    <RigidBody
+      lockRotations={true}
+      colliders={false}
+      ref={robotBody}
+      // onCollisionEnter={({ other: { rigidBodyObject } }) => {
+      //   // const val = String(rigidBodyObject?.name === "FLOOR");
+      //   // console.log(val);
+      //   // // ? que es esta poronga
+      //   // isOnFloor.current = val;
+      // }}
+    >
       <Bounding args={[0.2, 0.6]} position={[0, 0.8, 0.2]} />
       <Sensor args={[0.2, 2]} position={[0, 0.5, 0]} sensor />
       <Robot3DModel state={machineState.value} />
-      {[RobotMachineStates.punch, RobotMachineStates.shoot].includes(
+      {[RobotMachineStateValues.punch, RobotMachineStateValues.shoot].includes(
         // @ts-ignore
         machineState.value
       ) && <RobotHitbox orientation={orientation} state={machineState.value} />}
-      {machineState.matches(RobotMachineStates.walk) && (
+      {machineState.matches(RobotMachineStateValues.walk) && (
         <PositionalAudio
           load
           autoplay

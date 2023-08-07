@@ -32,7 +32,7 @@ export default function App() {
   return (
     <>
       <Leva isRoot collapsed hidden={!DEBUG_APP} />
-      <div>GRAPHICS: {GRAPHICS}</div>
+      <div>Graphics: {GRAPHICS} Controls: J | K | [Space] | 1 | 2 | 3</div>
       <GraphicsModal />
       <Suspense
         fallback={

@@ -6,7 +6,6 @@ export default function getAnimationClipMilliseconds(
   },
   animation: string
 ): number | undefined {
-  console.log(actions[animation]);
   if (actions[animation]?.getClip().duration!) {
     return actions[animation]?.getClip().duration! * 1000;
   }
