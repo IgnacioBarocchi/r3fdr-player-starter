@@ -1,45 +1,53 @@
 import Chunk from "../../../classes/Chunk/Chunk";
 import Floor from "../../../classes/Floor/Floor";
+import Wall from "../../../classes/Wall/Wall";
+import generateMaze from "../../../lib/generateMaze";
 const s = 8;
 const target = new Floor(null, s);
 target.hasTarget = true;
-const platformMapData = [
-  [
-    new Floor(null, s),
-    new Floor(null, s),
-    new Floor(null, s),
-    new Floor(null, s),
-    new Floor(null, s),
-  ],
-  [
-    new Floor(null, s),
-    new Floor(null, s),
-    new Floor(null, s),
-    new Floor(null, s),
-    new Floor(null, s),
-  ],
-  [
-    new Floor(null, s),
-    new Floor(null, s),
-    new Floor(null, s),
-    new Floor(null, s),
-    new Floor(null, s),
-  ],
-  [
-    new Floor(null, s),
-    new Floor(null, s),
-    new Floor(null, s),
-    new Floor(null, s),
-    new Floor(null, s),
-  ],
-  [
-    new Floor(null, s),
-    new Floor(null, s),
-    new Floor(null, s),
-    new Floor(null, s),
-    new Floor(null, s),
-  ],
-];
+const platformMapData = generateMaze(11, 11);
+for (const row of platformMapData) {
+  const rowStr = row
+    .map((cell) => (cell instanceof Wall ? "W" : "F"))
+    .join(" ");
+  console.log(rowStr);
+} //   [
+//   [
+//     new Floor(null, s),
+//     new Floor(null, s),
+//     new Floor(null, s),
+//     new Floor(null, s),
+//     new Wall(null, [0, 0], "h", s),
+//   ],
+//   [
+//     new Floor(null, s),
+//     new Floor(null, s),
+//     new Floor(null, s),
+//     new Floor(null, s),
+//     new Floor(null, s),
+//   ],
+//   [
+//     new Floor(null, s),
+//     new Floor(null, s),
+//     new Floor(null, s),
+//     new Floor(null, s),
+//     new Floor(null, s),
+//   ],
+//   [
+//     new Floor(null, s),
+//     new Floor(null, s),
+//     new Floor(null, s),
+//     new Floor(null, s),
+//     new Floor(null, s),
+//   ],
+//   [
+//     new Floor(null, s),
+//     new Floor(null, s),
+//     new Floor(null, s),
+//     new Floor(null, s),
+//     new Floor(null, s),
+//   ],
+// ];
 
 function getRandomInt(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;

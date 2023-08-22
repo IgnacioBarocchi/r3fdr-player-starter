@@ -1,16 +1,13 @@
-import { Box, Text, useTexture } from "@react-three/drei";
+import { Box, useTexture } from "@react-three/drei";
 import { FC, memo } from "react";
-import FloorChunk, { FloorChunkProps } from "../FloorChunk";
 import { GroundPresets, getTextureMapsResult } from "../../lib/textureHelper";
 
+import CargoBoxes from "../../containers/scenarios/SpacialBase/CargoBoxes";
 import { RigidBody } from "@react-three/rapier";
 
-const WallChunk: FC<WallChunkProps> = ({
+const WallChunk: FC<FloorChunkProps> = ({
   size = 16,
-  wallPosition = [0, 0],
-  layout,
   chunkPosition,
-  showConnection,
   hasTarget,
 }) => {
   const { map, normalMap, roughnessMap } = getTextureMapsResult(
@@ -19,25 +16,13 @@ const WallChunk: FC<WallChunkProps> = ({
     size
   );
 
-  const [x, z] = wallPosition;
-
   return (
     <group position={chunkPosition}>
-      <RigidBody colliders={"cuboid"} type={"fixed"}>
-        <Text
-          scale={[0.5, 0.5, 0.5]}
-          position={[0, 1, 0]}
-          color="white"
-          anchorX="center"
-          anchorY="middle"
-        >
-          A
-        </Text>
+      <RigidBody colliders={"cuboid"} type={"fixed"} name={"FLOOR"}>
         <Box
-          args={[size, 5, 0.1]}
+          args={[size, size, size]}
+          position={[0, size / 2, 0]}
           receiveShadow
-          rotation={[0, layout === "h" ? 0 : Math.PI / 2, 0]}
-          position={[x, 0, z]}
         >
           <meshStandardMaterial
             map={map}
@@ -46,19 +31,16 @@ const WallChunk: FC<WallChunkProps> = ({
           />
         </Box>
       </RigidBody>
-      <FloorChunk
-        hasTarget={hasTarget}
-        size={size}
-        chunkPosition={undefined}
-        showConnection={showConnection}
-      />
+      {hasTarget && <CargoBoxes />}
     </group>
   );
 };
 
 export default memo(WallChunk);
 
-export interface WallChunkProps extends FloorChunkProps {
-  wallPosition: [number, number];
-  layout: "v" | "h";
+export interface FloorChunkProps {
+  size?: number;
+  chunkPosition: [number, number, number] | undefined;
+  showConnection: boolean;
+  hasTarget: boolean;
 }

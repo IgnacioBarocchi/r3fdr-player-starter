@@ -4,7 +4,7 @@ import WallChunk from "../../components/WallChunk";
 export default class Wall extends Chunk {
   wallPosition: [number, number];
   layout: "h" | "v";
-  size?: number = 8;
+  size?: number = 16;
 
   constructor(
     chunkPosition: [number, number, number] | null,
