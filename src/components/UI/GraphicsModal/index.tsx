@@ -1,10 +1,10 @@
-import { useAppConfig } from "../../../containers/context/AppContext";
+import { useGameSettings } from "../../../providers/GameSettingsProvider";
 
 const GraphicsModal = () => {
   const {
     state: { GRAPHICS },
     dispatch,
-  } = useAppConfig();
+  } = useGameSettings();
 
   const handleGraphicsChange = (event: { target: { value: any } }) => {
     const graphics = event.target.value;

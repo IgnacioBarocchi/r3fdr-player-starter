@@ -1,6 +1,8 @@
-import { SetStateAction } from "react";
-import NORMALIZED_ANGLES from "../../../../lib/normalizedTurnAngles";
 import { Keys } from "../../../../lib/keysMap";
+import NORMALIZED_ANGLES from "../../../../lib/normalizedTurnAngles";
+import { SetStateAction } from "react";
+
+const { PI, atan2, sin, cos } = Math;
 
 const {
   NORMALIZED_ROTATION_SPEED,
@@ -17,10 +19,10 @@ export default function updateOrientation(
 ) {
   let { forward, backward, leftward, rightward } = keys;
 
-  let aTanAngle = Math.atan2(Math.sin(orientation), Math.cos(orientation));
-  aTanAngle = aTanAngle < 0 ? aTanAngle + Math.PI * 2 : aTanAngle;
+  let aTanAngle = atan2(sin(orientation), cos(orientation));
+  aTanAngle = aTanAngle < 0 ? aTanAngle + PI * 2 : aTanAngle;
   aTanAngle = Number(aTanAngle.toFixed(3));
-  aTanAngle = aTanAngle == 0 ? Number((Math.PI * 2).toFixed(3)) : aTanAngle;
+  aTanAngle = aTanAngle == 0 ? Number((PI * 2).toFixed(3)) : aTanAngle;
 
   const keysCombinations = {
     forwardRight: forward && !backward && !leftward && rightward,
@@ -33,75 +35,76 @@ export default function updateOrientation(
     left: !forward && !backward && leftward && !rightward,
   };
 
-  // Forward-Rightward
-  if (keysCombinations.forwardRight && aTanAngle != TOP_RIGHT) {
+
+  const movingForwardRightward = keysCombinations.forwardRight && aTanAngle != TOP_RIGHT
+  if (movingForwardRightward) {
     setOrientation(
       (prevState) =>
         prevState + NORMALIZED_ROTATION_SPEED * (aTanAngle > TOP_RIGHT ? -1 : 1)
     );
   }
 
-  // Forward-Leftward
-  if (keysCombinations.forwardLeft && aTanAngle != TOP_LEFT) {
+  const movingForwardLeftward = keysCombinations.forwardLeft && aTanAngle != TOP_LEFT
+  if (movingForwardLeftward) {
     setOrientation(
       (prevState) =>
         prevState + NORMALIZED_ROTATION_SPEED * (aTanAngle > TOP_LEFT ? -1 : 1)
     );
   }
 
-  // Backward-Rightward
-  if (keysCombinations.backwardRight && aTanAngle != BOTTOM_RIGHT) {
+  const movingBackwardRightward = keysCombinations.backwardRight && aTanAngle != BOTTOM_RIGHT
+  if (movingBackwardRightward) {
     setOrientation(
       (prevState) =>
         prevState +
         NORMALIZED_ROTATION_SPEED *
-          (aTanAngle > BOTTOM_RIGHT && aTanAngle < TOP_LEFT ? -1 : 1)
+        (aTanAngle > BOTTOM_RIGHT && aTanAngle < TOP_LEFT ? -1 : 1)
     );
   }
 
-  // Backward-Leftward
-  if (keysCombinations.backwardLeft && aTanAngle != BOTTOM_LEFT) {
+  const movingBackwardLeftward = keysCombinations.backwardLeft && aTanAngle != BOTTOM_LEFT
+  if (movingBackwardLeftward) {
     setOrientation(
       (prevState) =>
         prevState +
         NORMALIZED_ROTATION_SPEED *
-          (aTanAngle < TOP_RIGHT || aTanAngle > BOTTOM_LEFT ? -1 : 1)
+        (aTanAngle < TOP_RIGHT || aTanAngle > BOTTOM_LEFT ? -1 : 1)
     );
   }
 
-  // Rightward
-  if (keysCombinations.right && Math.sin(orientation) != 1) {
+  const movingRightward = keysCombinations.right && sin(orientation) != 1
+  if (movingRightward) {
     setOrientation(
       (prevState) =>
         prevState +
-        NORMALIZED_ROTATION_SPEED * (Math.cos(orientation) > 0 ? 1 : -1)
+        NORMALIZED_ROTATION_SPEED * (cos(orientation) > 0 ? 1 : -1)
     );
   }
 
-  // Leftward
-  if (keysCombinations.left && Math.sin(orientation) != -1) {
+  const movingLeftward = keysCombinations.left && sin(orientation) != -1
+  if (movingLeftward) {
     setOrientation(
       (prevState) =>
         prevState +
-        NORMALIZED_ROTATION_SPEED * (Math.cos(orientation) > 0 ? -1 : 1)
+        NORMALIZED_ROTATION_SPEED * (cos(orientation) > 0 ? -1 : 1)
     );
   }
 
-  // Forward
-  if (keysCombinations.forward && Math.cos(orientation) != -1) {
+  const movingForward = keysCombinations.forward && cos(orientation) != -1
+  if (movingForward) {
     setOrientation(
       (prevState) =>
         prevState +
-        NORMALIZED_ROTATION_SPEED * (Math.sin(orientation) > 0 ? 1 : -1)
+        NORMALIZED_ROTATION_SPEED * (sin(orientation) > 0 ? 1 : -1)
     );
   }
 
-  // Backward
-  if (keysCombinations.backward && Math.cos(orientation) != 1) {
+  const movingBackward = keysCombinations.backward && cos(orientation) != 1
+  if (movingBackward) {
     setOrientation(
       (prevState) =>
         prevState +
-        NORMALIZED_ROTATION_SPEED * (Math.sin(orientation) > 0 ? -1 : 1)
+        NORMALIZED_ROTATION_SPEED * (sin(orientation) > 0 ? -1 : 1)
     );
   }
 }

@@ -1,6 +1,6 @@
 import { KeyboardControls, OrbitControls } from "@react-three/drei";
 
-import { AppContext } from "../../containers/context/AppContext";
+import { AppContext } from "../../providers/GameSettingsProvider";
 import { CameraOptions } from "./@types/CameraOptions";
 import { Canvas } from "@react-three/fiber";
 import { Perf } from "r3f-perf";

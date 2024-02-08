@@ -1,80 +1,10 @@
-import { FC, useEffect, useMemo, useRef } from "react";
-import {
-  RobotGLTFResult,
-  RobotGenericAnimationsWithActions,
-  loopableAnimationClips,
-} from "./types/Robot3DModel";
-import { useAnimations, useGLTF } from "@react-three/drei";
-
-import { AppContext } from "../../../containers/context/AppContext";
-import { Group } from "three";
+import { FC } from "react";
 import { StateValue } from "xstate";
-import animationsByMachineStateMap from "./helper/animationByMachineStateMap";
-import getAnimationClipMilliseconds from "../../../lib/getAnimationClipDuration";
-import { useContext } from "react";
+import { use3DModelLogic } from "../../../hooks/use3DModelLogic/use3DModelLogic";
+import { useGLTF } from "@react-three/drei";
 
 const Robot3DModel: FC<{ state: StateValue }> = ({ state }) => {
-  const {
-    state: { GRAPHICS },
-  } = useContext(AppContext);
-
-  const group = useRef<Group>(null);
-
-  const { scene, nodes, materials, animations } = useGLTF(
-    "/models/Robot.glb"
-  ) as RobotGLTFResult;
-
-  const { actions } = useAnimations<RobotGenericAnimationsWithActions>(
-    animations as RobotGenericAnimationsWithActions[],
-    group
-  );
-
-  useMemo(() => {
-    if (GRAPHICS === "LOW") return;
-
-    scene.traverse((obj) => {
-      obj.castShadow = true;
-
-      if (GRAPHICS === "HIGH") {
-        obj.receiveShadow = true;
-      }
-    });
-  }, [scene, GRAPHICS]);
-
-  useEffect(() => {
-    const availableAnimations = animationsByMachineStateMap?.get(state);
-    const currentAnimation = availableAnimations
-      ? availableAnimations[
-          Math.floor(Math.random() * availableAnimations.length)
-        ]
-      : undefined;
-
-    if (!actions || !currentAnimation || !actions[currentAnimation] || !state)
-      return;
-
-    if (loopableAnimationClips.includes(currentAnimation as string)) {
-      actions[currentAnimation]?.reset().fadeIn(0.2).play();
-
-      return () => {
-        actions[currentAnimation]?.fadeOut(0.2);
-      };
-    } else {
-      const secondsOfDeathAnimation = getAnimationClipMilliseconds(
-        actions,
-        currentAnimation
-      );
-      actions[currentAnimation]?.getClip().duration;
-      actions[currentAnimation]?.reset().play();
-
-      setTimeout(() => {
-        actions[currentAnimation]?.stop();
-      }, secondsOfDeathAnimation);
-    }
-
-    return () => {
-      actions[currentAnimation]?.fadeOut(0.2);
-    };
-  }, [state]);
+  const { group, nodes, materials } = use3DModelLogic(state);
 
   return (
     <group ref={group} scale={0.3} dispose={null}>

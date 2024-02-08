@@ -1,6 +1,6 @@
 import { Suspense, useContext, useEffect } from "react";
 
-import { AppContext } from "./containers/context/AppContext";
+import { AppContext } from "./providers/GameSettingsProvider";
 import GraphicsModal from "./components/UI/GraphicsModal";
 import { Leva } from "leva";
 import Scenario from "./components/Scenario";

@@ -1,6 +1,6 @@
 import { AnimationAction } from "three";
 import { createMachine } from "xstate";
-import getAnimationClipMilliseconds from "../lib/getAnimationClipDuration";
+import getAnimationClipMilliseconds from "../../lib/getAnimationClipDuration";
 
 export const stateEvents = {
   IDLE: "idle",

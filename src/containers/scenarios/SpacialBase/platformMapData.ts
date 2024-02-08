@@ -1,7 +1,7 @@
 import Chunk from "../../../classes/Chunk/Chunk";
 import Floor from "../../../classes/Floor/Floor";
 import Wall from "../../../classes/Wall/Wall";
-import generateMaze from "../../../lib/generateMaze";
+import generateMaze from "../../../providers/ScenarioProvider/generateMaze";
 const s = 8;
 const target = new Floor(null, s);
 target.hasTarget = true;

@@ -1,5 +1,5 @@
-import Floor from "../classes/Floor/Floor";
-import Wall from "../classes/Wall/Wall";
+import Floor from "../../classes/Floor/Floor";
+import Wall from "../../classes/Wall/Wall";
 const s = 8;
 
 export default function generateMaze(rows: number, cols: number) {

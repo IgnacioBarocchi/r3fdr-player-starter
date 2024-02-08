@@ -52,7 +52,7 @@ const appConfigReducer = (state: any, action: { type: any; payload: any }) => {
   }
 };
 
-const AppProvider: FC<{ children: ReactNode }> = ({ children }) => {
+const GameSettingsProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(appConfigReducer, defaultConfig);
 
   return (
@@ -62,7 +62,7 @@ const AppProvider: FC<{ children: ReactNode }> = ({ children }) => {
   );
 };
 
-const useAppConfig = () => {
+const useGameSettings = () => {
   const context = useContext(AppContext);
   if (!context) {
     throw new Error("useAppConfig must be used within an AppProvider");
@@ -70,4 +70,4 @@ const useAppConfig = () => {
   return context;
 };
 
-export { AppContext, AppProvider, useAppConfig, UPDATE_GRAPHICS };
+export { AppContext, GameSettingsProvider, useGameSettings, UPDATE_GRAPHICS };

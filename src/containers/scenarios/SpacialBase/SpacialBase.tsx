@@ -1,4 +1,4 @@
-import { AppContext } from "../../context/AppContext";
+import { AppContext } from "../../../providers/GameSettingsProvider";
 import { Path } from "./platformMapData";
 import { Physics } from "@react-three/rapier";
 import Robot from "../../../components/Entities/Robot";

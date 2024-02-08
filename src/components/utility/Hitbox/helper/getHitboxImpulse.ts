@@ -1,6 +1,7 @@
 import NORMALIZED_ANGLES from "../../../../lib/normalizedTurnAngles";
 import { Vector3 } from "three";
 import getNormalizedTurnAngle from "../../../../lib/getNormalizedTurnAngle";
+
 const ORTHOGONAL_DIRECTIONS = {
   BACKWARD: "BACKWARD",
   FORWARD: "FORWARD",

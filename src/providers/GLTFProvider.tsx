@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { RobotGLTFResult } from "../../Entities/Robot/types/Robot3DModel";
+import { RobotGLTFResult } from "../components/Entities/Robot/types/Robot3DModel";
 import { useGLTF } from "@react-three/drei";
 
 export const EntityModel = {
