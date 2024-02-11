@@ -5,6 +5,7 @@ import { useGLTF } from "@react-three/drei";
 export const EntityModel = {
   // Robot: "/models/Robot.glb",
   Robot: "/models/BoxerRobot.gltf",
+  Drone: "/models/Drone.gltf",
 };
 
 const GLTFFileProvider: FC<{

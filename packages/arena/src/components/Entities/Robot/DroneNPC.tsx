@@ -1,13 +1,14 @@
 import {
-  CapsuleCollider as Bounding,
+  BallCollider as Bounding,
   RigidBody,
   CylinderCollider as Sensor,
 } from "@react-three/rapier";
 
+import { Drone3DModel } from "./Drone3DModel";
 import Malo3DModel from "./Malo3DModel";
 import { useEnemyNPCLogic } from "../../../hooks/useEnemyNPCLogic/useEnemyNPCLogic";
 
-export const MaloNPC = () => {
+export const DroneNPC = () => {
   const {
     state,
     onInteractionRadiusEnter,
@@ -21,9 +22,10 @@ export const MaloNPC = () => {
       lockRotations={true}
       colliders={false}
       ref={enemyBody}
-      position={[4, 1, 4]}
+      position={[1, 4, 1]}
+      gravityScale={0}
     >
-      <Bounding args={[0.2, 0.6]} position={[0, 0.8, 0.2]} />
+      <Bounding args={[0.6]} position={[0, 0.8, 0.2]} />
       <Sensor
         args={[0.2, 2]}
         position={[0, 0.5, 0]}
@@ -31,7 +33,7 @@ export const MaloNPC = () => {
         onIntersectionEnter={onInteractionRadiusEnter}
         onIntersectionExit={onInteractionRadiusLeave}
       />
-      <Malo3DModel state={state.value} givenDependantGroupRef={enemy3DModel} />
+      <Drone3DModel state={state.value} givenDependantGroupRef={enemy3DModel} />
     </RigidBody>
   );
 };

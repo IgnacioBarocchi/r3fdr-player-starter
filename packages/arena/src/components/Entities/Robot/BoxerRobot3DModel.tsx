@@ -7,16 +7,6 @@ import { StateValue } from "xstate";
 import { use3DModelLogic } from "../../../hooks/use3DModelLogic/use3DModelLogic";
 import { useGLTF } from "@react-three/drei";
 
-interface GLTFResult extends GLTF {
-  nodes: {
-    mesh: THREE.SkinnedMesh;
-    mixamorigHips: THREE.Bone;
-  };
-  materials: {
-    robot: THREE.MeshStandardMaterial;
-  };
-}
-
 const path = EntityModel.Robot;
 const BoxerRobot: FC<{ state: StateValue }> = ({ state }) => {
   const { group, nodes, materials } = use3DModelLogic<GLTFResult>(
@@ -54,3 +44,13 @@ export default BoxerRobot;
 //   | "Kicking"
 //   | "Punching"
 //   | "Running";
+
+interface GLTFResult extends GLTF {
+  nodes: {
+    mesh: THREE.SkinnedMesh;
+    mixamorigHips: THREE.Bone;
+  };
+  materials: {
+    robot: THREE.MeshStandardMaterial;
+  };
+}

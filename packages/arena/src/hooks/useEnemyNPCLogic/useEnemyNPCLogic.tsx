@@ -9,6 +9,7 @@ import { MutableRefObject, useRef } from "react";
 
 import { enemyMachine } from "./enemyMachine";
 import getNormalizedTurnAngle from "../../lib/getNormalizedTurnAngle";
+import { goToTarget } from "./goToTarget";
 import { useFrame } from "@react-three/fiber";
 import { useMachine } from "@xstate/react";
 
@@ -22,20 +23,6 @@ const ENTITIES_NAMES = {
   IMP_VARIANT_2: "ImpVariant2",
 } as const;
 
-const getMeleeNPCMeleeNPCulse = (
-  playerPosition: Vector3,
-  meleeNPCPosition: Vector3,
-  speed = 0.4
-): Vector3 => {
-  const direction = new Vector3();
-  if (!playerPosition || !meleeNPCPosition) return direction;
-  direction.subVectors(playerPosition, meleeNPCPosition).normalize();
-  const impulse = new Vector3(direction.x, 0, direction.z).multiplyScalar(
-    speed
-  );
-  return impulse;
-};
-
 export type EntityType = (typeof ENTITIES_NAMES)[keyof typeof ENTITIES_NAMES];
 
 const playerIsInteractingWithSensor = (
@@ -45,15 +32,14 @@ const playerIsInteractingWithSensor = (
 };
 
 export const useEnemyNPCLogic = () => {
-  const { speed } = { speed: 2 };
   const { characterState } = useGameStore((state: GameState) => ({
     characterState: state.characterState,
     setCaption: state.setCaption,
   }));
 
-  const meleeNPCBody =
+  const enemyBody =
     useRef<RapierRigidBody>() as MutableRefObject<RapierRigidBody>;
-  const meleeNPC3DModel = useRef<Group>(null) as MutableRefObject<Group>;
+  const enemy3DModel = useRef<Group>(null) as MutableRefObject<Group>;
 
   //   const [meleeNPCAction, setMeleeNPCAnimationClip] = useState<
   //     NPCActionTypes["animationClips"][T][number]
@@ -66,37 +52,8 @@ export const useEnemyNPCLogic = () => {
     send({ type: "PLAYER_REACHABLE_CHANGE", reachable });
   };
 
-  const goToPlayer = () => {
-    console.log("goToPlayer");
-    if (!characterState?.group) return;
-    const playerPosition = characterState?.group.getWorldPosition(
-      new Vector3()
-    );
-    const meleeNPCPosition = meleeNPC3DModel.current?.getWorldPosition(
-      new Vector3()
-    );
-
-    meleeNPC3DModel.current.lookAt(playerPosition);
-    meleeNPC3DModel.current.rotation.x = 0;
-    meleeNPC3DModel.current.rotation.z = 0;
-    meleeNPC3DModel.current.rotation.y = Math.abs(
-      getNormalizedTurnAngle(meleeNPC3DModel.current.rotation.y)
-    );
-    // * Mutation
-    const meleeNPCulseForce = getMeleeNPCMeleeNPCulse(
-      playerPosition,
-      meleeNPCPosition,
-      speed
-    );
-    meleeNPCBody.current.applyImpulseAtPoint(
-      meleeNPCulseForce,
-      playerPosition,
-      true
-    );
-  };
-
   useFrame(() => {
-    if (!meleeNPC3DModel.current || !meleeNPCBody.current) return;
+    if (!enemy3DModel.current || !enemyBody.current) return;
     if (state.value === "dead") return;
 
     if (currentHP <= 0) {
@@ -107,8 +64,17 @@ export const useEnemyNPCLogic = () => {
     if (currentHP <= 10) {
       send("RUN_AWAY");
     }
-    console.log("Current");
-    goToPlayer();
+
+    if (characterState?.group) {
+      goToTarget(
+        {
+          targetGroup: characterState?.group,
+          sourceBody: enemyBody,
+          soruce3DModelGroup: enemy3DModel,
+        },
+        1
+      );
+    }
   });
 
   const onInteractionRadiusEnter = (({ other: { rigidBodyObject } }) => {
@@ -153,6 +119,7 @@ export const useEnemyNPCLogic = () => {
     state,
     onInteractionRadiusEnter,
     onInteractionRadiusLeave,
-    robotBody: meleeNPC3DModel,
+    enemyBody,
+    enemy3DModel,
   };
 };

@@ -7,22 +7,21 @@ import { StateValue } from "xstate";
 import { use3DModelLogic } from "../../../hooks/use3DModelLogic/use3DModelLogic";
 import { useGLTF } from "@react-three/drei";
 
-interface GLTFResult extends GLTF {
+type GLTFResult = GLTF & {
   nodes: {
-    mesh: THREE.SkinnedMesh;
-    mixamorigHips: THREE.Bone;
+    mesh: THREE.Mesh;
   };
   materials: {
-    robot: THREE.MeshStandardMaterial;
+    base_material: THREE.MeshStandardMaterial;
   };
-}
+};
 
-const path = EntityModel.Robot;
-const Malo3DModel: FC<{
+const path = EntityModel.Drone;
+export const Drone3DModel: FC<{
   state: StateValue;
   givenDependantGroupRef: React.MutableRefObject<THREE.Group>;
 }> = ({ state, givenDependantGroupRef }) => {
-  const { group } = use3DModelLogic<GLTFResult>(
+  const { group, nodes, materials } = use3DModelLogic<GLTFResult>(
     state,
     false,
     path,
@@ -30,24 +29,17 @@ const Malo3DModel: FC<{
   );
 
   return (
+    // @ts-ignore
     <group ref={group} dispose={null}>
-      <mesh>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshBasicMaterial color="red" visible={true} />
-      </mesh>
+      <mesh
+        // @ts-ignore
+        geometry={nodes.mesh.geometry}
+        // @ts-ignore
+        material={materials.base_material}
+        rotation={[Math.PI / 2, 0, 0]}
+      />
     </group>
   );
 };
 
 useGLTF.preload(path);
-
-export default Malo3DModel;
-
-// type GLTFActions = Record<ActionName, THREE.AnimationAction>;
-// type ActionName =
-//   | "Hit"
-//   | "Idle"
-//   | "Jumping"
-//   | "Kicking"
-//   | "Punching"
-//   | "Running";

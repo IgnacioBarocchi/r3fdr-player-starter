@@ -2,6 +2,7 @@ import { Physics, RigidBody } from "@react-three/rapier";
 
 import { AppContext } from "../../../providers/GameSettingsProvider";
 import { Box } from "@react-three/drei";
+import { DroneNPC } from "../../../components/Entities/Robot/DroneNPC.tsx";
 import { MaloNPC } from "../../../components/Entities/Robot/MaloNPC.tsx";
 import Player from "../../../components/Entities/Robot/index.tsx";
 import { useContext } from "react";
@@ -19,7 +20,8 @@ const SpacialBase = () => {
       <RigidBody type={"fixed"} args={[50, 0, 50]}>
         <Box args={[50, 0, 50]} position={[0, 1 / 2, 0]} receiveShadow></Box>
       </RigidBody>
-      <MaloNPC />
+      {/* <MaloNPC /> */}
+      <DroneNPC />
       <Player useOrbitControls={USE_ORBIT_CONTROLS && mockOrbitControls} />
     </Physics>
   );

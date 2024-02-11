@@ -1,0 +1,1479 @@
+[
+  {
+    "uuid": "3c621a17-f545-4f4e-9876-a449a2d5dd37",
+    "username": "ignacio123",
+    "type": "imagine_3d_one",
+    "status": "completed",
+    "input": {
+      "text": "pile of destroyed technological burnt rubble from inferno",
+      "jobParams": {
+        "seed": "4163132659"
+      },
+      "imageCaption": "pile of destroyed technological burnt rubble from inferno, 3d asset"
+    },
+    "output": [
+      {
+        "file_id": "14486eab8961",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/943ebd95-7f89-40d1-9785-b0fcaaf7b746/14486eab8961_pile_of_destroyed_technologi_0_glb_min.glb",
+        "metadata": {
+          "key": "model_draco_compressed_glb",
+          "type": "3d_model",
+          "file_size": "1.7 MB",
+          "uploaded_time": "2024-02-10T07:15:32.613440",
+          "file_extension": ".glb",
+          "original_file_name": "pile_of_destroyed_technologi_0_glb_min.glb"
+        }
+      },
+      {
+        "file_id": "19aa34bcd246",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/943ebd95-7f89-40d1-9785-b0fcaaf7b746/19aa34bcd246_pile_of_destroyed_technologi_0_glb.glb",
+        "metadata": {
+          "key": "model_glb",
+          "type": "3d_model",
+          "file_size": "3.7 MB",
+          "uploaded_time": "2024-02-10T07:15:32.612039",
+          "file_extension": ".glb",
+          "original_file_name": "pile_of_destroyed_technologi_0_glb.glb"
+        }
+      },
+      {
+        "file_id": "e3efb6c337ee",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/943ebd95-7f89-40d1-9785-b0fcaaf7b746/e3efb6c337ee_pile_of_destroyed_technologi_0_usdz.usdz",
+        "metadata": {
+          "key": "model_usdz",
+          "type": "3d_model",
+          "file_size": "4.7 MB",
+          "uploaded_time": "2024-02-10T07:15:32.611232",
+          "file_extension": ".usdz",
+          "original_file_name": "pile_of_destroyed_technologi_0_usdz.usdz"
+        }
+      },
+      {
+        "file_id": "a93a7baa8328",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/943ebd95-7f89-40d1-9785-b0fcaaf7b746/a93a7baa8328_video_360_rgb_whitebg.mp4",
+        "metadata": {
+          "key": "video_360_rgb_whitebg",
+          "type": "video",
+          "file_size": "69.4 kB",
+          "uploaded_time": "2024-02-10T07:15:15.974559",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb_whitebg.mp4"
+        }
+      },
+      {
+        "file_id": "38cca347324e",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/943ebd95-7f89-40d1-9785-b0fcaaf7b746/38cca347324e_video_360_alpha.mp4",
+        "metadata": {
+          "key": "video_360_alpha_mp4",
+          "type": "video",
+          "file_size": "42.9 kB",
+          "uploaded_time": "2024-02-10T07:15:15.973390",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_alpha.mp4"
+        }
+      },
+      {
+        "file_id": "8ff6ea0ca465",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/943ebd95-7f89-40d1-9785-b0fcaaf7b746/8ff6ea0ca465_video_360_rgb.mp4",
+        "metadata": {
+          "key": "video_360_rgb_mp4",
+          "type": "video",
+          "file_size": "57.4 kB",
+          "uploaded_time": "2024-02-10T07:15:15.972326",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb.mp4"
+        }
+      },
+      {
+        "file_id": "c6bfb41d62da",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/943ebd95-7f89-40d1-9785-b0fcaaf7b746/c6bfb41d62da_thumbnail.png",
+        "metadata": {
+          "key": "thumbnail",
+          "type": "image",
+          "file_size": "30.9 kB",
+          "uploaded_time": "2024-02-10T07:15:14.595388",
+          "file_extension": ".png",
+          "original_file_name": "thumbnail.png"
+        }
+      }
+    ],
+    "createdAt": "2024-02-10T07:15:11.000Z",
+    "metadata": {
+      "progress": {},
+      "interactionUuid": "1462b245-790b-46e2-87fe-a1bab6986864",
+      "linkedCreations": [
+        "1edc3f67-1d19-4a68-bbbc-979e3e06db93",
+        "1c3e07ce-d5aa-44d3-9c1a-85bc215ff360",
+        "b8d1f795-e19b-4f2a-877e-8dc110aa3118",
+        "3c621a17-f545-4f4e-9876-a449a2d5dd37"
+      ]
+    }
+  },
+  {
+    "uuid": "b8d1f795-e19b-4f2a-877e-8dc110aa3118",
+    "username": "ignacio123",
+    "type": "imagine_3d_one",
+    "status": "completed",
+    "input": {
+      "text": "pile of destroyed technological burnt rubble from inferno",
+      "jobParams": {
+        "seed": "3089390836"
+      },
+      "imageCaption": "pile of destroyed technological burnt rubble from inferno, 3d asset"
+    },
+    "output": [
+      {
+        "file_id": "2f9348e1f020",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/22602ea5-58a2-41f5-b8f0-301f701e71fc/2f9348e1f020_pile_of_destroyed_technologi_0_glb_min.glb",
+        "metadata": {
+          "key": "model_draco_compressed_glb",
+          "type": "3d_model",
+          "file_size": "1.9 MB",
+          "uploaded_time": "2024-02-10T07:15:35.347903",
+          "file_extension": ".glb",
+          "original_file_name": "pile_of_destroyed_technologi_0_glb_min.glb"
+        }
+      },
+      {
+        "file_id": "46b937a42782",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/22602ea5-58a2-41f5-b8f0-301f701e71fc/46b937a42782_pile_of_destroyed_technologi_0_glb.glb",
+        "metadata": {
+          "key": "model_glb",
+          "type": "3d_model",
+          "file_size": "3.9 MB",
+          "uploaded_time": "2024-02-10T07:15:35.346876",
+          "file_extension": ".glb",
+          "original_file_name": "pile_of_destroyed_technologi_0_glb.glb"
+        }
+      },
+      {
+        "file_id": "ef948a5f773a",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/22602ea5-58a2-41f5-b8f0-301f701e71fc/ef948a5f773a_pile_of_destroyed_technologi_0_usdz.usdz",
+        "metadata": {
+          "key": "model_usdz",
+          "type": "3d_model",
+          "file_size": "5.1 MB",
+          "uploaded_time": "2024-02-10T07:15:35.345684",
+          "file_extension": ".usdz",
+          "original_file_name": "pile_of_destroyed_technologi_0_usdz.usdz"
+        }
+      },
+      {
+        "file_id": "5314188d4699",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/22602ea5-58a2-41f5-b8f0-301f701e71fc/5314188d4699_video_360_rgb_whitebg.mp4",
+        "metadata": {
+          "key": "video_360_rgb_whitebg",
+          "type": "video",
+          "file_size": "120.8 kB",
+          "uploaded_time": "2024-02-10T07:15:16.773666",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb_whitebg.mp4"
+        }
+      },
+      {
+        "file_id": "963824b68551",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/22602ea5-58a2-41f5-b8f0-301f701e71fc/963824b68551_video_360_alpha.mp4",
+        "metadata": {
+          "key": "video_360_alpha_mp4",
+          "type": "video",
+          "file_size": "98.6 kB",
+          "uploaded_time": "2024-02-10T07:15:16.772658",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_alpha.mp4"
+        }
+      },
+      {
+        "file_id": "36ce756aee81",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/22602ea5-58a2-41f5-b8f0-301f701e71fc/36ce756aee81_video_360_rgb.mp4",
+        "metadata": {
+          "key": "video_360_rgb_mp4",
+          "type": "video",
+          "file_size": "107.2 kB",
+          "uploaded_time": "2024-02-10T07:15:16.771542",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb.mp4"
+        }
+      },
+      {
+        "file_id": "608e3fa52871",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/22602ea5-58a2-41f5-b8f0-301f701e71fc/608e3fa52871_thumbnail.png",
+        "metadata": {
+          "key": "thumbnail",
+          "type": "image",
+          "file_size": "51.5 kB",
+          "uploaded_time": "2024-02-10T07:15:14.860112",
+          "file_extension": ".png",
+          "original_file_name": "thumbnail.png"
+        }
+      }
+    ],
+    "createdAt": "2024-02-10T07:15:11.000Z",
+    "metadata": {
+      "progress": {},
+      "interactionUuid": "1462b245-790b-46e2-87fe-a1bab6986864",
+      "linkedCreations": [
+        "1edc3f67-1d19-4a68-bbbc-979e3e06db93",
+        "1c3e07ce-d5aa-44d3-9c1a-85bc215ff360",
+        "b8d1f795-e19b-4f2a-877e-8dc110aa3118",
+        "3c621a17-f545-4f4e-9876-a449a2d5dd37"
+      ]
+    }
+  },
+  {
+    "uuid": "1c3e07ce-d5aa-44d3-9c1a-85bc215ff360",
+    "username": "ignacio123",
+    "type": "imagine_3d_one",
+    "status": "completed",
+    "input": {
+      "text": "pile of destroyed technological burnt rubble from inferno",
+      "jobParams": {
+        "seed": "2015649013"
+      },
+      "imageCaption": "pile of destroyed technological burnt rubble from inferno, 3d asset"
+    },
+    "output": [
+      {
+        "file_id": "b1a27c117125",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/3e0d8961-fe13-4909-89e3-577ce1434a56/b1a27c117125_pile_of_destroyed_technologi_0_glb_min.glb",
+        "metadata": {
+          "key": "model_draco_compressed_glb",
+          "type": "3d_model",
+          "file_size": "1.4 MB",
+          "uploaded_time": "2024-02-10T07:15:31.338152",
+          "file_extension": ".glb",
+          "original_file_name": "pile_of_destroyed_technologi_0_glb_min.glb"
+        }
+      },
+      {
+        "file_id": "c211e80c6601",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/3e0d8961-fe13-4909-89e3-577ce1434a56/c211e80c6601_pile_of_destroyed_technologi_0_glb.glb",
+        "metadata": {
+          "key": "model_glb",
+          "type": "3d_model",
+          "file_size": "3.6 MB",
+          "uploaded_time": "2024-02-10T07:15:31.336858",
+          "file_extension": ".glb",
+          "original_file_name": "pile_of_destroyed_technologi_0_glb.glb"
+        }
+      },
+      {
+        "file_id": "0232d9c120b0",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/3e0d8961-fe13-4909-89e3-577ce1434a56/0232d9c120b0_pile_of_destroyed_technologi_0_usdz.usdz",
+        "metadata": {
+          "key": "model_usdz",
+          "type": "3d_model",
+          "file_size": "4.7 MB",
+          "uploaded_time": "2024-02-10T07:15:31.335845",
+          "file_extension": ".usdz",
+          "original_file_name": "pile_of_destroyed_technologi_0_usdz.usdz"
+        }
+      },
+      {
+        "file_id": "0ee508786a52",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/3e0d8961-fe13-4909-89e3-577ce1434a56/0ee508786a52_video_360_rgb_whitebg.mp4",
+        "metadata": {
+          "key": "video_360_rgb_whitebg",
+          "type": "video",
+          "file_size": "82.1 kB",
+          "uploaded_time": "2024-02-10T07:15:16.217085",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb_whitebg.mp4"
+        }
+      },
+      {
+        "file_id": "09a95bb1727c",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/3e0d8961-fe13-4909-89e3-577ce1434a56/09a95bb1727c_video_360_alpha.mp4",
+        "metadata": {
+          "key": "video_360_alpha_mp4",
+          "type": "video",
+          "file_size": "44.6 kB",
+          "uploaded_time": "2024-02-10T07:15:16.215564",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_alpha.mp4"
+        }
+      },
+      {
+        "file_id": "658ebb03e70c",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/3e0d8961-fe13-4909-89e3-577ce1434a56/658ebb03e70c_video_360_rgb.mp4",
+        "metadata": {
+          "key": "video_360_rgb_mp4",
+          "type": "video",
+          "file_size": "69.5 kB",
+          "uploaded_time": "2024-02-10T07:15:16.214420",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb.mp4"
+        }
+      },
+      {
+        "file_id": "758c369a4598",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/3e0d8961-fe13-4909-89e3-577ce1434a56/758c369a4598_thumbnail.png",
+        "metadata": {
+          "key": "thumbnail",
+          "type": "image",
+          "file_size": "33.8 kB",
+          "uploaded_time": "2024-02-10T07:15:14.738551",
+          "file_extension": ".png",
+          "original_file_name": "thumbnail.png"
+        }
+      }
+    ],
+    "createdAt": "2024-02-10T07:15:11.000Z",
+    "metadata": {
+      "progress": {},
+      "interactionUuid": "1462b245-790b-46e2-87fe-a1bab6986864",
+      "linkedCreations": [
+        "1edc3f67-1d19-4a68-bbbc-979e3e06db93",
+        "1c3e07ce-d5aa-44d3-9c1a-85bc215ff360",
+        "b8d1f795-e19b-4f2a-877e-8dc110aa3118",
+        "3c621a17-f545-4f4e-9876-a449a2d5dd37"
+      ]
+    }
+  },
+  {
+    "uuid": "1edc3f67-1d19-4a68-bbbc-979e3e06db93",
+    "username": "ignacio123",
+    "type": "imagine_3d_one",
+    "status": "completed",
+    "input": {
+      "text": "pile of destroyed technological burnt rubble from inferno",
+      "jobParams": {
+        "seed": "941907190"
+      },
+      "imageCaption": "pile of destroyed technological burnt rubble from inferno, 3d asset"
+    },
+    "output": [
+      {
+        "file_id": "a85b04779199",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/ce882ec9-ce6d-4161-b088-41bde2b7ce88/a85b04779199_pile_of_destroyed_technologi_0_glb_min.glb",
+        "metadata": {
+          "key": "model_draco_compressed_glb",
+          "type": "3d_model",
+          "file_size": "1.6 MB",
+          "uploaded_time": "2024-02-10T07:15:30.917222",
+          "file_extension": ".glb",
+          "original_file_name": "pile_of_destroyed_technologi_0_glb_min.glb"
+        }
+      },
+      {
+        "file_id": "6635f85daf1d",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/ce882ec9-ce6d-4161-b088-41bde2b7ce88/6635f85daf1d_pile_of_destroyed_technologi_0_glb.glb",
+        "metadata": {
+          "key": "model_glb",
+          "type": "3d_model",
+          "file_size": "3.8 MB",
+          "uploaded_time": "2024-02-10T07:15:30.915997",
+          "file_extension": ".glb",
+          "original_file_name": "pile_of_destroyed_technologi_0_glb.glb"
+        }
+      },
+      {
+        "file_id": "c6220936d273",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/ce882ec9-ce6d-4161-b088-41bde2b7ce88/c6220936d273_pile_of_destroyed_technologi_0_usdz.usdz",
+        "metadata": {
+          "key": "model_usdz",
+          "type": "3d_model",
+          "file_size": "4.7 MB",
+          "uploaded_time": "2024-02-10T07:15:30.914968",
+          "file_extension": ".usdz",
+          "original_file_name": "pile_of_destroyed_technologi_0_usdz.usdz"
+        }
+      },
+      {
+        "file_id": "5a832fd56a30",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/ce882ec9-ce6d-4161-b088-41bde2b7ce88/5a832fd56a30_video_360_rgb_whitebg.mp4",
+        "metadata": {
+          "key": "video_360_rgb_whitebg",
+          "type": "video",
+          "file_size": "77.1 kB",
+          "uploaded_time": "2024-02-10T07:15:16.155751",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb_whitebg.mp4"
+        }
+      },
+      {
+        "file_id": "df8c8e10252f",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/ce882ec9-ce6d-4161-b088-41bde2b7ce88/df8c8e10252f_video_360_alpha.mp4",
+        "metadata": {
+          "key": "video_360_alpha_mp4",
+          "type": "video",
+          "file_size": "49.0 kB",
+          "uploaded_time": "2024-02-10T07:15:16.154187",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_alpha.mp4"
+        }
+      },
+      {
+        "file_id": "0271ed126f01",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/ce882ec9-ce6d-4161-b088-41bde2b7ce88/0271ed126f01_video_360_rgb.mp4",
+        "metadata": {
+          "key": "video_360_rgb_mp4",
+          "type": "video",
+          "file_size": "61.2 kB",
+          "uploaded_time": "2024-02-10T07:15:16.153145",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb.mp4"
+        }
+      },
+      {
+        "file_id": "2a2f3089ca9c",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/ce882ec9-ce6d-4161-b088-41bde2b7ce88/2a2f3089ca9c_thumbnail.png",
+        "metadata": {
+          "key": "thumbnail",
+          "type": "image",
+          "file_size": "30.3 kB",
+          "uploaded_time": "2024-02-10T07:15:14.617763",
+          "file_extension": ".png",
+          "original_file_name": "thumbnail.png"
+        }
+      }
+    ],
+    "createdAt": "2024-02-10T07:15:11.000Z",
+    "metadata": {
+      "progress": {},
+      "interactionUuid": "1462b245-790b-46e2-87fe-a1bab6986864",
+      "linkedCreations": [
+        "1edc3f67-1d19-4a68-bbbc-979e3e06db93",
+        "1c3e07ce-d5aa-44d3-9c1a-85bc215ff360",
+        "b8d1f795-e19b-4f2a-877e-8dc110aa3118",
+        "3c621a17-f545-4f4e-9876-a449a2d5dd37"
+      ]
+    }
+  },
+  {
+    "uuid": "aaf4baba-04f2-4355-9a05-17ae4ce591f9",
+    "username": "ignacio123",
+    "type": "imagine_3d_one",
+    "status": "completed",
+    "input": {
+      "text": "abomination with a skeleton head and science fiction armor with technological prosthetics, oxygen tanks in the backpack. cartoon style",
+      "jobParams": {
+        "seed": "3682735027"
+      },
+      "imageCaption": "abomination with a skeleton head and science fiction armor with technological prosthetics, oxygen tanks in the backpack. cartoon style, 3d asset"
+    },
+    "output": [
+      {
+        "file_id": "cec06a62f9ff",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/a744a964-6c6f-4858-a501-2ac30f263866/cec06a62f9ff_abomination_with_a_skeleton__0_glb_min.glb",
+        "metadata": {
+          "key": "model_draco_compressed_glb",
+          "type": "3d_model",
+          "file_size": "2.2 MB",
+          "uploaded_time": "2024-02-10T07:01:04.578528",
+          "file_extension": ".glb",
+          "original_file_name": "abomination_with_a_skeleton__0_glb_min.glb"
+        }
+      },
+      {
+        "file_id": "e7bd9b9951dd",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/a744a964-6c6f-4858-a501-2ac30f263866/e7bd9b9951dd_abomination_with_a_skeleton__0_glb.glb",
+        "metadata": {
+          "key": "model_glb",
+          "type": "3d_model",
+          "file_size": "4.4 MB",
+          "uploaded_time": "2024-02-10T07:01:04.577761",
+          "file_extension": ".glb",
+          "original_file_name": "abomination_with_a_skeleton__0_glb.glb"
+        }
+      },
+      {
+        "file_id": "42daba2546e5",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/a744a964-6c6f-4858-a501-2ac30f263866/42daba2546e5_abomination_with_a_skeleton__0_usdz.usdz",
+        "metadata": {
+          "key": "model_usdz",
+          "type": "3d_model",
+          "file_size": "5.3 MB",
+          "uploaded_time": "2024-02-10T07:01:04.576554",
+          "file_extension": ".usdz",
+          "original_file_name": "abomination_with_a_skeleton__0_usdz.usdz"
+        }
+      },
+      {
+        "file_id": "dec720e960e4",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/a744a964-6c6f-4858-a501-2ac30f263866/dec720e960e4_video_360_rgb_whitebg.mp4",
+        "metadata": {
+          "key": "video_360_rgb_whitebg",
+          "type": "video",
+          "file_size": "98.7 kB",
+          "uploaded_time": "2024-02-10T07:00:50.382706",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb_whitebg.mp4"
+        }
+      },
+      {
+        "file_id": "50b7e0019bfc",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/a744a964-6c6f-4858-a501-2ac30f263866/50b7e0019bfc_video_360_alpha.mp4",
+        "metadata": {
+          "key": "video_360_alpha_mp4",
+          "type": "video",
+          "file_size": "64.3 kB",
+          "uploaded_time": "2024-02-10T07:00:50.381974",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_alpha.mp4"
+        }
+      },
+      {
+        "file_id": "48dea0b1cfe7",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/a744a964-6c6f-4858-a501-2ac30f263866/48dea0b1cfe7_video_360_rgb.mp4",
+        "metadata": {
+          "key": "video_360_rgb_mp4",
+          "type": "video",
+          "file_size": "85.1 kB",
+          "uploaded_time": "2024-02-10T07:00:50.380800",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb.mp4"
+        }
+      },
+      {
+        "file_id": "c0f45a2eac92",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/a744a964-6c6f-4858-a501-2ac30f263866/c0f45a2eac92_thumbnail.png",
+        "metadata": {
+          "key": "thumbnail",
+          "type": "image",
+          "file_size": "41.8 kB",
+          "uploaded_time": "2024-02-10T07:00:48.820451",
+          "file_extension": ".png",
+          "original_file_name": "thumbnail.png"
+        }
+      }
+    ],
+    "createdAt": "2024-02-10T07:00:46.000Z",
+    "metadata": {
+      "progress": {},
+      "interactionUuid": "048868c8-3123-4fb4-a895-190619a47d05",
+      "convertResults": [
+        {
+          "config": {
+            "decimate": true,
+            "export_glb": true,
+            "cage_extrusion": 0.1,
+            "target_num_faces": 5000
+          },
+          "jobUuid": "f6b728af-957a-4d0b-b4cc-2018ff01844f",
+          "results": [
+            {
+              "file_id": "6587ab5e61d9",
+              "file_url": "https://cdn-luma.com/blender_convert/f6b728af-957a-4d0b-b4cc-2018ff01844f/6587ab5e61d9_cec06a62f9ff_abomination_with_a_.glb",
+              "metadata": {
+                "file_size": "1.4 MB",
+                "uploaded_time": "2024-02-10T07:40:08.001667",
+                "file_extension": ".glb",
+                "original_file_name": "cec06a62f9ff_abomination_with_a_.glb"
+              }
+            }
+          ]
+        }
+      ],
+      "linkedCreations": [
+        "e4d2fad1-f49e-42f0-955e-3dcb20bef5bf",
+        "38a1cd23-bab7-4663-838f-dc278e96fe84",
+        "fc23962f-de14-4cc2-8d46-4df39e9aea29",
+        "aaf4baba-04f2-4355-9a05-17ae4ce591f9"
+      ]
+    }
+  },
+  {
+    "uuid": "fc23962f-de14-4cc2-8d46-4df39e9aea29",
+    "username": "ignacio123",
+    "type": "imagine_3d_one",
+    "status": "completed",
+    "input": {
+      "text": "abomination with a skeleton head and science fiction armor with technological prosthetics, oxygen tanks in the backpack. cartoon style",
+      "jobParams": {
+        "seed": "2608993204"
+      },
+      "imageCaption": "abomination with a skeleton head and science fiction armor with technological prosthetics, oxygen tanks in the backpack. cartoon style, 3d asset"
+    },
+    "output": [
+      {
+        "file_id": "7e57953432d8",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/78359af6-14d3-4b24-a3f3-42818cce9dca/7e57953432d8_abomination_with_a_skeleton__0_glb_min.glb",
+        "metadata": {
+          "key": "model_draco_compressed_glb",
+          "type": "3d_model",
+          "file_size": "2.2 MB",
+          "uploaded_time": "2024-02-10T07:01:03.453807",
+          "file_extension": ".glb",
+          "original_file_name": "abomination_with_a_skeleton__0_glb_min.glb"
+        }
+      },
+      {
+        "file_id": "f23491acf156",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/78359af6-14d3-4b24-a3f3-42818cce9dca/f23491acf156_abomination_with_a_skeleton__0_glb.glb",
+        "metadata": {
+          "key": "model_glb",
+          "type": "3d_model",
+          "file_size": "4.4 MB",
+          "uploaded_time": "2024-02-10T07:01:03.452796",
+          "file_extension": ".glb",
+          "original_file_name": "abomination_with_a_skeleton__0_glb.glb"
+        }
+      },
+      {
+        "file_id": "43be29a49a34",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/78359af6-14d3-4b24-a3f3-42818cce9dca/43be29a49a34_abomination_with_a_skeleton__0_usdz.usdz",
+        "metadata": {
+          "key": "model_usdz",
+          "type": "3d_model",
+          "file_size": "5.4 MB",
+          "uploaded_time": "2024-02-10T07:01:03.451816",
+          "file_extension": ".usdz",
+          "original_file_name": "abomination_with_a_skeleton__0_usdz.usdz"
+        }
+      },
+      {
+        "file_id": "20034f9b0e10",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/78359af6-14d3-4b24-a3f3-42818cce9dca/20034f9b0e10_video_360_rgb_whitebg.mp4",
+        "metadata": {
+          "key": "video_360_rgb_whitebg",
+          "type": "video",
+          "file_size": "105.5 kB",
+          "uploaded_time": "2024-02-10T07:00:50.383727",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb_whitebg.mp4"
+        }
+      },
+      {
+        "file_id": "142e7dfd408e",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/78359af6-14d3-4b24-a3f3-42818cce9dca/142e7dfd408e_video_360_alpha.mp4",
+        "metadata": {
+          "key": "video_360_alpha_mp4",
+          "type": "video",
+          "file_size": "74.5 kB",
+          "uploaded_time": "2024-02-10T07:00:50.382695",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_alpha.mp4"
+        }
+      },
+      {
+        "file_id": "691df051fac3",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/78359af6-14d3-4b24-a3f3-42818cce9dca/691df051fac3_video_360_rgb.mp4",
+        "metadata": {
+          "key": "video_360_rgb_mp4",
+          "type": "video",
+          "file_size": "90.4 kB",
+          "uploaded_time": "2024-02-10T07:00:50.381598",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb.mp4"
+        }
+      },
+      {
+        "file_id": "65adcc680a0a",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/78359af6-14d3-4b24-a3f3-42818cce9dca/65adcc680a0a_thumbnail.png",
+        "metadata": {
+          "key": "thumbnail",
+          "type": "image",
+          "file_size": "48.0 kB",
+          "uploaded_time": "2024-02-10T07:00:48.848718",
+          "file_extension": ".png",
+          "original_file_name": "thumbnail.png"
+        }
+      }
+    ],
+    "createdAt": "2024-02-10T07:00:46.000Z",
+    "metadata": {
+      "progress": {},
+      "interactionUuid": "048868c8-3123-4fb4-a895-190619a47d05",
+      "convertResults": [
+        {
+          "config": {
+            "decimate": true,
+            "export_glb": true,
+            "cage_extrusion": 0.1,
+            "target_num_faces": 5000
+          },
+          "jobUuid": "cb4bfcb8-a0b4-4cbc-a025-69cdd43a012c",
+          "results": [
+            {
+              "file_id": "fe9ee5888f9d",
+              "file_url": "https://cdn-luma.com/blender_convert/cb4bfcb8-a0b4-4cbc-a025-69cdd43a012c/fe9ee5888f9d_7e57953432d8_abomination_with_a_.glb",
+              "metadata": {
+                "file_size": "1.5 MB",
+                "uploaded_time": "2024-02-10T07:04:36.804118",
+                "file_extension": ".glb",
+                "original_file_name": "7e57953432d8_abomination_with_a_.glb"
+              }
+            }
+          ]
+        },
+        {
+          "config": {
+            "decimate": true,
+            "export_obj": true,
+            "cage_extrusion": 0.1,
+            "target_num_faces": 5000
+          },
+          "jobUuid": "f4c8260e-2ef6-4db9-8022-119293e0497c",
+          "results": [
+            {
+              "file_id": "19a6799684c6",
+              "file_url": "https://cdn-luma.com/blender_convert/f4c8260e-2ef6-4db9-8022-119293e0497c/19a6799684c6_7e57953432d8_abomination_with_a__obj.zip",
+              "metadata": {
+                "file_size": "1.6 MB",
+                "uploaded_time": "2024-02-10T07:47:42.301245",
+                "file_extension": ".zip",
+                "original_file_name": "7e57953432d8_abomination_with_a__obj.zip"
+              }
+            }
+          ]
+        }
+      ],
+      "linkedCreations": [
+        "e4d2fad1-f49e-42f0-955e-3dcb20bef5bf",
+        "38a1cd23-bab7-4663-838f-dc278e96fe84",
+        "fc23962f-de14-4cc2-8d46-4df39e9aea29",
+        "aaf4baba-04f2-4355-9a05-17ae4ce591f9"
+      ]
+    }
+  },
+  {
+    "uuid": "38a1cd23-bab7-4663-838f-dc278e96fe84",
+    "username": "ignacio123",
+    "type": "imagine_3d_one",
+    "status": "completed",
+    "input": {
+      "text": "abomination with a skeleton head and science fiction armor with technological prosthetics, oxygen tanks in the backpack. cartoon style",
+      "jobParams": {
+        "seed": "1535251381"
+      },
+      "imageCaption": "abomination with a skeleton head and science fiction armor with technological prosthetics, oxygen tanks in the backpack. cartoon style, 3d asset"
+    },
+    "output": [
+      {
+        "file_id": "457b9b034bf8",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/efb7693c-a700-447f-a91c-bac5a1a6190e/457b9b034bf8_abomination_with_a_skeleton__0_glb_min.glb",
+        "metadata": {
+          "key": "model_draco_compressed_glb",
+          "type": "3d_model",
+          "file_size": "2.2 MB",
+          "uploaded_time": "2024-02-10T07:01:05.963901",
+          "file_extension": ".glb",
+          "original_file_name": "abomination_with_a_skeleton__0_glb_min.glb"
+        }
+      },
+      {
+        "file_id": "9f5aeee34eca",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/efb7693c-a700-447f-a91c-bac5a1a6190e/9f5aeee34eca_abomination_with_a_skeleton__0_glb.glb",
+        "metadata": {
+          "key": "model_glb",
+          "type": "3d_model",
+          "file_size": "4.5 MB",
+          "uploaded_time": "2024-02-10T07:01:05.963038",
+          "file_extension": ".glb",
+          "original_file_name": "abomination_with_a_skeleton__0_glb.glb"
+        }
+      },
+      {
+        "file_id": "ea23fdaeed33",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/efb7693c-a700-447f-a91c-bac5a1a6190e/ea23fdaeed33_abomination_with_a_skeleton__0_usdz.usdz",
+        "metadata": {
+          "key": "model_usdz",
+          "type": "3d_model",
+          "file_size": "5.4 MB",
+          "uploaded_time": "2024-02-10T07:01:05.961866",
+          "file_extension": ".usdz",
+          "original_file_name": "abomination_with_a_skeleton__0_usdz.usdz"
+        }
+      },
+      {
+        "file_id": "3e82b1e29ec4",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/efb7693c-a700-447f-a91c-bac5a1a6190e/3e82b1e29ec4_video_360_rgb_whitebg.mp4",
+        "metadata": {
+          "key": "video_360_rgb_whitebg",
+          "type": "video",
+          "file_size": "123.6 kB",
+          "uploaded_time": "2024-02-10T07:00:50.646165",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb_whitebg.mp4"
+        }
+      },
+      {
+        "file_id": "ec5232afe431",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/efb7693c-a700-447f-a91c-bac5a1a6190e/ec5232afe431_video_360_alpha.mp4",
+        "metadata": {
+          "key": "video_360_alpha_mp4",
+          "type": "video",
+          "file_size": "83.5 kB",
+          "uploaded_time": "2024-02-10T07:00:50.645081",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_alpha.mp4"
+        }
+      },
+      {
+        "file_id": "468992f937d7",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/efb7693c-a700-447f-a91c-bac5a1a6190e/468992f937d7_video_360_rgb.mp4",
+        "metadata": {
+          "key": "video_360_rgb_mp4",
+          "type": "video",
+          "file_size": "102.6 kB",
+          "uploaded_time": "2024-02-10T07:00:50.644016",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb.mp4"
+        }
+      },
+      {
+        "file_id": "9ff78c5726f6",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/efb7693c-a700-447f-a91c-bac5a1a6190e/9ff78c5726f6_thumbnail.png",
+        "metadata": {
+          "key": "thumbnail",
+          "type": "image",
+          "file_size": "48.8 kB",
+          "uploaded_time": "2024-02-10T07:00:48.830658",
+          "file_extension": ".png",
+          "original_file_name": "thumbnail.png"
+        }
+      }
+    ],
+    "createdAt": "2024-02-10T07:00:46.000Z",
+    "metadata": {
+      "progress": {},
+      "interactionUuid": "048868c8-3123-4fb4-a895-190619a47d05",
+      "convertResults": [
+        {
+          "config": {
+            "decimate": true,
+            "export_glb": true,
+            "cage_extrusion": 0.1,
+            "target_num_faces": 5000
+          },
+          "jobUuid": "792629a3-5fb3-475a-b793-f2c502469e55",
+          "results": [
+            {
+              "file_id": "0f090e53b244",
+              "file_url": "https://cdn-luma.com/blender_convert/792629a3-5fb3-475a-b793-f2c502469e55/0f090e53b244_457b9b034bf8_abomination_with_a_.glb",
+              "metadata": {
+                "file_size": "1.7 MB",
+                "uploaded_time": "2024-02-10T07:03:48.469972",
+                "file_extension": ".glb",
+                "original_file_name": "457b9b034bf8_abomination_with_a_.glb"
+              }
+            }
+          ]
+        }
+      ],
+      "linkedCreations": [
+        "e4d2fad1-f49e-42f0-955e-3dcb20bef5bf",
+        "38a1cd23-bab7-4663-838f-dc278e96fe84",
+        "fc23962f-de14-4cc2-8d46-4df39e9aea29",
+        "aaf4baba-04f2-4355-9a05-17ae4ce591f9"
+      ]
+    }
+  },
+  {
+    "uuid": "e4d2fad1-f49e-42f0-955e-3dcb20bef5bf",
+    "username": "ignacio123",
+    "type": "imagine_3d_one",
+    "status": "completed",
+    "input": {
+      "text": "abomination with a skeleton head and science fiction armor with technological prosthetics, oxygen tanks in the backpack. cartoon style",
+      "jobParams": {
+        "seed": "461509558"
+      },
+      "imageCaption": "abomination with a skeleton head and science fiction armor with technological prosthetics, oxygen tanks in the backpack. cartoon style, 3d asset"
+    },
+    "output": [
+      {
+        "file_id": "1b892b535b42",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/087a1733-b774-40a1-bafc-b0411aa6c637/1b892b535b42_abomination_with_a_skeleton__0_glb_min.glb",
+        "metadata": {
+          "key": "model_draco_compressed_glb",
+          "type": "3d_model",
+          "file_size": "2.2 MB",
+          "uploaded_time": "2024-02-10T07:01:06.307804",
+          "file_extension": ".glb",
+          "original_file_name": "abomination_with_a_skeleton__0_glb_min.glb"
+        }
+      },
+      {
+        "file_id": "324776ea9c3a",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/087a1733-b774-40a1-bafc-b0411aa6c637/324776ea9c3a_abomination_with_a_skeleton__0_glb.glb",
+        "metadata": {
+          "key": "model_glb",
+          "type": "3d_model",
+          "file_size": "4.5 MB",
+          "uploaded_time": "2024-02-10T07:01:06.306663",
+          "file_extension": ".glb",
+          "original_file_name": "abomination_with_a_skeleton__0_glb.glb"
+        }
+      },
+      {
+        "file_id": "5bc0dba7e86a",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/087a1733-b774-40a1-bafc-b0411aa6c637/5bc0dba7e86a_abomination_with_a_skeleton__0_usdz.usdz",
+        "metadata": {
+          "key": "model_usdz",
+          "type": "3d_model",
+          "file_size": "5.2 MB",
+          "uploaded_time": "2024-02-10T07:01:06.305567",
+          "file_extension": ".usdz",
+          "original_file_name": "abomination_with_a_skeleton__0_usdz.usdz"
+        }
+      },
+      {
+        "file_id": "d861a1b5e844",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/087a1733-b774-40a1-bafc-b0411aa6c637/d861a1b5e844_video_360_rgb_whitebg.mp4",
+        "metadata": {
+          "key": "video_360_rgb_whitebg",
+          "type": "video",
+          "file_size": "118.1 kB",
+          "uploaded_time": "2024-02-10T07:00:50.782229",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb_whitebg.mp4"
+        }
+      },
+      {
+        "file_id": "5db5596b7f74",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/087a1733-b774-40a1-bafc-b0411aa6c637/5db5596b7f74_video_360_alpha.mp4",
+        "metadata": {
+          "key": "video_360_alpha_mp4",
+          "type": "video",
+          "file_size": "81.7 kB",
+          "uploaded_time": "2024-02-10T07:00:50.781159",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_alpha.mp4"
+        }
+      },
+      {
+        "file_id": "171eb56860d6",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/087a1733-b774-40a1-bafc-b0411aa6c637/171eb56860d6_video_360_rgb.mp4",
+        "metadata": {
+          "key": "video_360_rgb_mp4",
+          "type": "video",
+          "file_size": "98.7 kB",
+          "uploaded_time": "2024-02-10T07:00:50.780020",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb.mp4"
+        }
+      },
+      {
+        "file_id": "f99f3e28a285",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/087a1733-b774-40a1-bafc-b0411aa6c637/f99f3e28a285_thumbnail.png",
+        "metadata": {
+          "key": "thumbnail",
+          "type": "image",
+          "file_size": "44.7 kB",
+          "uploaded_time": "2024-02-10T07:00:48.821384",
+          "file_extension": ".png",
+          "original_file_name": "thumbnail.png"
+        }
+      }
+    ],
+    "createdAt": "2024-02-10T07:00:46.000Z",
+    "metadata": {
+      "progress": {},
+      "interactionUuid": "048868c8-3123-4fb4-a895-190619a47d05",
+      "convertResults": [
+        {
+          "config": {
+            "decimate": true,
+            "export_glb": true,
+            "cage_extrusion": 0.1,
+            "target_num_faces": 5000
+          },
+          "jobUuid": "a832f5bc-7f17-44da-88ff-99562752e500",
+          "results": [
+            {
+              "file_id": "18c63c48400b",
+              "file_url": "https://cdn-luma.com/blender_convert/a832f5bc-7f17-44da-88ff-99562752e500/18c63c48400b_1b892b535b42_abomination_with_a_.glb",
+              "metadata": {
+                "file_size": "1.7 MB",
+                "uploaded_time": "2024-02-10T07:02:16.044897",
+                "file_extension": ".glb",
+                "original_file_name": "1b892b535b42_abomination_with_a_.glb"
+              }
+            }
+          ]
+        },
+        {
+          "config": {
+            "decimate": true,
+            "export_obj": true,
+            "cage_extrusion": 0.1,
+            "target_num_faces": 5000
+          },
+          "jobUuid": "b7af534a-9c29-4e4e-a2ef-e9134db38ebf",
+          "results": [
+            {
+              "file_id": "05ea90993759",
+              "file_url": "https://cdn-luma.com/blender_convert/b7af534a-9c29-4e4e-a2ef-e9134db38ebf/05ea90993759_1b892b535b42_abomination_with_a__obj.zip",
+              "metadata": {
+                "file_size": "3.6 MB",
+                "uploaded_time": "2024-02-10T07:38:58.398169",
+                "file_extension": ".zip",
+                "original_file_name": "1b892b535b42_abomination_with_a__obj.zip"
+              }
+            }
+          ]
+        }
+      ],
+      "linkedCreations": [
+        "e4d2fad1-f49e-42f0-955e-3dcb20bef5bf",
+        "38a1cd23-bab7-4663-838f-dc278e96fe84",
+        "fc23962f-de14-4cc2-8d46-4df39e9aea29",
+        "aaf4baba-04f2-4355-9a05-17ae4ce591f9"
+      ]
+    }
+  },
+  {
+    "uuid": "690db372-4190-49e4-9ec8-ce7b8591112c",
+    "username": "ignacio123",
+    "type": "imagine_3d_one",
+    "status": "completed",
+    "input": {
+      "text": "a cartoonish robot astronaut with a spacial backpack",
+      "jobParams": {
+        "seed": "3755388938"
+      },
+      "imageCaption": "a cartoonish robot astronaut with a spacial backpack, 3d asset"
+    },
+    "output": [
+      {
+        "file_id": "7ad590b7dedf",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/d806d8bd-5fae-4c23-b07b-6d69c9622143/7ad590b7dedf_a_cartoonish_robot_astronaut_0_glb_min.glb",
+        "metadata": {
+          "key": "model_draco_compressed_glb",
+          "type": "3d_model",
+          "file_size": "2.2 MB",
+          "uploaded_time": "2024-02-08T17:23:01.759217",
+          "file_extension": ".glb",
+          "original_file_name": "a_cartoonish_robot_astronaut_0_glb_min.glb"
+        }
+      },
+      {
+        "file_id": "043c7202803d",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/d806d8bd-5fae-4c23-b07b-6d69c9622143/043c7202803d_a_cartoonish_robot_astronaut_0_glb.glb",
+        "metadata": {
+          "key": "model_glb",
+          "type": "3d_model",
+          "file_size": "4.2 MB",
+          "uploaded_time": "2024-02-08T17:23:01.758209",
+          "file_extension": ".glb",
+          "original_file_name": "a_cartoonish_robot_astronaut_0_glb.glb"
+        }
+      },
+      {
+        "file_id": "890894a3fb3d",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/d806d8bd-5fae-4c23-b07b-6d69c9622143/890894a3fb3d_a_cartoonish_robot_astronaut_0_usdz.usdz",
+        "metadata": {
+          "key": "model_usdz",
+          "type": "3d_model",
+          "file_size": "5.4 MB",
+          "uploaded_time": "2024-02-08T17:23:01.757161",
+          "file_extension": ".usdz",
+          "original_file_name": "a_cartoonish_robot_astronaut_0_usdz.usdz"
+        }
+      },
+      {
+        "file_id": "1a5034543270",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/d806d8bd-5fae-4c23-b07b-6d69c9622143/1a5034543270_video_360_rgb_whitebg.mp4",
+        "metadata": {
+          "key": "video_360_rgb_whitebg",
+          "type": "video",
+          "file_size": "116.5 kB",
+          "uploaded_time": "2024-02-08T17:22:47.649470",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb_whitebg.mp4"
+        }
+      },
+      {
+        "file_id": "3e105b58e849",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/d806d8bd-5fae-4c23-b07b-6d69c9622143/3e105b58e849_video_360_alpha.mp4",
+        "metadata": {
+          "key": "video_360_alpha_mp4",
+          "type": "video",
+          "file_size": "59.4 kB",
+          "uploaded_time": "2024-02-08T17:22:47.648328",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_alpha.mp4"
+        }
+      },
+      {
+        "file_id": "628e018d84dd",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/d806d8bd-5fae-4c23-b07b-6d69c9622143/628e018d84dd_video_360_rgb.mp4",
+        "metadata": {
+          "key": "video_360_rgb_mp4",
+          "type": "video",
+          "file_size": "114.3 kB",
+          "uploaded_time": "2024-02-08T17:22:47.647344",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb.mp4"
+        }
+      },
+      {
+        "file_id": "b84a61f2b3d5",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/d806d8bd-5fae-4c23-b07b-6d69c9622143/b84a61f2b3d5_thumbnail.png",
+        "metadata": {
+          "key": "thumbnail",
+          "type": "image",
+          "file_size": "44.9 kB",
+          "uploaded_time": "2024-02-08T17:22:46.325733",
+          "file_extension": ".png",
+          "original_file_name": "thumbnail.png"
+        }
+      }
+    ],
+    "createdAt": "2024-02-08T17:22:42.000Z",
+    "metadata": {
+      "progress": {},
+      "interactionUuid": "098d42d4-5d05-48bc-bc7b-3a737bfbbd2f",
+      "linkedCreations": [
+        "829c2eea-93d8-4a7f-8b7e-116361002d55",
+        "b5ddbd4c-fe32-438c-843f-be18e36e0b8a",
+        "85bd4cbd-d707-4a23-92ff-2508c30481bb",
+        "690db372-4190-49e4-9ec8-ce7b8591112c"
+      ]
+    }
+  },
+  {
+    "uuid": "85bd4cbd-d707-4a23-92ff-2508c30481bb",
+    "username": "ignacio123",
+    "type": "imagine_3d_one",
+    "status": "completed",
+    "input": {
+      "text": "a cartoonish robot astronaut with a spacial backpack",
+      "jobParams": {
+        "seed": "2681647115"
+      },
+      "imageCaption": "a cartoonish robot astronaut with a spacial backpack, 3d asset"
+    },
+    "output": [
+      {
+        "file_id": "a9ea230c1a5c",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/a3f79fed-8273-419b-9758-a6dacea2ec3f/a9ea230c1a5c_a_cartoonish_robot_astronaut_0_glb_min.glb",
+        "metadata": {
+          "key": "model_draco_compressed_glb",
+          "type": "3d_model",
+          "file_size": "1.9 MB",
+          "uploaded_time": "2024-02-08T17:23:01.603096",
+          "file_extension": ".glb",
+          "original_file_name": "a_cartoonish_robot_astronaut_0_glb_min.glb"
+        }
+      },
+      {
+        "file_id": "46ef90d0e88c",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/a3f79fed-8273-419b-9758-a6dacea2ec3f/46ef90d0e88c_a_cartoonish_robot_astronaut_0_glb.glb",
+        "metadata": {
+          "key": "model_glb",
+          "type": "3d_model",
+          "file_size": "3.9 MB",
+          "uploaded_time": "2024-02-08T17:23:01.601607",
+          "file_extension": ".glb",
+          "original_file_name": "a_cartoonish_robot_astronaut_0_glb.glb"
+        }
+      },
+      {
+        "file_id": "757b7aa97b95",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/a3f79fed-8273-419b-9758-a6dacea2ec3f/757b7aa97b95_a_cartoonish_robot_astronaut_0_usdz.usdz",
+        "metadata": {
+          "key": "model_usdz",
+          "type": "3d_model",
+          "file_size": "5.2 MB",
+          "uploaded_time": "2024-02-08T17:23:01.600835",
+          "file_extension": ".usdz",
+          "original_file_name": "a_cartoonish_robot_astronaut_0_usdz.usdz"
+        }
+      },
+      {
+        "file_id": "1e4afbde7a7e",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/a3f79fed-8273-419b-9758-a6dacea2ec3f/1e4afbde7a7e_video_360_rgb_whitebg.mp4",
+        "metadata": {
+          "key": "video_360_rgb_whitebg",
+          "type": "video",
+          "file_size": "106.0 kB",
+          "uploaded_time": "2024-02-08T17:22:47.686862",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb_whitebg.mp4"
+        }
+      },
+      {
+        "file_id": "2825bba6405a",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/a3f79fed-8273-419b-9758-a6dacea2ec3f/2825bba6405a_video_360_alpha.mp4",
+        "metadata": {
+          "key": "video_360_alpha_mp4",
+          "type": "video",
+          "file_size": "54.6 kB",
+          "uploaded_time": "2024-02-08T17:22:47.686388",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_alpha.mp4"
+        }
+      },
+      {
+        "file_id": "57cbf4fdf455",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/a3f79fed-8273-419b-9758-a6dacea2ec3f/57cbf4fdf455_video_360_rgb.mp4",
+        "metadata": {
+          "key": "video_360_rgb_mp4",
+          "type": "video",
+          "file_size": "107.1 kB",
+          "uploaded_time": "2024-02-08T17:22:47.685409",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb.mp4"
+        }
+      },
+      {
+        "file_id": "219660df7e90",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/a3f79fed-8273-419b-9758-a6dacea2ec3f/219660df7e90_thumbnail.png",
+        "metadata": {
+          "key": "thumbnail",
+          "type": "image",
+          "file_size": "39.8 kB",
+          "uploaded_time": "2024-02-08T17:22:46.363578",
+          "file_extension": ".png",
+          "original_file_name": "thumbnail.png"
+        }
+      }
+    ],
+    "createdAt": "2024-02-08T17:22:42.000Z",
+    "metadata": {
+      "progress": {},
+      "interactionUuid": "098d42d4-5d05-48bc-bc7b-3a737bfbbd2f",
+      "linkedCreations": [
+        "829c2eea-93d8-4a7f-8b7e-116361002d55",
+        "b5ddbd4c-fe32-438c-843f-be18e36e0b8a",
+        "85bd4cbd-d707-4a23-92ff-2508c30481bb",
+        "690db372-4190-49e4-9ec8-ce7b8591112c"
+      ]
+    }
+  },
+  {
+    "uuid": "b5ddbd4c-fe32-438c-843f-be18e36e0b8a",
+    "username": "ignacio123",
+    "type": "imagine_3d_one",
+    "status": "completed",
+    "input": {
+      "text": "a cartoonish robot astronaut with a spacial backpack",
+      "jobParams": {
+        "seed": "1607905292"
+      },
+      "imageCaption": "a cartoonish robot astronaut with a spacial backpack, 3d asset"
+    },
+    "output": [
+      {
+        "file_id": "21f5c3288f62",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/20b9b9f8-b405-4d9e-b4dc-0a3ec310be75/21f5c3288f62_a_cartoonish_robot_astronaut_0_glb_min.glb",
+        "metadata": {
+          "key": "model_draco_compressed_glb",
+          "type": "3d_model",
+          "file_size": "1.8 MB",
+          "uploaded_time": "2024-02-08T17:23:02.043141",
+          "file_extension": ".glb",
+          "original_file_name": "a_cartoonish_robot_astronaut_0_glb_min.glb"
+        }
+      },
+      {
+        "file_id": "51daadaf8052",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/20b9b9f8-b405-4d9e-b4dc-0a3ec310be75/51daadaf8052_a_cartoonish_robot_astronaut_0_glb.glb",
+        "metadata": {
+          "key": "model_glb",
+          "type": "3d_model",
+          "file_size": "3.7 MB",
+          "uploaded_time": "2024-02-08T17:23:02.042139",
+          "file_extension": ".glb",
+          "original_file_name": "a_cartoonish_robot_astronaut_0_glb.glb"
+        }
+      },
+      {
+        "file_id": "43c3d67552ff",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/20b9b9f8-b405-4d9e-b4dc-0a3ec310be75/43c3d67552ff_a_cartoonish_robot_astronaut_0_usdz.usdz",
+        "metadata": {
+          "key": "model_usdz",
+          "type": "3d_model",
+          "file_size": "4.9 MB",
+          "uploaded_time": "2024-02-08T17:23:02.041070",
+          "file_extension": ".usdz",
+          "original_file_name": "a_cartoonish_robot_astronaut_0_usdz.usdz"
+        }
+      },
+      {
+        "file_id": "4e99fd2eac73",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/20b9b9f8-b405-4d9e-b4dc-0a3ec310be75/4e99fd2eac73_video_360_rgb_whitebg.mp4",
+        "metadata": {
+          "key": "video_360_rgb_whitebg",
+          "type": "video",
+          "file_size": "114.1 kB",
+          "uploaded_time": "2024-02-08T17:22:47.764267",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb_whitebg.mp4"
+        }
+      },
+      {
+        "file_id": "55d79f84303f",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/20b9b9f8-b405-4d9e-b4dc-0a3ec310be75/55d79f84303f_video_360_alpha.mp4",
+        "metadata": {
+          "key": "video_360_alpha_mp4",
+          "type": "video",
+          "file_size": "61.1 kB",
+          "uploaded_time": "2024-02-08T17:22:47.762388",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_alpha.mp4"
+        }
+      },
+      {
+        "file_id": "683470ebadea",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/20b9b9f8-b405-4d9e-b4dc-0a3ec310be75/683470ebadea_video_360_rgb.mp4",
+        "metadata": {
+          "key": "video_360_rgb_mp4",
+          "type": "video",
+          "file_size": "112.8 kB",
+          "uploaded_time": "2024-02-08T17:22:47.761638",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb.mp4"
+        }
+      },
+      {
+        "file_id": "f76f1fdd81ab",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/20b9b9f8-b405-4d9e-b4dc-0a3ec310be75/f76f1fdd81ab_thumbnail.png",
+        "metadata": {
+          "key": "thumbnail",
+          "type": "image",
+          "file_size": "44.9 kB",
+          "uploaded_time": "2024-02-08T17:22:46.477258",
+          "file_extension": ".png",
+          "original_file_name": "thumbnail.png"
+        }
+      }
+    ],
+    "createdAt": "2024-02-08T17:22:42.000Z",
+    "metadata": {
+      "progress": {},
+      "interactionUuid": "098d42d4-5d05-48bc-bc7b-3a737bfbbd2f",
+      "convertResults": [
+        {
+          "config": {
+            "decimate": true,
+            "export_glb": true,
+            "cage_extrusion": 0.1,
+            "target_num_faces": 5000
+          },
+          "jobUuid": "62190021-0438-4858-afd8-2b2cc6f74a9a",
+          "results": [
+            {
+              "file_id": "0e059598e426",
+              "file_url": "https://cdn-luma.com/blender_convert/62190021-0438-4858-afd8-2b2cc6f74a9a/0e059598e426_21f5c3288f62_a_cartoonish_robot_.glb",
+              "metadata": {
+                "file_size": "1.1 MB",
+                "uploaded_time": "2024-02-08T17:24:16.351940",
+                "file_extension": ".glb",
+                "original_file_name": "21f5c3288f62_a_cartoonish_robot_.glb"
+              }
+            }
+          ]
+        }
+      ],
+      "linkedCreations": [
+        "829c2eea-93d8-4a7f-8b7e-116361002d55",
+        "b5ddbd4c-fe32-438c-843f-be18e36e0b8a",
+        "85bd4cbd-d707-4a23-92ff-2508c30481bb",
+        "690db372-4190-49e4-9ec8-ce7b8591112c"
+      ]
+    }
+  },
+  {
+    "uuid": "829c2eea-93d8-4a7f-8b7e-116361002d55",
+    "username": "ignacio123",
+    "type": "imagine_3d_one",
+    "status": "completed",
+    "input": {
+      "text": "a cartoonish robot astronaut with a spacial backpack",
+      "jobParams": {
+        "seed": "534163469"
+      },
+      "imageCaption": "a cartoonish robot astronaut with a spacial backpack, 3d asset"
+    },
+    "output": [
+      {
+        "file_id": "9a75ffeeccfd",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/8115f7eb-10ee-4413-b9f6-a525c96c83bc/9a75ffeeccfd_a_cartoonish_robot_astronaut_0_glb_min.glb",
+        "metadata": {
+          "key": "model_draco_compressed_glb",
+          "type": "3d_model",
+          "file_size": "2.1 MB",
+          "uploaded_time": "2024-02-08T17:23:03.073733",
+          "file_extension": ".glb",
+          "original_file_name": "a_cartoonish_robot_astronaut_0_glb_min.glb"
+        }
+      },
+      {
+        "file_id": "f4187667e805",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/8115f7eb-10ee-4413-b9f6-a525c96c83bc/f4187667e805_a_cartoonish_robot_astronaut_0_glb.glb",
+        "metadata": {
+          "key": "model_glb",
+          "type": "3d_model",
+          "file_size": "4.0 MB",
+          "uploaded_time": "2024-02-08T17:23:03.072070",
+          "file_extension": ".glb",
+          "original_file_name": "a_cartoonish_robot_astronaut_0_glb.glb"
+        }
+      },
+      {
+        "file_id": "055ab5a340fa",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/8115f7eb-10ee-4413-b9f6-a525c96c83bc/055ab5a340fa_a_cartoonish_robot_astronaut_0_usdz.usdz",
+        "metadata": {
+          "key": "model_usdz",
+          "type": "3d_model",
+          "file_size": "5.1 MB",
+          "uploaded_time": "2024-02-08T17:23:03.071335",
+          "file_extension": ".usdz",
+          "original_file_name": "a_cartoonish_robot_astronaut_0_usdz.usdz"
+        }
+      },
+      {
+        "file_id": "d58d01f3ab99",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/8115f7eb-10ee-4413-b9f6-a525c96c83bc/d58d01f3ab99_video_360_rgb_whitebg.mp4",
+        "metadata": {
+          "key": "video_360_rgb_whitebg",
+          "type": "video",
+          "file_size": "122.3 kB",
+          "uploaded_time": "2024-02-08T17:22:47.880783",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb_whitebg.mp4"
+        }
+      },
+      {
+        "file_id": "4d34a8be7d0a",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/8115f7eb-10ee-4413-b9f6-a525c96c83bc/4d34a8be7d0a_video_360_alpha.mp4",
+        "metadata": {
+          "key": "video_360_alpha_mp4",
+          "type": "video",
+          "file_size": "58.3 kB",
+          "uploaded_time": "2024-02-08T17:22:47.879579",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_alpha.mp4"
+        }
+      },
+      {
+        "file_id": "ae920d933cc7",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/8115f7eb-10ee-4413-b9f6-a525c96c83bc/ae920d933cc7_video_360_rgb.mp4",
+        "metadata": {
+          "key": "video_360_rgb_mp4",
+          "type": "video",
+          "file_size": "122.1 kB",
+          "uploaded_time": "2024-02-08T17:22:47.878551",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb.mp4"
+        }
+      },
+      {
+        "file_id": "5ec39b3a2bfe",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/8115f7eb-10ee-4413-b9f6-a525c96c83bc/5ec39b3a2bfe_thumbnail.png",
+        "metadata": {
+          "key": "thumbnail",
+          "type": "image",
+          "file_size": "43.3 kB",
+          "uploaded_time": "2024-02-08T17:22:46.431812",
+          "file_extension": ".png",
+          "original_file_name": "thumbnail.png"
+        }
+      }
+    ],
+    "createdAt": "2024-02-08T17:22:42.000Z",
+    "metadata": {
+      "progress": {},
+      "interactionUuid": "098d42d4-5d05-48bc-bc7b-3a737bfbbd2f",
+      "linkedCreations": [
+        "829c2eea-93d8-4a7f-8b7e-116361002d55",
+        "b5ddbd4c-fe32-438c-843f-be18e36e0b8a",
+        "85bd4cbd-d707-4a23-92ff-2508c30481bb",
+        "690db372-4190-49e4-9ec8-ce7b8591112c"
+      ]
+    }
+  }
+]

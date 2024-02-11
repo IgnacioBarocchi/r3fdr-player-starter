@@ -13,29 +13,20 @@ import getAnimationClipMilliseconds from "../../lib/getAnimationClipDuration";
 import { useContext } from "react";
 import { useGameStore } from "../useGameStore/useGameStore";
 
-type ModelResultType<T> = {
-  scene: Group;
-  nodes: {
-    mesh: THREE.SkinnedMesh;
-    mixamorigHips: THREE.Bone;
-  };
-  materials: {
-    robot: THREE.MeshStandardMaterial;
-  };
-  animations: T;
-  group: React.RefObject<Group>;
-};
-
 export const use3DModelLogic = <T,>(
   state: StateValue,
   player: boolean,
-  modelPath = "/models/Robot.glb"
+  // todo: update type of modelpath
+  modelPath: string,
+  givenDependantGroupRef?: React.MutableRefObject<THREE.Group>
 ): ModelResultType<T> => {
   const {
     state: { GRAPHICS },
   } = useContext(AppContext);
 
-  const group = useRef<Group>(null);
+  const group = givenDependantGroupRef
+    ? givenDependantGroupRef
+    : useRef<Group>(null);
 
   const { scene, nodes, materials, animations } = useGLTF(
     modelPath
@@ -109,4 +100,17 @@ export const use3DModelLogic = <T,>(
   }, [state]);
 
   return { group, scene, nodes, materials, animations };
+};
+
+type ModelResultType<T> = {
+  scene: Group;
+  nodes: {
+    mesh: THREE.SkinnedMesh;
+    mixamorigHips: THREE.Bone;
+  };
+  materials: {
+    robot: THREE.MeshStandardMaterial;
+  };
+  animations: T;
+  group: React.RefObject<Group>;
 };
