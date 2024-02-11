@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Hitbox from "../../utility/Hitbox/Hitbox";
 import { Hitboxes } from "../../../lib/object3DHelper";
-import { PlayerMachineStateValues } from "../../../hooks/usePlayerLogic/getRobotMachine";
+import { PlayerMachineStateValues } from "../../../hooks/usePlayerLogic/getPlayerMachine";
 import { PositionalAudio } from "@react-three/drei";
 import { StateValue } from "xstate";
 
@@ -11,6 +11,22 @@ const PunchCollider = () => {
       rigidBodyProps={{
         name: Hitboxes.FIST,
         position: [0, 1.25, 1.2],
+        density: 1000,
+        type: "fixed",
+      }}
+      physical={true}
+      shape={"ball"}
+      boundingSize={0.3}
+    />
+  );
+};
+
+const KickCollider = () => {
+  return (
+    <Hitbox
+      rigidBodyProps={{
+        name: Hitboxes.FOOT,
+        position: [0, 1.25, 2],
         density: 1000,
         type: "fixed",
       }}
@@ -52,10 +68,10 @@ const RobotHitbox: FC<RobotHitboxProps> = ({ state }) => {
       </>
     );
 
-  if (state === PlayerMachineStateValues.shoot)
+  if (state === PlayerMachineStateValues.kick)
     return (
       <>
-        <ProjectileCollider />
+        <KickCollider />
         <PositionalAudio
           load
           autoplay

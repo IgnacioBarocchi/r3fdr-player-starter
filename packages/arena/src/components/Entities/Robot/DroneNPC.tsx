@@ -5,7 +5,6 @@ import {
 } from "@react-three/rapier";
 
 import { Drone3DModel } from "./Drone3DModel";
-import Malo3DModel from "./Malo3DModel";
 import { useEnemyNPCLogic } from "../../../hooks/useEnemyNPCLogic/useEnemyNPCLogic";
 
 export const DroneNPC = () => {

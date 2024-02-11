@@ -19,12 +19,13 @@ const BoxerRobot: FC<{ state: StateValue }> = ({ state }) => {
     <group ref={group} dispose={null} position={[0, 0, 0]}>
       <group name="Scene">
         <group name="Armature" rotation={[Math.PI / 2, 0, 0]} scale={2.13}>
-          <primitive object={nodes.mixamorigHips} />
+          <primitive object={nodes.mixamorigHips} castShadow />
           <skinnedMesh
             name="mesh"
             geometry={nodes.mesh.geometry}
             material={materials.robot}
             skeleton={nodes.mesh.skeleton}
+            castShadow
           />
         </group>
       </group>

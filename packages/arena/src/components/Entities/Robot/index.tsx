@@ -7,7 +7,7 @@ import {
 import BoxerRobot from "./BoxerRobot3DModel";
 import { EntityModel } from "../../../providers/GLTFProvider";
 import { FC } from "react";
-import { PlayerMachineStateValues } from "../../../hooks/usePlayerLogic/getRobotMachine";
+import { PlayerMachineStateValues } from "../../../hooks/usePlayerLogic/getPlayerMachine";
 import { PositionalAudio } from "@react-three/drei";
 import RobotHitbox from "./RobotHitbox";
 import { usePlayerLogic } from "../../../hooks/usePlayerLogic/usePlayerLogic";
@@ -23,10 +23,7 @@ const Player: FC<{ useOrbitControls: boolean }> = ({ useOrbitControls }) => {
       <Bounding args={[0.2, 0.6]} position={[0, 0.8, 0.2]} />
       <Sensor args={[0.2, 2]} position={[0, 0.5, 0]} sensor />
       <BoxerRobot state={machineState.value} />
-      {[
-        PlayerMachineStateValues.punch,
-        PlayerMachineStateValues.shoot,
-      ].includes(
+      {[PlayerMachineStateValues.punch, PlayerMachineStateValues.kick].includes(
         // @ts-ignore
         machineState.value
       ) && <RobotHitbox orientation={orientation} state={machineState.value} />}

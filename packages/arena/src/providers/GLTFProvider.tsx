@@ -6,6 +6,7 @@ export const EntityModel = {
   // Robot: "/models/Robot.glb",
   Robot: "/models/BoxerRobot.gltf",
   Drone: "/models/Drone.gltf",
+  Skeleton2: "/models/Skeleton2.gltf",
 };
 
 const GLTFFileProvider: FC<{

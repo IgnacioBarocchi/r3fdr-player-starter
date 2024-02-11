@@ -3,7 +3,7 @@ import { RootState, useFrame } from "@react-three/fiber";
 import getPlayerMachine, {
   PlayerMachineStateValues,
   stateEvents,
-} from "./getRobotMachine";
+} from "./getPlayerMachine";
 import { useAnimations, useGLTF, useKeyboardControls } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 
@@ -16,9 +16,9 @@ import { useGameStore } from "../useGameStore/useGameStore";
 import { useMachine } from "@xstate/react";
 
 const getMachineStateFromInputtedKeys = (keys: Keys) => {
-  const { WALK, ROBOT_JUMP, ROBOT_SHOOT, ROBOT_PUNCH, IDLE } = stateEvents;
+  const { WALK, ROBOT_JUMP, ROBOT_KICK, ROBOT_PUNCH, IDLE } = stateEvents;
 
-  const { forward, backward, leftward, rightward, jump, punch, shoot } = keys;
+  const { forward, backward, leftward, rightward, jump, punch, kick } = keys;
 
   if (forward || backward || leftward || rightward) {
     return WALK;
@@ -26,7 +26,7 @@ const getMachineStateFromInputtedKeys = (keys: Keys) => {
 
   if (jump) return ROBOT_JUMP;
 
-  if (shoot) return ROBOT_SHOOT;
+  if (kick) return ROBOT_KICK;
 
   if (punch) return ROBOT_PUNCH;
 

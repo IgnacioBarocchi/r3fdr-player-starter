@@ -18,7 +18,7 @@ export const ModelUrlByName = {
 
 export const Hitboxes = {
   FIST: "FIST",
-  GEAR: "GEAR",
+  FOOT: "FOOT",
 };
 
 export type Hitbox = (typeof Hitboxes)[keyof typeof Hitboxes];

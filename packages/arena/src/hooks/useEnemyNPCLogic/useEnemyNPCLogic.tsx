@@ -1,5 +1,4 @@
 import { GameState, useGameStore } from "../useGameStore/useGameStore";
-import { Group, Vector3 } from "three";
 import {
   IntersectionEnterHandler,
   IntersectionExitHandler,
@@ -7,8 +6,8 @@ import {
 } from "@react-three/rapier";
 import { MutableRefObject, useRef } from "react";
 
+import { Group } from "three";
 import { enemyMachine } from "./enemyMachine";
-import getNormalizedTurnAngle from "../../lib/getNormalizedTurnAngle";
 import { goToTarget } from "./goToTarget";
 import { useFrame } from "@react-three/fiber";
 import { useMachine } from "@xstate/react";
@@ -49,6 +48,7 @@ export const useEnemyNPCLogic = () => {
   const { currentHP, playerIsReachable } = state.context;
 
   const handlePlayerReachableChange = (reachable: boolean) => {
+    // @ts-ignore
     send({ type: "PLAYER_REACHABLE_CHANGE", reachable });
   };
 
@@ -66,35 +66,36 @@ export const useEnemyNPCLogic = () => {
     }
 
     if (characterState?.group) {
-      goToTarget(
-        {
-          targetGroup: characterState?.group,
-          sourceBody: enemyBody,
-          soruce3DModelGroup: enemy3DModel,
-        },
-        1
-      );
+      // goToTarget(
+      //   {
+      //     targetGroup: characterState?.group,
+      //     sourceBody: enemyBody,
+      //     soruce3DModelGroup: enemy3DModel,
+      //   },
+      //   1
+      // );
     }
   });
 
   const onInteractionRadiusEnter = (({ other: { rigidBodyObject } }) => {
+    console.log(rigidBodyObject?.name);
     const playerIsClose = playerIsInteractingWithSensor(rigidBodyObject?.name);
-    // const NPCTakingDamageFromSword = rigidBodyObject?.name === WEAPONS.SWORD;
-    // const NPCTakingDamageFromKick = rigidBodyObject?.name === WEAPONS.FOOT;
+    const NPCTakingDamageFromSword = rigidBodyObject?.name === "FIST"; ///WEAPONS.SWORD;
+    const NPCTakingDamageFromKick = rigidBodyObject?.name === "FOOT"; //WEAPONS.FOOT;
 
     if (playerIsClose && !playerIsReachable) {
       handlePlayerReachableChange(true);
     }
 
-    // if (NPCTakingDamageFromSword) {
-    //   send("TAKE_DAMAGE");
-    //   return;
-    // }
+    if (NPCTakingDamageFromSword) {
+      send("TAKE_DAMAGE");
+      return;
+    }
 
-    // if (NPCTakingDamageFromKick) {
-    //   send("STUN");
-    //   return;
-    // }
+    if (NPCTakingDamageFromKick) {
+      send("STUN");
+      return;
+    }
 
     if (playerIsReachable) {
       send("ATTACK");

@@ -5,7 +5,7 @@ export interface Keys {
   rightward: boolean;
   jump: boolean;
   punch: boolean;
-  shoot: boolean;
+  kick: boolean;
   cam1: boolean;
   cam2: boolean;
   cam3: boolean;
@@ -18,10 +18,10 @@ export const PlayerInputActions = {
   rightward: "rightward",
   jump: "jump",
   punch: "punch",
-  shoot: "shoot",
+  kick: "kick",
 } as const;
 
-const { forward, backward, leftward, rightward, jump, punch, shoot } =
+const { forward, backward, leftward, rightward, jump, punch, kick } =
   PlayerInputActions;
 
 const keysMap = [
@@ -31,7 +31,7 @@ const keysMap = [
   { name: rightward, keys: ["ArraowRight", "KeyD"] },
   { name: jump, keys: ["Space"] },
   { name: punch, keys: ["KeyJ"] },
-  { name: shoot, keys: ["KeyK"] },
+  { name: kick, keys: ["KeyK"] },
   { name: "cam1", keys: ["1"] },
   { name: "cam2", keys: ["2"] },
   { name: "cam3", keys: ["3"] },

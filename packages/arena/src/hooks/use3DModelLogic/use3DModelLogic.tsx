@@ -114,3 +114,22 @@ type ModelResultType<T> = {
   animations: T;
   group: React.RefObject<Group>;
 };
+
+// useEffect(() => {
+//   if (!actions || !actions[animation] || !animation) return;
+//   if (["Fall_1"].includes(animation)) {
+//     const secondsOfDeathAnimation = actions[animation]?.getClip().duration!;
+//     actions[animation]?.reset().play();
+
+//     setTimeout(() => {
+//       actions[animation]?.stop();
+//       setIsDead(() => true);
+//     }, secondsOfDeathAnimation * 1000);
+//   } else {
+//     actions[animation]?.reset().fadeIn(0.2).play();
+
+//     return () => {
+//       actions[animation]?.fadeOut(0.2);
+//     };
+//   }
+// }, [animation]);

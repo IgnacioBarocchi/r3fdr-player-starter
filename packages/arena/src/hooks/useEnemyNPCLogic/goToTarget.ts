@@ -18,7 +18,7 @@ const getMeleeNPCMeleeNPCulse = (
     return impulse;
 };
 
-export const goToTarget = (references: Params, speed = 1) => {
+export const goToTarget = (references: Params, speed = .1) => {
     const { soruce3DModelGroup,
         sourceBody,
         targetGroup } = references;

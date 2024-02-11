@@ -2,7 +2,7 @@ import { AnimationClips, RobotAnimationClipName } from "../types/Robot3DModel";
 
 import { StateValue } from "xstate";
 
-const { IDLE, ROBOT_PUNCH, ROBOT_SHOOT, ROBOT_JUMP, WALK, DEATH } =
+const { IDLE, ROBOT_PUNCH, ROBOT_KICK, ROBOT_JUMP, WALK, DEATH } =
   AnimationClips;
 
 const animationsByMachineStateMap = new Map<
@@ -13,7 +13,7 @@ const animationsByMachineStateMap = new Map<
   Object.entries({
     idle: IDLE,
     punch: ROBOT_PUNCH,
-    shoot: ROBOT_SHOOT,
+    kick: ROBOT_KICK,
     walk: WALK,
     death: DEATH,
     jump: ROBOT_JUMP,

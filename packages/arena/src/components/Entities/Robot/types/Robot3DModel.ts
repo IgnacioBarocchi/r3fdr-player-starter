@@ -61,7 +61,7 @@ export const AnimationClips = {
   ROBOT_PUNCH: [
     // "RobotArmature|Robot_Punch",
     "Punching"],
-  ROBOT_SHOOT: [
+  ROBOT_KICK: [
     "Kicking"
     // "RobotArmature|Robot_Punch"
   ],
