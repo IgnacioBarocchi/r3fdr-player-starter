@@ -9,6 +9,7 @@ export const stateEvents = {
     WALK: "WALK",
     DEATH: "DEATH",
     ROBOT_JUMP: "ROBOT_JUMP",
+    TAKE_DAMAGE: "TAKE_DAMAGE",
 } as const;
 
 export const PlayerMachineStateValues = {
@@ -18,27 +19,29 @@ export const PlayerMachineStateValues = {
     jump: "jump",
     walk: "walk",
     death: "death",
+    takeDamage: "takeDamage",
 } as const;
 
-const { idle, punch, kick, jump, walk, death } = PlayerMachineStateValues;
+const { idle, punch, kick, jump, walk, takeDamage, death } = PlayerMachineStateValues;
 
-const getPlayerMachine = (actions: { [x: string]: AnimationAction | null }) => {
+const getEnemyMachine = (actions: { [x: string]: AnimationAction | null }) => {
     const nonLoopables = [
         "Punching",
         "Kicking",
         "Jumping",
+        "Hit",
         // "RobotArmature|Robot_Punch",
         // "RobotArmature|Robot_Jump",
     ];
 
-    const [punchCooldown, jumpCooldown] = nonLoopables.map(
+    const [punchCooldown, jumpCooldown, kickCooldown] = nonLoopables.map(
         (animation) => getAnimationClipMilliseconds(actions, animation) ?? 1000
     );
 
     return createMachine({
         /** @xstate-layout N4IgpgJg5mDOIC5gF8A0IB2B7CdGigEMBbMAYQAtCAnQgYwBcxr8QAHLWASwa6w1YAPRAFoAbOgCeosQDoADIsUBGAMwBWAEwBOTWM2rVyNCCKlKNek2qyuEADZhWHbr35DE67bO3aAHOoBACxiYkF+YRIg0ghq3tr6mprKXv5emn7G6GbkVLSMzLJsAK4YdBTOnDx8AkggwgheCn7yAOy+6m1aLUFSiJpNQQNBrUHy2m3J6kFZpiS5lgU2sBRYWAyVrjUejfFpwaHhkX0IfsqyI35BQcrtGQOtmrM5FvnWsgBWxcRsm9XudQaTV8AQOYQiIROqluPnGmlaqiC6mUejE6iMJheeSshQA7oR7ABrP5uWqgIF7UHTQ4QqIxVQTWR+TRIlmjEIDDHZeavHE2XCEBgVOouf5k+qIIYnZT+C4heSacZieRjIbGYxAA */
         predictableActionArguments: true,
-        id: "gameCharacter",
+        id: "enemy",
         initial: "idle",
         states: {
             idle: {
@@ -48,6 +51,7 @@ const getPlayerMachine = (actions: { [x: string]: AnimationAction | null }) => {
                     ROBOT_JUMP: jump,
                     WALK: walk,
                     DEATH: death,
+                    TAKE_DAMAGE: takeDamage,
                 },
             },
             punch: {
@@ -57,7 +61,7 @@ const getPlayerMachine = (actions: { [x: string]: AnimationAction | null }) => {
             },
             kick: {
                 after: {
-                    [1 * punchCooldown]: idle,
+                    [1 * kickCooldown]: idle,
                 },
             },
             jump: {
@@ -73,7 +77,16 @@ const getPlayerMachine = (actions: { [x: string]: AnimationAction | null }) => {
                     ROBOT_KICK: kick,
                     WALK: walk,
                     DEATH: death,
+                    TAKE_DAMAGE: takeDamage
                 },
+            },
+            takeDamage: {
+                // @ts-ignore
+                on: {
+                    after: {
+                        1000: idle,
+                    },
+                }
             },
             death: {
                 type: "final",
@@ -82,4 +95,4 @@ const getPlayerMachine = (actions: { [x: string]: AnimationAction | null }) => {
     });
 };
 
-export default getPlayerMachine;
+export default getEnemyMachine;

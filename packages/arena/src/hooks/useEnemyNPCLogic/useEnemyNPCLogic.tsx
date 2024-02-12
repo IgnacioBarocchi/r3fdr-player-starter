@@ -5,9 +5,12 @@ import {
   RapierRigidBody,
 } from "@react-three/rapier";
 import { MutableRefObject, useRef } from "react";
+import { useAnimations, useGLTF } from "@react-three/drei";
 
+import { EntityModel } from "../../providers/GLTFProvider";
 import { Group } from "three";
 import { enemyMachine } from "./enemyMachine";
+import getEnemyMachine from "./getEnemyMachine";
 import { goToTarget } from "./goToTarget";
 import { useFrame } from "@react-three/fiber";
 import { useMachine } from "@xstate/react";
@@ -43,8 +46,13 @@ export const useEnemyNPCLogic = () => {
   //   const [meleeNPCAction, setMeleeNPCAnimationClip] = useState<
   //     NPCActionTypes["animationClips"][T][number]
   //   >(animationClips.chase[0]);
-
-  const [state, send] = useMachine(enemyMachine);
+  const a = useGLTF(EntityModel.Skeleton2).animations;
+  console.log(a);
+  const [state, send] = useMachine(
+    getEnemyMachine(useAnimations(a, new Group()).actions)
+  );
+  // send("ROBOT_PUNCH");
+  // @ts-ignore
   const { currentHP, playerIsReachable } = state.context;
 
   const handlePlayerReachableChange = (reachable: boolean) => {
@@ -56,14 +64,14 @@ export const useEnemyNPCLogic = () => {
     if (!enemy3DModel.current || !enemyBody.current) return;
     if (state.value === "dead") return;
 
-    if (currentHP <= 0) {
-      send("DIE");
-      return;
-    }
+    // if (currentHP <= 0) {
+    //   send("DIE");
+    //   return;
+    // }
 
-    if (currentHP <= 10) {
-      send("RUN_AWAY");
-    }
+    // if (currentHP <= 10) {
+    //   send("RUN_AWAY");
+    // }
 
     if (characterState?.group) {
       // goToTarget(
@@ -80,14 +88,17 @@ export const useEnemyNPCLogic = () => {
   const onInteractionRadiusEnter = (({ other: { rigidBodyObject } }) => {
     console.log(rigidBodyObject?.name);
     const playerIsClose = playerIsInteractingWithSensor(rigidBodyObject?.name);
-    const NPCTakingDamageFromSword = rigidBodyObject?.name === "FIST"; ///WEAPONS.SWORD;
+    const isTakingDamage = rigidBodyObject?.name === "FIST"; ///WEAPONS.SWORD;
     const NPCTakingDamageFromKick = rigidBodyObject?.name === "FOOT"; //WEAPONS.FOOT;
 
     if (playerIsClose && !playerIsReachable) {
       handlePlayerReachableChange(true);
     }
 
-    if (NPCTakingDamageFromSword) {
+    if (isTakingDamage) {
+      console.log(
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      );
       send("TAKE_DAMAGE");
       return;
     }

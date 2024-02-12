@@ -9,6 +9,7 @@ export const stateEvents = {
   WALK: "WALK",
   DEATH: "DEATH",
   ROBOT_JUMP: "ROBOT_JUMP",
+  TAKE_DAMAGE: "TAKE_DAMAGE",
 } as const;
 
 export const PlayerMachineStateValues = {
@@ -18,15 +19,17 @@ export const PlayerMachineStateValues = {
   jump: "jump",
   walk: "walk",
   death: "death",
+  takeDamage: "takeDamage",
 } as const;
 
-const { idle, punch, kick, jump, walk, death } = PlayerMachineStateValues;
+const { idle, punch, kick, jump, walk, takeDamage, death } = PlayerMachineStateValues;
 
 const getPlayerMachine = (actions: { [x: string]: AnimationAction | null }) => {
   const nonLoopables = [
     "Punching",
     "Kicking",
     "Jumping",
+    "Hit",
     // "RobotArmature|Robot_Punch",
     // "RobotArmature|Robot_Jump",
   ];
@@ -73,7 +76,16 @@ const getPlayerMachine = (actions: { [x: string]: AnimationAction | null }) => {
           ROBOT_KICK: kick,
           WALK: walk,
           DEATH: death,
+          TAKE_DAMAGE: takeDamage
         },
+      },
+      takeDamage: {
+        // @ts-ignore
+        on: {
+          after: {
+            1000: idle,
+          },
+        }
       },
       death: {
         type: "final",
