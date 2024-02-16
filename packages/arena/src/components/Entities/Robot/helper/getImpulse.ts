@@ -5,9 +5,8 @@ export default function getImpulse(
   keys: Keys,
   numberOfKeysPressed: number,
   delta: number,
-  onTheGround: boolean
 ) {
-  let { forward, backward, leftward, rightward, jump } = keys;
+  let { forward, backward, leftward, rightward } = keys;
   const scaler = 20;
   const speed = 6 * scaler;
   // * Reduce speed value if it's diagonal movement to always keep the same speed
@@ -22,7 +21,7 @@ export default function getImpulse(
   // console.log(linvelY);
   let impulse = {
     x: leftward ? -normalizedSpeed : rightward ? normalizedSpeed : 0,
-    y: jump && onTheGround ? 2 : linvelY,
+    y: linvelY,
     z: forward ? -normalizedSpeed : backward ? normalizedSpeed : 0,
   };
 

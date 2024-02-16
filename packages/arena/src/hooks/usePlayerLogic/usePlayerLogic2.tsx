@@ -19,17 +19,25 @@ const getMachineStateFromInputtedKeys = (keys: Keys) => {
     const { IDLE, ABILITY_1, ABILITY_2, ABILITY_3, ABILITY_4, MOVE } =
         ChampionMachineStateEvents
 
-    const { forward, backward, leftward, rightward, jump, punch, kick } = keys
+    const {
+        forward,
+        backward,
+        leftward,
+        rightward,
+        ability_3,
+        ability_1,
+        ability_2,
+    } = keys
 
     if (forward || backward || leftward || rightward) {
         return MOVE
     }
 
-    if (jump) return ABILITY_3
+    if (ability_3) return ABILITY_3
 
-    if (kick) return ABILITY_2
+    if (ability_2) return ABILITY_2
 
-    if (punch) return ABILITY_1
+    if (ability_1) return ABILITY_1
 
     return IDLE
 }
@@ -68,7 +76,7 @@ export const usePlayerLogic = (
     const [_, getKeys] = useKeyboardControls() as unknown as [null, () => Keys]
     const [machineState, send] = useMachine(machine)
 
-    useFrame((rootState, _) => {
+    useFrame((rootState, delta) => {
         if (!robotBody.current) return
         const keys = getKeys() as unknown as Keys
         const numberOfKeysPressed = Object.values(keys).filter(
@@ -81,6 +89,16 @@ export const usePlayerLogic = (
             : getMachineStateFromInputtedKeys(keys)
 
         send(action)
+        const linearVelocityYaxis: number | undefined =
+            robotBody.current?.linvel().y
+        const impulse = getImpulse(
+            linearVelocityYaxis,
+            keys,
+            numberOfKeysPressed,
+            delta
+        )
+
+        robotBody.current.setLinvel(impulse, false)
 
         updateOrientation(orientation, setOrientation, keys)
 
