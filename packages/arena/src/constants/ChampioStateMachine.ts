@@ -60,6 +60,8 @@ export const getChampionMachine = (params: { id: string, abilities: ActionObject
     throw new Error("INVALID")
   }
 
+  // console.log(ability_2CoolDown)
+
   const { IDLE, ABILITY_1, ABILITY_2, ABILITY_3, ABILITY_4, MOVE, FALL, DEATH, TAKE_DAMAGE, TAKE_STUN } = ChampionMachineStateEvents;
 
   const championState = {
@@ -87,7 +89,8 @@ export const getChampionMachine = (params: { id: string, abilities: ActionObject
       },
       [ability_2]: {
         after: {
-          [ability_2CoolDown]: idle,
+          // [ability_2CoolDown]: idle,
+          "500": idle,
         },
       },
       [ability_3]: {

@@ -18,7 +18,7 @@ export default function getImpulse(
   if (forward && backward && numberOfKeysPressed === 2) forward = false;
 
   if (leftward && rightward && numberOfKeysPressed === 2) leftward = false;
-  // console.log(linvelY);
+
   let impulse = {
     x: leftward ? -normalizedSpeed : rightward ? normalizedSpeed : 0,
     y: linvelY,

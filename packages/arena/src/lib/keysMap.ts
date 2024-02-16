@@ -3,9 +3,10 @@ export interface Keys {
   backward: boolean;
   leftward: boolean;
   rightward: boolean;
-  ability_3: boolean;
   ability_1: boolean;
   ability_2: boolean;
+  ability_3: boolean;
+  ability_4: boolean;
 }
 
 export const PlayerInputActions = {
@@ -13,12 +14,13 @@ export const PlayerInputActions = {
   backward: "backward",
   leftward: "leftward",
   rightward: "rightward",
-  ability_3: "ability_3",
   ability_1: "ability_1",
   ability_2: "ability_2",
+  ability_4: "ability_4",
+  ability_3: "ability_3",
 } as const;
 
-const { forward, backward, leftward, rightward, ability_3, ability_1, ability_2 } =
+const { forward, backward, leftward, rightward, ability_1, ability_2, ability_3, ability_4 } =
   PlayerInputActions;
 
 const keysMap = [
@@ -29,9 +31,7 @@ const keysMap = [
   { name: ability_1, keys: ["KeyJ"] },
   { name: ability_2, keys: ["KeyK"] },
   { name: ability_3, keys: ["KeyL"] },
-  { name: "cam1", keys: ["1"] },
-  { name: "cam2", keys: ["2"] },
-  { name: "cam3", keys: ["3"] },
+  { name: ability_4, keys: ["KeyI"] },
 ];
 
 export default keysMap;

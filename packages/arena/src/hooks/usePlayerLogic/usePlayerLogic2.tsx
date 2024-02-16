@@ -24,14 +24,17 @@ const getMachineStateFromInputtedKeys = (keys: Keys) => {
         backward,
         leftward,
         rightward,
-        ability_3,
         ability_1,
         ability_2,
+        ability_3,
+        ability_4,
     } = keys
 
     if (forward || backward || leftward || rightward) {
         return MOVE
     }
+
+    if (ability_4) return ABILITY_4
 
     if (ability_3) return ABILITY_3
 

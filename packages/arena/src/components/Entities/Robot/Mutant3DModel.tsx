@@ -16,11 +16,7 @@ const Mutant3DModel: FC<{ state: StateValue }> = ({ state }) => {
     return (
         <group ref={group} dispose={null}>
             <group name="Scene">
-                <group
-                    name="Armature"
-                    rotation={[Math.PI / 2, 0, 0]}
-                    scale={1.22}
-                >
+                <group name="Armature" rotation={[Math.PI / 2, 0, 0]} scale={1}>
                     <primitive object={nodes.mixamorigHips} />
                     <skinnedMesh
                         name="mesh"
