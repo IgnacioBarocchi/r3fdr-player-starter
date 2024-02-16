@@ -45,7 +45,45 @@ export default BoxerRobot;
 //   | "Kicking"
 //   | "Punching"
 //   | "Running";
-
+export const actionRecords = [
+  {
+    animationName: "Idle",
+    isIdle: true,
+  },
+  {
+    animationName: "Running",
+    isMove: true,
+  },
+  {
+    animationName: "Hit",
+    isTakingDamage: true,
+  },
+  {
+    animationName: "Hit",
+    isTakingStun: true,
+  },
+  {
+    animationName: "Hit",
+    isFinal: true,
+  },
+  {
+    animationName: "Punching",
+    duration: 1000,
+  },
+  {
+    animationName: "Kicking",
+    duration: 1000,
+  },
+  {
+    animationName: "Punching",
+    duration: 1000,
+  },
+  {
+    animationName: "Kicking",
+    duration: 1000,
+  },
+]
+  ;
 interface GLTFResult extends GLTF {
   nodes: {
     mesh: THREE.SkinnedMesh;

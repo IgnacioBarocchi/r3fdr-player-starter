@@ -3,7 +3,7 @@ import { Euler, RepeatWrapping, Texture, Vector3 } from "three";
 import { RigidBody } from "@react-three/rapier";
 import { useTexture } from "@react-three/drei";
 
-export default function WoodPlankBlock({
+export default function Terrain({
   position,
   scale,
   rotation,

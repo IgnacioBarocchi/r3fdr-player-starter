@@ -5,14 +5,13 @@ import getPlayerMachine, {
   stateEvents,
 } from "./getPlayerMachine";
 import { useAnimations, useGLTF, useKeyboardControls } from "@react-three/drei";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import { EntityModel } from "../../providers/GLTFProvider";
 import { Keys } from "../../lib/keysMap";
 import { RapierRigidBody } from "@react-three/rapier";
 import getImpulse from "../../components/Entities/Robot/helper/getImpulse";
 import updateOrientation from "../../components/Entities/Robot/helper/updateOrientation";
-import { useGameStore } from "../useGameStore/useGameStore";
 import { useMachine } from "@xstate/react";
 
 const getMachineStateFromInputtedKeys = (keys: Keys) => {
@@ -68,14 +67,13 @@ export const usePlayerLogic = (
     )
   );
 
+
   useFrame((rootState, delta) => {
     if (!robotBody.current) return;
     const keys = getKeys() as unknown as Keys;
     const numberOfKeysPressed = Object.values(keys).filter((key) => key).length;
-
-    send(
-      numberOfKeysPressed > 0 ? getMachineStateFromInputtedKeys(keys) : "idle"
-    );
+    const action = numberOfKeysPressed > 0 ? getMachineStateFromInputtedKeys(keys) : "idle";
+    send(action);
 
     const linearVelocityYaxis: number | undefined =
       robotBody.current?.linvel().y;

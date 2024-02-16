@@ -10,28 +10,19 @@ import { useEnemyNPCLogic } from "../../../hooks/useEnemyNPCLogic/useEnemyNPCLog
 export const DroneNPC = () => {
   const {
     state,
-    onInteractionRadiusEnter,
-    onInteractionRadiusLeave,
     enemyBody,
     enemy3DModel,
-  } = useEnemyNPCLogic();
+  } = useEnemyNPCLogic(true);
 
   return (
     <RigidBody
       lockRotations={true}
-      colliders={false}
       ref={enemyBody}
       position={[1, 4, 1]}
       gravityScale={0}
+      colliders="ball"
     >
-      <Bounding args={[0.6]} position={[0, 0.8, 0.2]} />
-      <Sensor
-        args={[0.2, 2]}
-        position={[0, 0.5, 0]}
-        sensor
-        onIntersectionEnter={onInteractionRadiusEnter}
-        onIntersectionExit={onInteractionRadiusLeave}
-      />
+      {/* <Bounding args={[0.6]} position={[0, 0.8, 0.2]} /> */}
       <Drone3DModel state={state.value} givenDependantGroupRef={enemy3DModel} />
     </RigidBody>
   );

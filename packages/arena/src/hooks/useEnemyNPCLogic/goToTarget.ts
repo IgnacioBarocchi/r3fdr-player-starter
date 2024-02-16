@@ -4,7 +4,7 @@ import { MutableRefObject } from "react";
 import { RapierRigidBody } from "@react-three/rapier";
 import getNormalizedTurnAngle from "../../lib/getNormalizedTurnAngle";
 
-const getMeleeNPCMeleeNPCulse = (
+const getMeleeNPCMeleeNPCImpulse = (
     playerPosition: Vector3,
     meleeNPCPosition: Vector3,
     speed = 0.4
@@ -19,39 +19,39 @@ const getMeleeNPCMeleeNPCulse = (
 };
 
 export const goToTarget = (references: Params, speed = .1) => {
-    const { soruce3DModelGroup,
+    const { source3DModelGroup,
         sourceBody,
         targetGroup } = references;
 
     const targetPosition = targetGroup.getWorldPosition(
         new Vector3()
     );
-    const meleeNPCPosition = soruce3DModelGroup.current?.getWorldPosition(
+    const meleeNPCPosition = source3DModelGroup.current?.getWorldPosition(
         new Vector3()
     );
 
-    soruce3DModelGroup.current.lookAt(targetPosition);
-    soruce3DModelGroup.current.rotation.x = 0;
-    soruce3DModelGroup.current.rotation.z = 0;
-    soruce3DModelGroup.current.rotation.y = Math.abs(
-        getNormalizedTurnAngle(soruce3DModelGroup.current.rotation.y)
+    source3DModelGroup.current.lookAt(targetPosition);
+    source3DModelGroup.current.rotation.x = 0;
+    source3DModelGroup.current.rotation.z = 0;
+    source3DModelGroup.current.rotation.y = Math.abs(
+        getNormalizedTurnAngle(source3DModelGroup.current.rotation.y)
     );
 
-    const meleeNPCulseForce = getMeleeNPCMeleeNPCulse(
+    const meleeNPCImpulseForce = getMeleeNPCMeleeNPCImpulse(
         targetPosition,
         meleeNPCPosition,
         speed
     );
 
     sourceBody.current.applyImpulseAtPoint(
-        meleeNPCulseForce,
+        meleeNPCImpulseForce,
         targetPosition,
         true
     );
 };
 
 type Params = {
-    soruce3DModelGroup: MutableRefObject<Group>;
+    source3DModelGroup: MutableRefObject<Group>;
     sourceBody: MutableRefObject<RapierRigidBody>;
     targetGroup: Group;
 }

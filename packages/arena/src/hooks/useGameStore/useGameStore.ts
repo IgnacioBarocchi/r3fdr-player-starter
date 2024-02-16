@@ -4,7 +4,7 @@ import { SetState, create } from 'zustand';
 import { subscribeWithSelector } from 'zustand/middleware';
 
 export const useGameStore = create<GameState>(
-  // @ts-ignore
+  // @ts-expect-error SetState is deprecated
   subscribeWithSelector((set: SetState<GameState>) => ({
     gameMechanicsState: {
       cinematic: false,
@@ -47,6 +47,7 @@ type PlayerState = {
     duration: number | null;
     startTime: number | null;
   };
+  ability: string;
   position: Vector3;
 };
 

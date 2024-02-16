@@ -2,6 +2,7 @@ import { Suspense, useContext, useEffect } from "react";
 
 import { AppContext } from "./providers/GameSettingsProvider";
 import GraphicsModal from "./components/UI/GraphicsModal";
+import AbilityBar from "./components/UI/AbilityBar";
 import { Leva } from "leva";
 import Scenario from "./components/Scenario";
 
@@ -34,6 +35,7 @@ export default function App() {
       <Leva isRoot collapsed hidden={!DEBUG_APP} />
       <div>Graphics: {GRAPHICS} Controls: J | K | [Space] | 1 | 2 | 3</div>
       <GraphicsModal />
+      <AbilityBar />
       <Suspense
         fallback={
           <div>

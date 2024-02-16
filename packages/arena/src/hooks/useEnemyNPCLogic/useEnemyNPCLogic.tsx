@@ -16,7 +16,7 @@ import { useFrame } from "@react-three/fiber";
 import { useMachine } from "@xstate/react";
 
 const ENTITIES_NAMES = {
-  Plith: "Plith",
+  Plinth: "Plinth",
   Floor: "Floor",
   Player: "Player",
   Enemy: "Enemy",
@@ -33,7 +33,7 @@ const playerIsInteractingWithSensor = (
   return ENTITIES_NAMES.Player === name;
 };
 
-export const useEnemyNPCLogic = () => {
+export const useEnemyNPCLogic = (shouldFollow?:boolean) => {
   const { characterState } = useGameStore((state: GameState) => ({
     characterState: state.characterState,
     setCaption: state.setCaption,
@@ -73,15 +73,16 @@ export const useEnemyNPCLogic = () => {
     //   send("RUN_AWAY");
     // }
 
-    if (characterState?.group) {
-      // goToTarget(
-      //   {
-      //     targetGroup: characterState?.group,
-      //     sourceBody: enemyBody,
-      //     soruce3DModelGroup: enemy3DModel,
-      //   },
-      //   1
-      // );
+    if (characterState?.group && shouldFollow) {
+      
+      goToTarget(
+        {
+          targetGroup: characterState?.group,
+          sourceBody: enemyBody,
+          source3DModelGroup: enemy3DModel,
+        },
+        1
+      );
     }
   });
 
