@@ -1,22 +1,25 @@
-import { FC } from "react";
-import { RobotGLTFResult } from "../components/Entities/Robot/types/Robot3DModel";
-import { useGLTF } from "@react-three/drei";
+import { FC } from 'react'
+import { RobotGLTFResult } from '../components/Entities/Robot/types/Robot3DModel'
+import { useGLTF } from '@react-three/drei'
 
 export const EntityModel = {
-  // Robot: "/models/Robot.glb",
-  Robot: "/models/BoxerRobot.gltf",
-  Drone: "/models/Drone.gltf",
-  Skeleton2: "/models/Skeleton2.gltf",
-};
+    // Robot: "/models/Robot.glb",
+    Robot: '/models/BoxerRobot.gltf',
+    Drone: '/models/Drone.gltf',
+    Skeleton2: '/models/Skeleton2.gltf',
+    Mutant: '/models/Mutant.gltf',
+}
 
 const GLTFFileProvider: FC<{
-  children: React.ReactNode | JSX.Element;
-  modelURL: keyof typeof EntityModel;
+    children: React.ReactNode | JSX.Element
+    modelURL: keyof typeof EntityModel
 }> = (children, modelURL): JSX.Element => {
-  // the reason of the destructurting is the dependency inversion
-  const { nodes, materials, animations } = useGLTF(modelURL) as RobotGLTFResult;
-  // @ts-ignore
-  return children(nodes, materials, animations);
-};
+    // the reason of the destructurting is the dependency inversion
+    const { nodes, materials, animations } = useGLTF(
+        modelURL
+    ) as RobotGLTFResult
+    // @ts-ignore
+    return children(nodes, materials, animations)
+}
 
-export default GLTFFileProvider;
+export default GLTFFileProvider
