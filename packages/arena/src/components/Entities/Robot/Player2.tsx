@@ -9,7 +9,6 @@ import { EntityModel } from '../../../providers/entities';
 import { FC } from 'react';
 import { HitBox } from '../../utility/Hitbox/HitBox';
 import Mutant3DModel from './Mutant3DModel';
-import RobotHitbox from './RobotHitbox';
 import { StateValue } from 'xstate';
 import { Zombie3DModel } from './Zombie3DModel';
 import { usePlayerLogic } from '../../../hooks/usePlayerLogic/usePlayerLogic2';
@@ -55,7 +54,13 @@ const Player2: FC<{
                         EntityModel[enemy as 'Zombie' | 'Mutant'].eventMap[
                             animationName
                         ];
-                    send(ChampionMachineStateEvents.TAKE_DAMAGE);
+
+                    if (ability.endsWith('3')) {
+                        send(ChampionMachineStateEvents.TAKE_STUN);
+                    } else {
+                        send(ChampionMachineStateEvents.TAKE_DAMAGE);
+                    }
+
                     console.log(ability);
                 }}
             />

@@ -54,11 +54,27 @@ const SpacialBase = () => {
                         }
                         teamName="Mutant"
                     />
-                    <HitBox
-                        stateValue={'Attacking3'}
-                        entity={EntityModel.Zombie}
-                        teamName="Zombie"
-                    />
+                    <group position={[1, 0.05, 0]}>
+                        <HitBox
+                            stateValue={'Attacking1'}
+                            entity={EntityModel.Zombie}
+                            teamName="Zombie"
+                        />
+                    </group>
+                    <group position={[1, 0.05, 4]}>
+                        <HitBox
+                            stateValue={'Attacking2'}
+                            entity={EntityModel.Zombie}
+                            teamName="Zombie"
+                        />
+                    </group>
+                    <group position={[1, 0.05, 6]}>
+                        <HitBox
+                            stateValue={'Attacking3'}
+                            entity={EntityModel.Zombie}
+                            teamName="Zombie"
+                        />
+                    </group>
                 </>
             )}
         </Physics>

@@ -119,6 +119,7 @@ const zombieActionRecords = [
         hitBox: {
             rigidBody: {
                 name: 'Attacking1',
+                type: "fixed",
                 position: [0, 1.25, 1.2],
                 density: 1000,
             },
@@ -132,6 +133,7 @@ const zombieActionRecords = [
         hitBox: {
             rigidBody: {
                 name: 'Attacking1',
+                type: "fixed",
                 position: [0, 1.25, 1.2],
                 density: 1000,
             },
@@ -145,6 +147,7 @@ const zombieActionRecords = [
         hitBox: {
             rigidBody: {
                 name: 'Attacking2',
+                type: "fixed",
                 position: [0, 1.25, 1.2],
                 density: 1000,
             },
@@ -158,6 +161,7 @@ const zombieActionRecords = [
         hitBox: {
             rigidBody: {
                 name: 'Attacking3',
+                type: "fixed",
                 position: [0, 1.25, 1.2],
                 density: 1000,
             },

@@ -161,16 +161,10 @@ export const getChampionMachine = (params: {
                 after: {
                     1000: idle,
                 },
-                on: {
-                    [IDLE]: idle,
-                },
             },
             [fall]: {
                 after: {
                     1000: idle,
-                },
-                on: {
-                    [IDLE]: idle,
                 },
             },
             [final]: {
