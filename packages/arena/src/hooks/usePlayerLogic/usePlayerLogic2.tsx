@@ -1,23 +1,23 @@
 import {
     ChampionMachineStateEvents,
     getChampionMachine,
-} from '../../constants/ChampioStateMachine'
-import { Euler, Group, Quaternion, Vector3 } from 'three'
-import { RootState, useFrame } from '@react-three/fiber'
-import { useAnimations, useGLTF, useKeyboardControls } from '@react-three/drei'
-import { useRef, useState } from 'react'
+} from '../../constants/ChampionStateMachineObject';
+import { Euler, Quaternion, Vector3 } from 'three';
+import { RootState, useFrame } from '@react-three/fiber';
+import { useRef, useState } from 'react';
 
-import { EntityModel } from '../../providers/GLTFProvider'
-import { Keys } from '../../lib/keysMap'
-import { RapierRigidBody } from '@react-three/rapier'
-import { actionRecords } from '../../components/Entities/Robot/MutantTypes'
-import getImpulse from '../../components/Entities/Robot/helper/getImpulse'
-import updateOrientation from '../../components/Entities/Robot/helper/updateOrientation'
-import { useMachine } from '@xstate/react'
+import { EntityModel } from '../../providers/GLTFProvider';
+import { Keys } from '../../lib/keysMap';
+import { RapierRigidBody } from '@react-three/rapier';
+import { createMachine } from 'xstate';
+import getImpulse from '../../components/Entities/Robot/helper/getImpulse';
+import updateOrientation from '../../components/Entities/Robot/helper/updateOrientation';
+import { useKeyboardControls } from '@react-three/drei';
+import { useMachine } from '@xstate/react';
 
 const getMachineStateFromInputtedKeys = (keys: Keys) => {
     const { IDLE, ABILITY_1, ABILITY_2, ABILITY_3, ABILITY_4, MOVE } =
-        ChampionMachineStateEvents
+        ChampionMachineStateEvents;
 
     const {
         forward,
@@ -28,98 +28,99 @@ const getMachineStateFromInputtedKeys = (keys: Keys) => {
         ability_2,
         ability_3,
         ability_4,
-    } = keys
+    } = keys;
 
     if (forward || backward || leftward || rightward) {
-        return MOVE
+        return MOVE;
     }
 
-    if (ability_4) return ABILITY_4
+    if (ability_4) return ABILITY_4;
 
-    if (ability_3) return ABILITY_3
+    if (ability_3) return ABILITY_3;
 
-    if (ability_2) return ABILITY_2
+    if (ability_2) return ABILITY_2;
 
-    if (ability_1) return ABILITY_1
+    if (ability_1) return ABILITY_1;
 
-    return IDLE
-}
+    return IDLE;
+};
 
 const updateCameraMovement = (
     state: RootState,
     robotPosition: Vector3,
     robotRotation: Vector3
 ) => {
-    const fixedOffset = new Vector3(0, 15, 15)
+    const fixedOffset = new Vector3(0, 15, 15);
 
     const rotatedOffset = fixedOffset
         .clone()
-        .applyAxisAngle(new Vector3(0, 1, 0), robotRotation.y)
+        .applyAxisAngle(new Vector3(0, 1, 0), robotRotation.y);
 
-    const cameraPosition = new Vector3()
-    cameraPosition.copy(robotPosition).add(rotatedOffset)
+    const cameraPosition = new Vector3();
+    cameraPosition.copy(robotPosition).add(rotatedOffset);
 
-    const cameraTarget = new Vector3()
-    cameraTarget.copy(robotPosition)
+    const cameraTarget = new Vector3();
+    cameraTarget.copy(robotPosition);
 
-    state.camera.position.copy(cameraPosition)
-    state.camera.lookAt(cameraTarget)
-}
+    state.camera.position.copy(cameraPosition);
+    state.camera.lookAt(cameraTarget);
+};
 
 export const usePlayerLogic = (
     useOrbitControls: boolean,
     player: (typeof EntityModel)[keyof typeof EntityModel]
 ) => {
-    const machine = getChampionMachine(
-        { id: 'Player', abilities: actionRecords },
-        useAnimations(useGLTF(player).animations, new Group()).actions
-    )
-    const robotBody = useRef<RapierRigidBody>(null)
-    const [orientation, setOrientation] = useState(Math.PI)
-    const [_, getKeys] = useKeyboardControls() as unknown as [null, () => Keys]
-    const [machineState, send] = useMachine(machine)
+    const machine = getChampionMachine({
+        id: 'Player',
+        player,
+    });
+    const robotBody = useRef<RapierRigidBody>(null);
+    const [orientation, setOrientation] = useState(Math.PI);
+    const [_, getKeys] = useKeyboardControls() as unknown as [null, () => Keys];
+    // @ts-ignore
+    const [machineState, send] = useMachine(createMachine(machine));
 
     useFrame((rootState, delta) => {
-        if (!robotBody.current) return
-        const keys = getKeys() as unknown as Keys
+        if (!robotBody.current) return;
+        const keys = getKeys() as unknown as Keys;
         const numberOfKeysPressed = Object.values(keys).filter(
             (key) => key
-        ).length
+        ).length;
 
-        const isIdle = numberOfKeysPressed === 0
+        const isIdle = numberOfKeysPressed === 0;
         const action = isIdle
             ? ChampionMachineStateEvents.IDLE
-            : getMachineStateFromInputtedKeys(keys)
+            : getMachineStateFromInputtedKeys(keys);
 
-        send(action)
+        send(action);
         const linearVelocityYaxis: number | undefined =
-            robotBody.current?.linvel().y
+            robotBody.current?.linvel().y;
         const impulse = getImpulse(
             linearVelocityYaxis,
             keys,
             numberOfKeysPressed,
             delta
-        )
+        );
 
-        robotBody.current.setLinvel(impulse, false)
+        robotBody.current.setLinvel(impulse, false);
 
-        updateOrientation(orientation, setOrientation, keys)
+        updateOrientation(orientation, setOrientation, keys);
 
-        const quaternionRotation = new Quaternion()
-        quaternionRotation.setFromEuler(new Euler(0, orientation, 0))
-        robotBody.current.setRotation(quaternionRotation, false)
+        const quaternionRotation = new Quaternion();
+        quaternionRotation.setFromEuler(new Euler(0, orientation, 0));
+        robotBody.current.setRotation(quaternionRotation, false);
 
-        const robotVectorialPosition = robotBody.current.translation()
-        const robotVectorialRotation = robotBody.current.rotation()
+        const robotVectorialPosition = robotBody.current.translation();
+        const robotVectorialRotation = robotBody.current.rotation();
 
         if (!useOrbitControls) {
             updateCameraMovement(
                 rootState,
                 robotVectorialPosition as unknown as Vector3,
                 robotVectorialRotation as unknown as Vector3
-            )
+            );
         }
-    })
+    });
 
     return {
         robotBody,
@@ -128,5 +129,5 @@ export const usePlayerLogic = (
         getKeys,
         machineState,
         send,
-    }
-}
+    };
+};

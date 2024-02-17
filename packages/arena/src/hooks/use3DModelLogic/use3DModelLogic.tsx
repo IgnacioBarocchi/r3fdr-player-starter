@@ -6,7 +6,7 @@ import { useAnimations, useGLTF } from '@react-three/drei'
 import { useEffect, useMemo, useRef } from 'react'
 
 import { AppContext } from '../../providers/GameSettingsProvider'
-import { ChampionMachineStateEvents } from '../../constants/ChampioStateMachine'
+import { ChampionMachineStateEvents } from '../../constants/ChampionStateMachineObject'
 import { Group } from 'three'
 import { StateValue } from 'xstate'
 import getAnimationClipMilliseconds from '../../lib/getAnimationClipDuration'

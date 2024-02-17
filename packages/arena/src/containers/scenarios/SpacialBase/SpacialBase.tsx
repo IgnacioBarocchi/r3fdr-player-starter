@@ -1,38 +1,51 @@
-import { Physics, RigidBody } from '@react-three/rapier'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react';
 
-import { AppContext } from '../../../providers/GameSettingsProvider'
-import Player2 from '../../../components/Entities/Robot/Player2.tsx'
-import Terrain from './Piso.tsx'
-import { Vector3 } from 'three'
-import { useControls } from 'leva'
+import { AppContext } from '../../../providers/GameSettingsProvider';
+import { DroneNPC } from '../../../components/Entities/Robot/DroneNPC.tsx';
+import { Physics } from '@react-three/rapier';
+import Player2 from '../../../components/Entities/Robot/Player2.tsx';
+import Terrain from './Terrain.tsx';
+import { Vector3 } from 'three';
+import { useControls } from 'leva';
 
 const SpacialBase = () => {
     const {
         state: { USE_ORBIT_CONTROLS, DEBUG_APP },
-    } = useContext(AppContext)
+    } = useContext(AppContext);
 
-    const { mockOrbitControls } = useControls({ mockOrbitControls: false })
-    const [terrainIsLoading, setTerrainIsLoading] = useState(true)
+    const { mockOrbitControls } = useControls({ mockOrbitControls: false });
+    const [terrainIsLoading, setTerrainIsLoading] = useState(true);
 
     useEffect(() => {
         const timeout = setTimeout(() => {
-            setTerrainIsLoading(false)
-        }, 200)
+            setTerrainIsLoading(false);
+        }, 200);
         return () => {
-            clearTimeout(timeout)
-        }
-    }, [])
+            clearTimeout(timeout);
+        };
+    }, []);
     return (
         <Physics timeStep="vary" debug={true}>
-            <RigidBody type={'fixed'} colliders="hull">
-                <Terrain
-                    position={new Vector3(0, 0.2, 0)}
-                    scale={new Vector3(50, 0.2, 50)}
-                />
-            </RigidBody>
+            {/* <RigidBody type={'fixed'} colliders="hull"> */}
+
+            {/* </RigidBody> */}
+
+            {/* <RigidBody
+                type="fixed"
+                restitution={0.2}
+                friction={1}
+                name="floor"
+                colliders={'hull'}
+            >
+                <CuboidCollider args={[25, 0.2, 25]} /> */}
+            <Terrain
+                position={new Vector3(0, 0.2, 0)}
+                scale={new Vector3(50, 0.2, 50)}
+            />
+            {/* </RigidBody> */}
             {!terrainIsLoading && (
                 <>
+                    {/* <DroneNPC /> */}
                     <Player2
                         useOrbitControls={
                             USE_ORBIT_CONTROLS && mockOrbitControls
@@ -41,7 +54,7 @@ const SpacialBase = () => {
                 </>
             )}
         </Physics>
-    )
-}
+    );
+};
 
-export default SpacialBase
+export default SpacialBase;

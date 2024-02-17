@@ -1,40 +1,69 @@
-import { KeyboardControls, OrbitControls } from "@react-three/drei";
+import { Canvas, useThree } from '@react-three/fiber';
+import { Color, ColorRepresentation, Fog as ThreeFog } from 'three';
+import { KeyboardControls, OrbitControls } from '@react-three/drei';
+import { useContext, useEffect } from 'react';
 
-import { AppContext } from "../../providers/GameSettingsProvider";
-import { CameraOptions } from "./@types/CameraOptions";
-import { Canvas } from "@react-three/fiber";
-import { Perf } from "r3f-perf";
-import SpacialBase from "../../containers/scenarios/SpacialBase/SpacialBase";
-import keysMap from "../../lib/keysMap";
-import { useContext } from "react";
+import { AppContext } from '../../providers/GameSettingsProvider';
+import { CameraOptions } from './@types/CameraOptions';
+import { Perf } from 'r3f-perf';
+import SpacialBase from '../../containers/scenarios/SpacialBase/SpacialBase';
+import keysMap from '../../lib/keysMap';
 
 const camera: CameraOptions = {
-  fov: 45,
-  near: 0.1,
-  far: 200,
-  position: [-2, 10, -10],
+    fov: 45,
+    near: 0.1,
+    far: 200,
+    position: [-2, 10, -10],
 };
 
-const Scenario = () => {
-  const {
-    state: { MONITOR_PERFORMANCE, GRAPHICS },
-  } = useContext(AppContext);
-  const ScenarioExperience = SpacialBase;
+type FogProps = {
+    color?: ColorRepresentation;
+    near?: number;
+    far?: number;
+};
 
-  return (
-    <Canvas shadows camera={camera}>
-      {MONITOR_PERFORMANCE && <Perf position="bottom-left" />}
-      {["LOW", "NORMAL"].includes(GRAPHICS) ? (
-        // <ambientLight intensity={1} />
-        <directionalLight castShadow intensity={10} />
-      ) : (
-        <directionalLight castShadow intensity={10} />
-      )}
-      <OrbitControls makeDefault />
-      <KeyboardControls map={keysMap}>
-        <ScenarioExperience />
-      </KeyboardControls>
-    </Canvas>
-  );
+function Fog(props: FogProps) {
+    const { color = 'white', near = 10, far = 80 } = props;
+    // @ts-ignore
+    const scene = useThree((state) => state.scene);
+    // @ts-ignore
+    useEffect(() => {
+        const col =
+            (color as Color) instanceof Color ? color : new Color(color);
+        scene.fog = new ThreeFog(col, near, far);
+
+        return () => {
+            scene.fog = null;
+        };
+    }, [scene, color, near, far]);
+
+    return null;
+}
+
+const Scenario = () => {
+    const {
+        state: { MONITOR_PERFORMANCE, GRAPHICS },
+    } = useContext(AppContext);
+    const ScenarioExperience = SpacialBase;
+
+    return (
+        <Canvas shadows camera={camera}>
+            {MONITOR_PERFORMANCE && <Perf position="bottom-left" />}
+            {['LOW', 'NORMAL'].includes(GRAPHICS) ? (
+                // <></>
+                <directionalLight castShadow intensity={5} />
+            ) : (
+                // <ambientLight intensity={1} />
+                // <directionalLight castShadow intensity={1} />
+                // <></>
+                <directionalLight castShadow intensity={1} />
+            )}
+            <OrbitControls makeDefault />
+            <KeyboardControls map={keysMap}>
+                {/* <Fog color="black" near={0.1} far={50} /> */}
+                <ScenarioExperience />
+            </KeyboardControls>
+        </Canvas>
+    );
 };
 export default Scenario;

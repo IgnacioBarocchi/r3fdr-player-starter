@@ -1,47 +1,48 @@
 import {
-  BallCollider,
-  CuboidCollider,
-  RapierRigidBody,
-  RigidBody,
-  RigidBodyProps,
-} from "@react-three/rapier";
-import { FC, useRef } from "react";
+    BallCollider,
+    CuboidCollider,
+    RapierRigidBody,
+    RigidBody,
+    RigidBodyProps,
+} from '@react-three/rapier';
+import { FC, useRef } from 'react';
 
 const Hitbox: FC<HitboxProps> = ({
-  physical,
-  rigidBodyProps,
-  shape,
-  boundingSize,
+    physical,
+    rigidBodyProps,
+    shape,
+    boundingSize,
 }) => {
-  const hitboxBody = useRef<RapierRigidBody>(null);
+    const hitboxBody = useRef<RapierRigidBody>(null);
 
-  return (
-    <group>
-      <RigidBody
-        ref={hitboxBody}
-        {...rigidBodyProps}
-        name={rigidBodyProps.name}
-        colliders={false}
-        lockRotations={true}
-      >
-        {shape === "box" ? (
-          <CuboidCollider
-            sensor={!physical}
-            args={[boundingSize, boundingSize, boundingSize]}
-          />
-        ) : (
-          <BallCollider sensor={!physical} args={[boundingSize]} />
-        )}
-      </RigidBody>
-    </group>
-  );
+    return (
+        <group>
+            <RigidBody
+                ref={hitboxBody}
+                {...rigidBodyProps}
+                name={rigidBodyProps.name}
+                colliders={false}
+                lockRotations={true}
+                gravityScale={0}
+            >
+                {shape === 'box' ? (
+                    <CuboidCollider
+                        sensor={!physical}
+                        args={[boundingSize, boundingSize, boundingSize]}
+                    />
+                ) : (
+                    <BallCollider sensor={!physical} args={[boundingSize]} />
+                )}
+            </RigidBody>
+        </group>
+    );
 };
 
 export default Hitbox;
 
 interface HitboxProps {
-  rigidBodyProps: RigidBodyProps;
-  physical: boolean;
-  shape: "box" | "ball";
-  boundingSize: number;
+    rigidBodyProps: RigidBodyProps;
+    physical: boolean;
+    shape: 'box' | 'ball';
+    boundingSize: number;
 }
