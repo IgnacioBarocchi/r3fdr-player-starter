@@ -2,10 +2,11 @@
 // * The actions came bundled as an ActionObject[]
 // * The Idle action gets pop from the array while the remaining abilities are filtered.
 // * Each unit has 4 non-cancelable abilities with cool downs
+// TODO: TAKE STUN AND FALL ARE THE SAME!
 
 import { useAnimations, useGLTF } from '@react-three/drei';
 
-import { EntityModel } from '../providers/GLTFProvider';
+import { EntityModel } from '../providers/entities';
 import { Group } from 'three';
 import getAnimationClipMilliseconds from '../lib/getAnimationClipDuration';
 
@@ -50,7 +51,6 @@ export const getChampionMachine = (params: {
     id: string;
     player: (typeof EntityModel)[keyof typeof EntityModel];
 }) => {
-    console.log('getChampionMachine ' + JSON.stringify(params.player));
     const animationActionByName = useAnimations(
         useGLTF(params.player.path).animations,
         new Group()
@@ -131,8 +131,7 @@ export const getChampionMachine = (params: {
             },
             [ability_2]: {
                 after: {
-                    // [ability_2CoolDown]: idle,
-                    '500': idle,
+                    500: idle,
                 },
             },
             [ability_3]: {
@@ -159,17 +158,19 @@ export const getChampionMachine = (params: {
                 },
             },
             [takeDamage]: {
+                after: {
+                    1000: idle,
+                },
                 on: {
-                    after: {
-                        1000: idle,
-                    },
+                    [IDLE]: idle,
                 },
             },
             [fall]: {
+                after: {
+                    1000: idle,
+                },
                 on: {
-                    after: {
-                        1000: idle,
-                    },
+                    [IDLE]: idle,
                 },
             },
             [final]: {
@@ -178,6 +179,7 @@ export const getChampionMachine = (params: {
             },
         },
     };
-    console.log(championState);
+
+    // console.log(championState);
     return championState;
 };

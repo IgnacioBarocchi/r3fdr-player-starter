@@ -1,138 +1,141 @@
-import { GameState, useGameStore } from "../useGameStore/useGameStore";
+import { GameState, useGameStore } from '../useGameStore/useGameStore';
 import {
-  IntersectionEnterHandler,
-  IntersectionExitHandler,
-  RapierRigidBody,
-} from "@react-three/rapier";
-import { MutableRefObject, useRef } from "react";
-import { useAnimations, useGLTF } from "@react-three/drei";
+    IntersectionEnterHandler,
+    IntersectionExitHandler,
+    RapierRigidBody,
+} from '@react-three/rapier';
+import { MutableRefObject, useRef } from 'react';
+import { useAnimations, useGLTF } from '@react-three/drei';
 
-import { EntityModel } from "../../providers/GLTFProvider";
-import { Group } from "three";
-import { enemyMachine } from "./enemyMachine";
-import getEnemyMachine from "./getEnemyMachine";
-import { goToTarget } from "./goToTarget";
-import { useFrame } from "@react-three/fiber";
-import { useMachine } from "@xstate/react";
+import { EntityModel } from '../../providers/entities';
+import { Group } from 'three';
+import { enemyMachine } from './enemyMachine';
+import getEnemyMachine from './getEnemyMachine';
+import { goToTarget } from './goToTarget';
+import { useFrame } from '@react-three/fiber';
+import { useMachine } from '@xstate/react';
 
 const ENTITIES_NAMES = {
-  Plinth: "Plinth",
-  Floor: "Floor",
-  Player: "Player",
-  Enemy: "Enemy",
-  Ally: "Ally",
-  IMP_VARIANT_1: "ImpVariant1",
-  IMP_VARIANT_2: "ImpVariant2",
+    Plinth: 'Plinth',
+    Floor: 'Floor',
+    Player: 'Player',
+    Enemy: 'Enemy',
+    Ally: 'Ally',
+    IMP_VARIANT_1: 'ImpVariant1',
+    IMP_VARIANT_2: 'ImpVariant2',
 } as const;
 
 export type EntityType = (typeof ENTITIES_NAMES)[keyof typeof ENTITIES_NAMES];
 
 const playerIsInteractingWithSensor = (
-  name: EntityType | undefined | string
+    name: EntityType | undefined | string
 ) => {
-  return ENTITIES_NAMES.Player === name;
+    return ENTITIES_NAMES.Player === name;
 };
 
-export const useEnemyNPCLogic = (shouldFollow?:boolean) => {
-  const { characterState } = useGameStore((state: GameState) => ({
-    characterState: state.characterState,
-    setCaption: state.setCaption,
-  }));
+export const useEnemyNPCLogic = (shouldFollow?: boolean) => {
+    const { characterState } = useGameStore((state: GameState) => ({
+        characterState: state.characterState,
+        setCaption: state.setCaption,
+    }));
 
-  const enemyBody =
-    useRef<RapierRigidBody>() as MutableRefObject<RapierRigidBody>;
-  const enemy3DModel = useRef<Group>(null) as MutableRefObject<Group>;
+    const enemyBody =
+        useRef<RapierRigidBody>() as MutableRefObject<RapierRigidBody>;
+    const enemy3DModel = useRef<Group>(null) as MutableRefObject<Group>;
 
-  //   const [meleeNPCAction, setMeleeNPCAnimationClip] = useState<
-  //     NPCActionTypes["animationClips"][T][number]
-  //   >(animationClips.chase[0]);
-  const a = useGLTF(EntityModel.Skeleton2).animations;
-  console.log(a);
-  const [state, send] = useMachine(
-    getEnemyMachine(useAnimations(a, new Group()).actions)
-  );
-  // send("ROBOT_PUNCH");
-  // @ts-ignore
-  const { currentHP, playerIsReachable } = state.context;
-
-  const handlePlayerReachableChange = (reachable: boolean) => {
+    //   const [meleeNPCAction, setMeleeNPCAnimationClip] = useState<
+    //     NPCActionTypes["animationClips"][T][number]
+    //   >(animationClips.chase[0]);
+    const a = useGLTF(EntityModel.Skeleton2).animations;
+    console.log(a);
+    const [state, send] = useMachine(
+        getEnemyMachine(useAnimations(a, new Group()).actions)
+    );
+    // send("ROBOT_PUNCH");
     // @ts-ignore
-    send({ type: "PLAYER_REACHABLE_CHANGE", reachable });
-  };
+    const { currentHP, playerIsReachable } = state.context;
 
-  useFrame(() => {
-    if (!enemy3DModel.current || !enemyBody.current) return;
-    if (state.value === "dead") return;
+    const handlePlayerReachableChange = (reachable: boolean) => {
+        // @ts-ignore
+        send({ type: 'PLAYER_REACHABLE_CHANGE', reachable });
+    };
 
-    // if (currentHP <= 0) {
-    //   send("DIE");
-    //   return;
-    // }
+    useFrame(() => {
+        if (!enemy3DModel.current || !enemyBody.current) return;
+        if (state.value === 'dead') return;
 
-    // if (currentHP <= 10) {
-    //   send("RUN_AWAY");
-    // }
+        // if (currentHP <= 0) {
+        //   send("DIE");
+        //   return;
+        // }
 
-    if (characterState?.group && shouldFollow) {
-      
-      goToTarget(
-        {
-          targetGroup: characterState?.group,
-          sourceBody: enemyBody,
-          source3DModelGroup: enemy3DModel,
-        },
-        1
-      );
-    }
-  });
+        // if (currentHP <= 10) {
+        //   send("RUN_AWAY");
+        // }
 
-  const onInteractionRadiusEnter = (({ other: { rigidBodyObject } }) => {
-    console.log(rigidBodyObject?.name);
-    const playerIsClose = playerIsInteractingWithSensor(rigidBodyObject?.name);
-    const isTakingDamage = rigidBodyObject?.name === "FIST"; ///WEAPONS.SWORD;
-    const NPCTakingDamageFromKick = rigidBodyObject?.name === "FOOT"; //WEAPONS.FOOT;
+        if (characterState?.group && shouldFollow) {
+            goToTarget(
+                {
+                    targetGroup: characterState?.group,
+                    sourceBody: enemyBody,
+                    source3DModelGroup: enemy3DModel,
+                },
+                1
+            );
+        }
+    });
 
-    if (playerIsClose && !playerIsReachable) {
-      handlePlayerReachableChange(true);
-    }
+    const onInteractionRadiusEnter = (({ other: { rigidBodyObject } }) => {
+        console.log(rigidBodyObject?.name);
+        const playerIsClose = playerIsInteractingWithSensor(
+            rigidBodyObject?.name
+        );
+        const isTakingDamage = rigidBodyObject?.name === 'FIST'; ///WEAPONS.SWORD;
+        const NPCTakingDamageFromKick = rigidBodyObject?.name === 'FOOT'; //WEAPONS.FOOT;
 
-    if (isTakingDamage) {
-      console.log(
-        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-      );
-      send("TAKE_DAMAGE");
-      return;
-    }
+        if (playerIsClose && !playerIsReachable) {
+            handlePlayerReachableChange(true);
+        }
 
-    if (NPCTakingDamageFromKick) {
-      send("STUN");
-      return;
-    }
+        if (isTakingDamage) {
+            console.log(
+                'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+            );
+            send('TAKE_DAMAGE');
+            return;
+        }
 
-    if (playerIsReachable) {
-      send("ATTACK");
-      return;
-    }
-  }) as IntersectionEnterHandler;
+        if (NPCTakingDamageFromKick) {
+            send('STUN');
+            return;
+        }
 
-  const onInteractionRadiusLeave = (({ other: { rigidBodyObject } }) => {
-    const playerIsFar = playerIsInteractingWithSensor(rigidBodyObject?.name);
-    // const finishingStunAttack = rigidBodyObject?.name === WEAPONS.FOOT;
+        if (playerIsReachable) {
+            send('ATTACK');
+            return;
+        }
+    }) as IntersectionEnterHandler;
 
-    // if (finishingStunAttack) {
-    //   send("RECOVER");
-    // }
+    const onInteractionRadiusLeave = (({ other: { rigidBodyObject } }) => {
+        const playerIsFar = playerIsInteractingWithSensor(
+            rigidBodyObject?.name
+        );
+        // const finishingStunAttack = rigidBodyObject?.name === WEAPONS.FOOT;
 
-    if (playerIsFar && playerIsReachable) {
-      handlePlayerReachableChange(false);
-    }
-  }) as IntersectionExitHandler;
+        // if (finishingStunAttack) {
+        //   send("RECOVER");
+        // }
 
-  return {
-    state,
-    onInteractionRadiusEnter,
-    onInteractionRadiusLeave,
-    enemyBody,
-    enemy3DModel,
-  };
+        if (playerIsFar && playerIsReachable) {
+            handlePlayerReachableChange(false);
+        }
+    }) as IntersectionExitHandler;
+
+    return {
+        state,
+        onInteractionRadiusEnter,
+        onInteractionRadiusLeave,
+        enemyBody,
+        enemy3DModel,
+    };
 };

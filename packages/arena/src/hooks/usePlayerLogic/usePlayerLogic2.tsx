@@ -6,7 +6,7 @@ import { Euler, Quaternion, Vector3 } from 'three';
 import { RootState, useFrame } from '@react-three/fiber';
 import { useRef, useState } from 'react';
 
-import { EntityModel } from '../../providers/GLTFProvider';
+import { EntityModel } from '../../providers/entities';
 import { Keys } from '../../lib/keysMap';
 import { RapierRigidBody } from '@react-three/rapier';
 import { createMachine } from 'xstate';
@@ -16,6 +16,7 @@ import { useKeyboardControls } from '@react-three/drei';
 import { useMachine } from '@xstate/react';
 
 const getMachineStateFromInputtedKeys = (keys: Keys) => {
+    // somehow i need to find the way to freeze controls when executing certain actions
     const { IDLE, ABILITY_1, ABILITY_2, ABILITY_3, ABILITY_4, MOVE } =
         ChampionMachineStateEvents;
 

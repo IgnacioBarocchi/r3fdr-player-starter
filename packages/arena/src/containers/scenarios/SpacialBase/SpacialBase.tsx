@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from 'react';
 
 import { AppContext } from '../../../providers/GameSettingsProvider';
 import { DroneNPC } from '../../../components/Entities/Robot/DroneNPC.tsx';
+import { EntityModel } from '../../../providers/entities.ts';
+import { HitBox } from '../../../components/utility/Hitbox/HitBox.tsx';
 import { Physics } from '@react-three/rapier';
 import Player2 from '../../../components/Entities/Robot/Player2.tsx';
 import Terrain from './Terrain.tsx';
@@ -50,6 +52,12 @@ const SpacialBase = () => {
                         useOrbitControls={
                             USE_ORBIT_CONTROLS && mockOrbitControls
                         }
+                        teamName="Mutant"
+                    />
+                    <HitBox
+                        stateValue={'Attacking3'}
+                        entity={EntityModel.Zombie}
+                        teamName="Zombie"
                     />
                 </>
             )}

@@ -1,8 +1,10 @@
-import { EntityModel } from '../../../providers/GLTFProvider';
+import { EntityModel } from '../../../providers/entities';
 import { FC } from 'react';
 import { GLTFResult } from './MutantTypes';
 import { StateValue } from 'xstate';
+import { Vector3 } from 'three';
 import { use3DModelLogic } from '../../../hooks/use3DModelLogic/use3DModelLogic';
+import { useControls } from 'leva';
 // import { useControls } from 'leva';
 import { useGLTF } from '@react-three/drei';
 
@@ -16,7 +18,12 @@ const Mutant3DModel: FC<{ stateValue: StateValue }> = ({ stateValue }) => {
     // const { angle } = useControls('Lamp', {
     //     angle: { value: 0, min: 0, max: 360, step: 0.5 },
     // });
-
+    const { x, y, z, pp } = useControls('Lamp', {
+        x: { value: 0, min: 0, max: 1000, step: 1 },
+        y: { value: 10, min: 0, max: 1000, step: 1 },
+        z: { value: 0, min: 0, max: 1000, step: 1 },
+        pp: { value: 2, min: 0, max: 7, step: 1 },
+    });
     return (
         <group ref={group} dispose={null}>
             <group name="Scene">
@@ -26,6 +33,18 @@ const Mutant3DModel: FC<{ stateValue: StateValue }> = ({ stateValue }) => {
                     scale={0.75}
                 >
                     <primitive object={nodes.mixamorigHips} />
+                    <pointLight
+                        castShadow
+                        intensity={1}
+                        // position={[x, y, z]}
+                        // angle={Math.PI / pp}
+                        // penumbra={1}
+                        power={10}
+                        // setRotationFromAxisAngle={{
+                        //     axis: new Vector3(0, 0, 0),
+                        //     angle: Math.PI / 2,
+                        // }}
+                    />
                     <skinnedMesh
                         name="mesh"
                         geometry={nodes.mesh.geometry}
@@ -34,6 +53,15 @@ const Mutant3DModel: FC<{ stateValue: StateValue }> = ({ stateValue }) => {
                         skeleton={nodes.mesh.skeleton}
                     />
 
+                    {/* <spotLight
+                        castShadow
+                        intensity={1}
+                        position={[0, 10, 0]}
+                        angle={Math.PI / 5}
+                        penumbra={1}
+                        power={10}
+                    />
+               
                     {/* <MovingSpotLight
                         color={'red'}
                         position={[-40, 30, -10]}

@@ -21,6 +21,6 @@ type ActionName =
     | 'SidePunching'
     | 'Slamming'
     | 'Stunned'
-    | 'TackingDamage'
+    | 'TakingDamage'
 
 export type GLTFActions = Record<ActionName, THREE.AnimationAction>

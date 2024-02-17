@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-import { EntityModel } from '../../../providers/GLTFProvider';
+import { EntityModel } from '../../../providers/entities';
 import { FC } from 'react';
 import { GLTF } from 'three-stdlib';
 import { PointLight } from 'three';

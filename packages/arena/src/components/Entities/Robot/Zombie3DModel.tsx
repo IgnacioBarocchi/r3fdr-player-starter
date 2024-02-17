@@ -5,7 +5,7 @@ Command: npx gltfjsx@6.1.11 public/models/Zombie.gltf -t -r public
 
 import * as THREE from 'three';
 
-import { EntityModel } from '../../../providers/GLTFProvider';
+import { EntityModel } from '../../../providers/entities';
 import { FC } from 'react';
 import { GLTF } from 'three-stdlib';
 import { StateValue } from 'xstate';

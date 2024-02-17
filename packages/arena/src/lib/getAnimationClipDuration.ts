@@ -5,10 +5,10 @@ export default function getAnimationClipMilliseconds(
     [x: string]: AnimationAction | null;
   },
   animation: string
-): number | undefined {
+): number {
   if (actions[animation]?.getClip().duration!) {
     return actions[animation]?.getClip().duration! * 1000;
   }
 
-  return;
+  return 1000;
 }

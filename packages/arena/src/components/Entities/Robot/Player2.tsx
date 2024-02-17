@@ -4,8 +4,10 @@ import {
     CylinderCollider as Sensor,
 } from '@react-three/rapier';
 
-import { EntityModel } from '../../../providers/GLTFProvider';
+import { ChampionMachineStateEvents } from '../../../constants/ChampionStateMachineObject';
+import { EntityModel } from '../../../providers/entities';
 import { FC } from 'react';
+import { HitBox } from '../../utility/Hitbox/HitBox';
 import Mutant3DModel from './Mutant3DModel';
 import RobotHitbox from './RobotHitbox';
 import { StateValue } from 'xstate';
@@ -22,28 +24,48 @@ const EntityComponent = {
     Drone: () => <></>,
 };
 
-const Player2: FC<{ useOrbitControls: boolean }> = ({ useOrbitControls }) => {
+const Player2: FC<{
+    useOrbitControls: boolean;
+    teamName: 'Zombie' | 'Mutant';
+}> = ({ useOrbitControls, teamName }) => {
     // @ts-ignore
-    const { robotBody, orientation, machineState } = usePlayerLogic(
+    const { robotBody, orientation, machineState, send } = usePlayerLogic(
         useOrbitControls,
-        EntityModel['Mutant']
+        EntityModel[teamName]
     );
 
-    const Model = EntityComponent['Mutant'];
+    const Model = EntityComponent[teamName];
     return (
         <RigidBody lockRotations={true} colliders={false} ref={robotBody}>
-            <Bounding args={[0.2, 0.6]} position={[0, 0.8, 0.2]} />
+            <Bounding
+                args={[0.2, 0.6]}
+                position={[0, 0.8, 0.2]}
+                onCollisionEnter={({ other: { rigidBodyObject } }) => {
+                    if (
+                        !rigidBodyObject?.name ||
+                        rigidBodyObject?.name.endsWith(teamName)
+                    ) {
+                        return;
+                    }
+
+                    const [animationName, enemy] =
+                        rigidBodyObject.name.split('|');
+                    console.log(EntityModel[enemy as 'Zombie' | 'Mutant']);
+                    const ability =
+                        EntityModel[enemy as 'Zombie' | 'Mutant'].eventMap[
+                            animationName
+                        ];
+                    send(ChampionMachineStateEvents.TAKE_DAMAGE);
+                    console.log(ability);
+                }}
+            />
             <Sensor args={[0.2, 2]} position={[0, 0.5, 0]} sensor />
             <Model stateValue={machineState.value} />
-            {['CrossPunching', 'SidePunching', 'Kicking', 'Slamming'].includes(
-                // @ts-ignore
-                machineState.value
-            ) && (
-                <RobotHitbox
-                    orientation={orientation}
-                    state={machineState.value}
-                />
-            )}
+            <HitBox
+                stateValue={machineState.value}
+                entity={EntityModel[teamName]}
+                teamName={teamName}
+            />
         </RigidBody>
     );
 };
