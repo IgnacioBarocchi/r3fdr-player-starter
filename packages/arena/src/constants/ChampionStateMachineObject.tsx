@@ -202,6 +202,5 @@ export const getChampionMachine = (params: {
         ...(params.isAnEnemy ? enemyFeatures : {}),
     };
 
-    console.log(championState);
     return championState;
 };

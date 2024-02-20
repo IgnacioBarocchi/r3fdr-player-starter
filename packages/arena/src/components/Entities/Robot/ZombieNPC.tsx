@@ -1,5 +1,7 @@
 import {
     CapsuleCollider as Bounding,
+    IntersectionEnterHandler,
+    IntersectionExitHandler,
     RigidBody,
     CylinderCollider as Sensor,
 } from '@react-three/rapier';
@@ -12,23 +14,56 @@ import { useEnemyNPCLogic } from '../../../hooks/useEnemyNPCLogic/useEnemyNPCLog
 
 const teamName = 'Zombie';
 export const ZombieNPC = () => {
-    const {
-        state,
-        send,
-        onInteractionRadiusEnter,
-        onInteractionRadiusLeave,
-        enemyBody,
-        enemy3DModel,
-    } = useEnemyNPCLogic(EntityModel.Zombie, false);
+    const { state, send, enemyBody, enemy3DModel } = useEnemyNPCLogic(
+        EntityModel.Zombie,
+        true
+    );
+
+    // const onInteractionRadiusEnter = () as IntersectionEnterHandler;
+
+    const onInteractionRadiusLeave = (({ other: { rigidBodyObject } }) => {
+        // const playerIsFar = playerIsInteractingWithSensor(
+        //     rigidBodyObject?.name
+        // );
+        // const finishingStunAttack = rigidBodyObject?.name === WEAPONS.FOOT;
+        // if (finishingStunAttack) {
+        //   send("RECOVER");
+        // }
+        // if (playerIsFar && playerIsReachable) {
+        //     handlePlayerReachableChange(false);
+        // }
+    }) as IntersectionExitHandler;
 
     return (
         <RigidBody lockRotations={true} colliders={false} ref={enemyBody}>
-            <Bounding args={[0.2, 0.6]} position={[0, 0.8, 0]} />
+            <Bounding
+                args={[0.2, 0.6]}
+                position={[0, 0.8, 0]}
+                onCollisionEnter={({ other: { rigidBodyObject } }) => {
+                    if (
+                        !rigidBodyObject?.name ||
+                        rigidBodyObject?.name.endsWith(teamName)
+                    ) {
+                        return;
+                    }
+                    const [animationName, enemy] =
+                        rigidBodyObject.name.split('|');
+                    const ability =
+                        EntityModel[enemy as 'Zombie' | 'Mutant'].eventMap[
+                            animationName
+                        ];
+
+                    if (ability.endsWith('3')) {
+                        send(ChampionMachineStateEvents.TAKE_STUN);
+                    } else {
+                        send(ChampionMachineStateEvents.TAKE_DAMAGE);
+                    }
+                }}
+            />
             <Sensor
                 args={[0.2, 2]}
                 position={[0, 0.5, 0]}
                 sensor
-                onIntersectionEnter={onInteractionRadiusEnter}
                 onIntersectionExit={onInteractionRadiusLeave}
                 onCollisionEnter={({ other: { rigidBodyObject } }) => {
                     if (
@@ -40,7 +75,6 @@ export const ZombieNPC = () => {
 
                     const [animationName, enemy] =
                         rigidBodyObject.name.split('|');
-                    console.log(EntityModel[enemy as 'Zombie' | 'Mutant']);
                     const ability =
                         EntityModel[enemy as 'Zombie' | 'Mutant'].eventMap[
                             animationName
@@ -51,11 +85,12 @@ export const ZombieNPC = () => {
                     } else {
                         send(ChampionMachineStateEvents.TAKE_DAMAGE);
                     }
-
-                    console.log(ability);
                 }}
             />
-            <Zombie3DModel stateValue={'Idle'} givenDependantGroupRef={null} />
+            <Zombie3DModel
+                stateValue={state.value}
+                givenDependantGroupRef={enemy3DModel}
+            />
         </RigidBody>
     );
 };

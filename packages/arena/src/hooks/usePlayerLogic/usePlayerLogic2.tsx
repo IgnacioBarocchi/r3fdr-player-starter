@@ -74,6 +74,7 @@ export const usePlayerLogic = (
     const machine = getChampionMachine({
         id: 'Player',
         player,
+        isAnEnemy: false,
     });
     const robotBody = useRef<RapierRigidBody>(null);
     const [orientation, setOrientation] = useState(Math.PI);

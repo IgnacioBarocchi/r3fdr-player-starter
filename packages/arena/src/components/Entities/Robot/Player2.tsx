@@ -49,7 +49,6 @@ const Player2: FC<{
 
                     const [animationName, enemy] =
                         rigidBodyObject.name.split('|');
-                    console.log(EntityModel[enemy as 'Zombie' | 'Mutant']);
                     const ability =
                         EntityModel[enemy as 'Zombie' | 'Mutant'].eventMap[
                             animationName
@@ -60,8 +59,6 @@ const Player2: FC<{
                     } else {
                         send(ChampionMachineStateEvents.TAKE_DAMAGE);
                     }
-
-                    console.log(ability);
                 }}
             />
             <Sensor args={[0.2, 2]} position={[0, 0.5, 0]} sensor />
