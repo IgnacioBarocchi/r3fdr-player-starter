@@ -12,6 +12,7 @@ import Mutant3DModel from './Mutant3DModel';
 import { StateValue } from 'xstate';
 import { Zombie3DModel } from './Zombie3DModel';
 import { usePlayerLogic } from '../../../hooks/usePlayerLogic/usePlayerLogic2';
+import { useRigidBodyHandler } from '../../../hooks/useRigidBodyHandler/useRigidBodyHandler';
 
 const EntityComponent = {
     Mutant: ({ stateValue }: { stateValue: StateValue }) => (
@@ -32,6 +33,7 @@ const Player2: FC<{
         useOrbitControls,
         EntityModel[teamName]
     );
+    const { onCollisionEnter } = useRigidBodyHandler({ send, teamName });
 
     const Model = EntityComponent[teamName];
     return (
@@ -39,27 +41,7 @@ const Player2: FC<{
             <Bounding
                 args={[0.2, 0.6]}
                 position={[0, 0.8, 0.2]}
-                onCollisionEnter={({ other: { rigidBodyObject } }) => {
-                    if (
-                        !rigidBodyObject?.name ||
-                        rigidBodyObject?.name.endsWith(teamName)
-                    ) {
-                        return;
-                    }
-
-                    const [animationName, enemy] =
-                        rigidBodyObject.name.split('|');
-                    const ability =
-                        EntityModel[enemy as 'Zombie' | 'Mutant'].eventMap[
-                            animationName
-                        ];
-
-                    if (ability.endsWith('3')) {
-                        send(ChampionMachineStateEvents.TAKE_STUN);
-                    } else {
-                        send(ChampionMachineStateEvents.TAKE_DAMAGE);
-                    }
-                }}
+                onCollisionEnter={onCollisionEnter}
             />
             <Sensor args={[0.2, 2]} position={[0, 0.5, 0]} sensor />
             <Model stateValue={machineState.value} />
