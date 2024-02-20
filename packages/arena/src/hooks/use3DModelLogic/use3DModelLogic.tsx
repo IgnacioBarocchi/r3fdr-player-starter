@@ -94,6 +94,7 @@ export const use3DModelLogic = <T,>(
     // }, [state]);
 
     useEffect(() => {
+        if (!player) console.log(state);
         let timeoutId = 0;
 
         if (!state) return;

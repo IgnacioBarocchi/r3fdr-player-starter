@@ -12,7 +12,7 @@ import Mutant3DModel from './Mutant3DModel';
 import { StateValue } from 'xstate';
 import { Zombie3DModel } from './Zombie3DModel';
 import { usePlayerLogic } from '../../../hooks/usePlayerLogic/usePlayerLogic2';
-import { useRigidBodyHandler } from '../../../hooks/useRigidBodyHandler/useRigidBodyHandler';
+import { useRigidBodyColliderHandler } from '../../../hooks/useRigidBodyColliderHandler/useRigidBodyColliderHandler';
 
 const EntityComponent = {
     Mutant: ({ stateValue }: { stateValue: StateValue }) => (
@@ -33,11 +33,19 @@ const Player2: FC<{
         useOrbitControls,
         EntityModel[teamName]
     );
-    const { onCollisionEnter } = useRigidBodyHandler({ send, teamName });
+    const { onCollisionEnter } = useRigidBodyColliderHandler({
+        send,
+        teamName,
+    });
 
     const Model = EntityComponent[teamName];
     return (
-        <RigidBody lockRotations={true} colliders={false} ref={robotBody}>
+        <RigidBody
+            lockRotations={true}
+            colliders={false}
+            ref={robotBody}
+            name="Player"
+        >
             <Bounding
                 args={[0.2, 0.6]}
                 position={[0, 0.8, 0.2]}

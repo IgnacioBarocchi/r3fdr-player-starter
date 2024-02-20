@@ -1,13 +1,9 @@
-import {
-    CollisionEnterHandler,
-    IntersectionEnterHandler,
-} from '@react-three/rapier';
-
 import { ChampionMachineStateEvents } from '../../constants/ChampionStateMachineObject';
+import { CollisionEnterHandler } from '@react-three/rapier';
 import { EntityModel } from '../../providers/entities';
 import { useCallback } from 'react';
 
-export const useRigidBodyHandler = (params: {
+export const useRigidBodyColliderHandler = (params: {
     teamName: 'Zombie' | 'Mutant';
     send: (action: string) => void;
 }) => {

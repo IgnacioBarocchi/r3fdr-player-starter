@@ -46,7 +46,49 @@ export const ChampionMachineStateEvents = {
     TAKE_STUN: 'TAKE_STUN',
 } as const;
 
-// export 2 functions. we need to know the animation names.
+type Stats = {
+    initialHP: number;
+    currentHP: number;
+    playerIsTargeted?: boolean;
+};
+
+const enemyFeatures = {
+    context: {
+        initialHP: 100,
+        currentHP: 100,
+        playerIsTargeted: false,
+    },
+    on: {
+        PLAYER_REACHABLE_CHANGE: {
+            actions: assign(
+                (context, event: EventObject & { targeted: boolean }) => ({
+                    ...context,
+                    playerIsTargeted: event.targeted,
+                })
+            ),
+        },
+    },
+};
+
+const playerFeatures = {
+    context: {
+        initialHP: 100,
+        currentHP: 100,
+        playerIsTargeted: null,
+    },
+};
+
+const validator = (context: { currentHP: number }) =>
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (context.currentHP) {
+                resolve(true);
+            } else {
+                console.log('dead');
+                reject(`Error entity is dead ${context.currentHP} `);
+            }
+        }, 200);
+    });
 
 export const getChampionMachine = (params: {
     id: string;
@@ -108,31 +150,6 @@ export const getChampionMachine = (params: {
         TAKE_STUN,
     } = ChampionMachineStateEvents;
 
-    const enemyFeatures = {
-        context: {
-            initialHP: 100,
-            currentHP: 100,
-            playerIsReachable: true,
-        },
-        on: {
-            PLAYER_REACHABLE_CHANGE: {
-                actions: assign(
-                    (context, event: EventObject & { reachable: boolean }) => ({
-                        ...context,
-                        playerIsReachable: event.reachable,
-                    })
-                ),
-            },
-        },
-        // @ts-ignore
-        actions: {
-            reduceHP: assign({
-                currentHP: (context: { currentHP: number }) =>
-                    context.currentHP - 1,
-            }),
-        },
-    };
-
     const championState = {
         predictableActionArguments: true,
         id: params.id,
@@ -185,8 +202,27 @@ export const getChampionMachine = (params: {
                 },
             },
             [takeDamage]: {
+                entry: assign({
+                    currentHP: (context: { currentHP: number }) => {
+                        console.log(context.currentHP);
+                        return context.currentHP - 20;
+                    },
+                }),
                 after: {
-                    1000: idle,
+                    // attacked animation cool down
+                    1000: 'validating',
+                },
+            },
+            validating: {
+                invoke: {
+                    id: 'HPValidator',
+                    src: validator,
+                    onDone: {
+                        target: idle,
+                    },
+                    onError: {
+                        target: final,
+                    },
                 },
             },
             [fall]: {
@@ -199,8 +235,11 @@ export const getChampionMachine = (params: {
                 type: 'final',
             },
         },
-        ...(params.isAnEnemy ? enemyFeatures : {}),
+        ...(params.isAnEnemy ? enemyFeatures : playerFeatures),
     };
 
+    if (params.isAnEnemy) {
+        console.log(championState);
+    }
     return championState;
 };

@@ -8,7 +8,7 @@ import {
     IntersectionExitHandler,
     RapierRigidBody,
 } from '@react-three/rapier';
-import { MutableRefObject, useRef } from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { useAnimations, useGLTF } from '@react-three/drei';
 
 import { EntityModel } from '../../providers/entities';
@@ -31,13 +31,7 @@ const ENTITIES_NAMES = {
 } as const;
 
 export type EntityType = (typeof ENTITIES_NAMES)[keyof typeof ENTITIES_NAMES];
-
-const playerIsInteractingWithSensor = (
-    name: EntityType | undefined | string
-) => {
-    return ENTITIES_NAMES.Player === name;
-};
-
+const speed = 1.2;
 export const useEnemyNPCLogic = (
     npc: (typeof EntityModel)[keyof typeof EntityModel],
     shouldFollow?: boolean
@@ -57,40 +51,54 @@ export const useEnemyNPCLogic = (
     });
 
     // @ts-ignore
-    const [state, send] = useMachine(createMachine(machine));
-    // todo: later on.
-    const { currentHP, playerIsReachable } = state.context;
+    const [state, send] = useMachine(createMachine(machine), {
+        actions: {
+            reduceHP: (context) => {
+                context.currentHP -= 10;
+            },
+        },
+    });
+    const elapsedRef = useRef(0);
 
-    const handlePlayerReachableChange = (reachable: boolean) => {
-        // @ts-ignore
-        send({ type: 'PLAYER_REACHABLE_CHANGE', reachable });
-    };
-
-    useFrame(() => {
+    useFrame((_, delta) => {
         if (!enemy3DModel.current || !enemyBody.current) return;
-        if (state.value === 'dead') return;
+        elapsedRef.current += delta;
 
-        // if (currentHP <= 0) {
-        //   send("DIE");
-        //   return;
-        // }
+        if (elapsedRef.current >= 1.2) {
+            send(
+                [
+                    ChampionMachineStateEvents.ABILITY_1,
+                    ChampionMachineStateEvents.ABILITY_2,
+                    ChampionMachineStateEvents.ABILITY_3,
+                ][Number(parseInt(String(Math.random() * 3)))]
+            );
 
-        // if (currentHP <= 10) {
-        //   send("RUN_AWAY");
-        // }
+            elapsedRef.current = 0;
+        }
 
-        if (characterState?.group && shouldFollow) {
-            send(ChampionMachineStateEvents.MOVE);
+        if (
+            characterState?.group &&
+            shouldFollow &&
+            // @ts-ignore
+            !state.context.playerIsTargeted
+        ) {
             goToTarget(
                 {
                     targetGroup: characterState?.group,
                     sourceBody: enemyBody,
                     source3DModelGroup: enemy3DModel,
                 },
-                2
+                speed
             );
         }
     });
+
+    useEffect(() => {
+        if (state.context.playerIsTargeted) {
+        } else {
+            send(ChampionMachineStateEvents.MOVE);
+        }
+    }, [state.context.playerIsTargeted]);
 
     return {
         state,
@@ -99,3 +107,21 @@ export const useEnemyNPCLogic = (
         enemy3DModel,
     };
 };
+
+// if (currentHP <= 0) {
+//   send("DIE");
+//   return;
+// }
+
+// if (currentHP <= 10) {
+//   send("RUN_AWAY");
+// }
+// if (state.context.playerIsTargeted) {
+//     send(
+//         [
+//             ChampionMachineStateEvents.ABILITY_1,
+//             ChampionMachineStateEvents.ABILITY_2,
+//             ChampionMachineStateEvents.ABILITY_3,
+//         ][0]
+//     );
+// }
