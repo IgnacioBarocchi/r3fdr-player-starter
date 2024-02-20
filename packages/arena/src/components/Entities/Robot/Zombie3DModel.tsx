@@ -34,14 +34,17 @@ type ActionName =
 // type GLTFActions = Record<ActionName, THREE.AnimationAction>;
 
 const path = EntityModel.Zombie.path;
-export const Zombie3DModel: FC<{ stateValue: StateValue }> = ({
-    stateValue,
-}) => {
+export const Zombie3DModel: FC<{
+    stateValue: StateValue;
+    givenDependantGroupRef: React.MutableRefObject<THREE.Group>;
+}> = ({ stateValue, givenDependantGroupRef }) => {
     const { group, nodes, materials } = use3DModelLogic<GLTFResult>(
         stateValue,
-        true,
-        path
+        false,
+        path,
+        givenDependantGroupRef
     );
+
     return (
         <group ref={group} dispose={null}>
             <group name="Scene">

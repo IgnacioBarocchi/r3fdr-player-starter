@@ -33,7 +33,7 @@ const Mutant3DModel: FC<{ stateValue: StateValue }> = ({ stateValue }) => {
                     scale={0.75}
                 >
                     <primitive object={nodes.mixamorigHips} />
-                    <pointLight
+                    {/* <pointLight
                         castShadow
                         intensity={1}
                         // position={[x, y, z]}
@@ -44,7 +44,7 @@ const Mutant3DModel: FC<{ stateValue: StateValue }> = ({ stateValue }) => {
                         //     axis: new Vector3(0, 0, 0),
                         //     angle: Math.PI / 2,
                         // }}
-                    />
+                    /> */}
                     <skinnedMesh
                         name="mesh"
                         geometry={nodes.mesh.geometry}

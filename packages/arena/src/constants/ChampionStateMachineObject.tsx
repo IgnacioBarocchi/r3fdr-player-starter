@@ -4,6 +4,7 @@
 // * Each unit has 4 non-cancelable abilities with cool downs
 // TODO: TAKE STUN AND FALL ARE THE SAME!
 
+import { EventObject, assign } from 'xstate';
 import { useAnimations, useGLTF } from '@react-three/drei';
 
 import { EntityModel } from '../providers/entities';
@@ -50,6 +51,7 @@ export const ChampionMachineStateEvents = {
 export const getChampionMachine = (params: {
     id: string;
     player: (typeof EntityModel)[keyof typeof EntityModel];
+    isAnEnemy?: boolean;
 }) => {
     const animationActionByName = useAnimations(
         useGLTF(params.player.path).animations,
@@ -105,6 +107,31 @@ export const getChampionMachine = (params: {
         TAKE_DAMAGE,
         TAKE_STUN,
     } = ChampionMachineStateEvents;
+
+    const enemyFeatures = {
+        context: {
+            initialHP: 100,
+            currentHP: 100,
+            playerIsReachable: true,
+        },
+        on: {
+            PLAYER_REACHABLE_CHANGE: {
+                actions: assign(
+                    (context, event: EventObject & { reachable: boolean }) => ({
+                        ...context,
+                        playerIsReachable: event.reachable,
+                    })
+                ),
+            },
+        },
+        // @ts-ignore
+        actions: {
+            reduceHP: assign({
+                currentHP: (context: { currentHP: number }) =>
+                    context.currentHP - 1,
+            }),
+        },
+    };
 
     const championState = {
         predictableActionArguments: true,
@@ -172,8 +199,9 @@ export const getChampionMachine = (params: {
                 type: 'final',
             },
         },
+        ...(params.isAnEnemy ? enemyFeatures : {}),
     };
 
-    // console.log(championState);
+    console.log(championState);
     return championState;
 };

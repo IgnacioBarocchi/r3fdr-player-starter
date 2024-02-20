@@ -94,7 +94,6 @@ export const use3DModelLogic = <T,>(
     // }, [state]);
 
     useEffect(() => {
-        console.log('useEffect ' + state);
         let timeoutId = 0;
 
         if (!state) return;

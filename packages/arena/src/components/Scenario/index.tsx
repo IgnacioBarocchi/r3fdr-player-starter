@@ -69,6 +69,7 @@ const Scenario = () => {
                 // <></>
                 <directionalLight castShadow intensity={1} />
             )} */}
+            <directionalLight castShadow intensity={10} />
             <OrbitControls makeDefault />
             <KeyboardControls map={keysMap}>
                 {/* <Fog color="black" near={0.1} far={50} /> */}

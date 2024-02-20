@@ -2,12 +2,14 @@ import { useContext, useEffect, useState } from 'react';
 
 import { AppContext } from '../../../providers/GameSettingsProvider';
 import { DroneNPC } from '../../../components/Entities/Robot/DroneNPC.tsx';
+import { Dummy } from './Dummy.tsx';
 import { EntityModel } from '../../../providers/entities.ts';
 import { HitBox } from '../../../components/utility/Hitbox/HitBox.tsx';
 import { Physics } from '@react-three/rapier';
 import Player2 from '../../../components/Entities/Robot/Player2.tsx';
 import Terrain from './Terrain.tsx';
 import { Vector3 } from 'three';
+import { ZombieNPC } from '../../../components/Entities/Robot/ZombieNPC.tsx';
 import { useControls } from 'leva';
 
 const SpacialBase = () => {
@@ -48,33 +50,22 @@ const SpacialBase = () => {
             {!terrainIsLoading && (
                 <>
                     {/* <DroneNPC /> */}
+                    {/* <Player2
+                        useOrbitControls={
+                            USE_ORBIT_CONTROLS && mockOrbitControls
+                        }
+                        teamName="Mutant"
+                    /> */}
+                    <group position={[0, 0, 6]}>
+                        <ZombieNPC />
+                    </group>
                     <Player2
                         useOrbitControls={
                             USE_ORBIT_CONTROLS && mockOrbitControls
                         }
                         teamName="Mutant"
                     />
-                    <group position={[1, 0.05, 0]}>
-                        <HitBox
-                            stateValue={'Attacking1'}
-                            entity={EntityModel.Zombie}
-                            teamName="Zombie"
-                        />
-                    </group>
-                    <group position={[1, 0.05, 4]}>
-                        <HitBox
-                            stateValue={'Attacking2'}
-                            entity={EntityModel.Zombie}
-                            teamName="Zombie"
-                        />
-                    </group>
-                    <group position={[1, 0.05, 6]}>
-                        <HitBox
-                            stateValue={'Attacking3'}
-                            entity={EntityModel.Zombie}
-                            teamName="Zombie"
-                        />
-                    </group>
+                    {/* <Dummy teamName="Mutant" /> */}
                 </>
             )}
         </Physics>

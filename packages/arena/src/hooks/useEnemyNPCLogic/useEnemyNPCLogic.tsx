@@ -9,7 +9,9 @@ import { useAnimations, useGLTF } from '@react-three/drei';
 
 import { EntityModel } from '../../providers/entities';
 import { Group } from 'three';
+import { createMachine } from 'xstate';
 import { enemyMachine } from './enemyMachine';
+import { getChampionMachine } from '../../constants/ChampionStateMachineObject';
 import getEnemyMachine from './getEnemyMachine';
 import { goToTarget } from './goToTarget';
 import { useFrame } from '@react-three/fiber';
@@ -33,7 +35,10 @@ const playerIsInteractingWithSensor = (
     return ENTITIES_NAMES.Player === name;
 };
 
-export const useEnemyNPCLogic = (shouldFollow?: boolean) => {
+export const useEnemyNPCLogic = (
+    npc: (typeof EntityModel)[keyof typeof EntityModel],
+    shouldFollow?: boolean
+) => {
     const { characterState } = useGameStore((state: GameState) => ({
         characterState: state.characterState,
         setCaption: state.setCaption,
@@ -42,17 +47,15 @@ export const useEnemyNPCLogic = (shouldFollow?: boolean) => {
     const enemyBody =
         useRef<RapierRigidBody>() as MutableRefObject<RapierRigidBody>;
     const enemy3DModel = useRef<Group>(null) as MutableRefObject<Group>;
+    const machine = getChampionMachine({
+        id: 'Zombie',
+        player: npc,
+        isAnEnemy: true,
+    });
 
-    //   const [meleeNPCAction, setMeleeNPCAnimationClip] = useState<
-    //     NPCActionTypes["animationClips"][T][number]
-    //   >(animationClips.chase[0]);
-    const a = useGLTF(EntityModel.Skeleton2).animations;
-    console.log(a);
-    const [state, send] = useMachine(
-        getEnemyMachine(useAnimations(a, new Group()).actions)
-    );
-    // send("ROBOT_PUNCH");
     // @ts-ignore
+    const [state, send] = useMachine(createMachine(machine));
+    // todo: later on.
     const { currentHP, playerIsReachable } = state.context;
 
     const handlePlayerReachableChange = (reachable: boolean) => {
@@ -101,17 +104,17 @@ export const useEnemyNPCLogic = (shouldFollow?: boolean) => {
             console.log(
                 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
             );
-            send('TAKE_DAMAGE');
+            // send('TAKE_DAMAGE');
             return;
         }
 
         if (NPCTakingDamageFromKick) {
-            send('STUN');
+            // send('STUN');
             return;
         }
 
         if (playerIsReachable) {
-            send('ATTACK');
+            // send('ATTACK');
             return;
         }
     }) as IntersectionEnterHandler;
@@ -133,6 +136,7 @@ export const useEnemyNPCLogic = (shouldFollow?: boolean) => {
 
     return {
         state,
+        send,
         onInteractionRadiusEnter,
         onInteractionRadiusLeave,
         enemyBody,
