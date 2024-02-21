@@ -4,10 +4,12 @@ import { GLTF } from 'three-stdlib'
 
 export type GLTFResult = GLTF & {
     nodes: {
+        Plane: THREE.Mesh
         mesh: THREE.SkinnedMesh
         mixamorigHips: THREE.Bone
     }
     materials: {
+        RHReference: THREE.MeshStandardMaterial
         ['Main material']: THREE.MeshStandardMaterial
     }
 }

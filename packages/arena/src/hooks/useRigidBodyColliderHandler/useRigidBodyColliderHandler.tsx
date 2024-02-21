@@ -21,6 +21,8 @@ export const useRigidBodyColliderHandler = (params: {
                     animationName
                 ];
 
+            console.log(ability);
+
             if (ability.endsWith('3')) {
                 params.send(ChampionMachineStateEvents.TAKE_STUN);
             } else {

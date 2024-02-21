@@ -78,8 +78,9 @@ const playerFeatures = {
     },
 };
 
-const validator = (context: { currentHP: number }) =>
-    new Promise((resolve, reject) => {
+const validator = (context: { currentHP: number }) => {
+    console.log('validating');
+    return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (context.currentHP) {
                 resolve(true);
@@ -89,6 +90,7 @@ const validator = (context: { currentHP: number }) =>
             }
         }, 200);
     });
+};
 
 export const getChampionMachine = (params: {
     id: string;

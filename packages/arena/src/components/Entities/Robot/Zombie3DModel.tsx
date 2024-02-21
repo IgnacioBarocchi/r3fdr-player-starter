@@ -5,10 +5,12 @@ Command: npx gltfjsx@6.1.11 public/models/Zombie.gltf -t -r public
 
 import * as THREE from 'three';
 
+import { FC, useEffect } from 'react';
+
 import { EntityModel } from '../../../providers/entities';
-import { FC } from 'react';
 import { GLTF } from 'three-stdlib';
 import { StateValue } from 'xstate';
+import { use3DModelAnimationsHandler } from '../../../hooks/useGameStore/use3DModelAnimationsHandler';
 import { use3DModelLogic } from '../../../hooks/use3DModelLogic/use3DModelLogic';
 import { useGLTF } from '@react-three/drei';
 
@@ -38,12 +40,21 @@ export const Zombie3DModel: FC<{
     stateValue: StateValue;
     givenDependantGroupRef: React.MutableRefObject<THREE.Group>;
 }> = ({ stateValue, givenDependantGroupRef }) => {
-    const { group, nodes, materials } = use3DModelLogic<GLTFResult>(
+    // @ts-ignore
+    const { group, nodes, materials, actions } = use3DModelLogic<GLTFResult>(
         stateValue,
         false,
         path,
         givenDependantGroupRef
     );
+
+    const { animationEffect } = use3DModelAnimationsHandler({
+        entity: EntityModel.Mutant,
+        stateValue,
+        actions,
+    });
+
+    useEffect(animationEffect, [stateValue, actions]);
 
     return (
         <group ref={group} dispose={null}>

@@ -5,6 +5,7 @@ import {
 } from '@react-three/rapier';
 
 import { EntityModel } from '../../../providers/entities';
+import { HitBox } from '../../utility/Hitbox/HitBox';
 // import { Skeleton23DModel } from './Skeleton23DModel';
 import { Zombie3DModel } from './Zombie3DModel';
 import { useEnemyNPCLogic } from '../../../hooks/useEnemyNPCLogic/useEnemyNPCLogic';
@@ -46,6 +47,11 @@ export const ZombieNPC = () => {
             <Zombie3DModel
                 stateValue={state.value}
                 givenDependantGroupRef={enemy3DModel}
+            />
+            <HitBox
+                stateValue={state.value}
+                entity={EntityModel[teamName]}
+                teamName={teamName}
             />
         </RigidBody>
     );

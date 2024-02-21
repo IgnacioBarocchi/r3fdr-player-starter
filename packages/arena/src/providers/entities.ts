@@ -174,7 +174,7 @@ const zombieEventMap = getAnimationMap(zombieActionRecords)
 
 export const EntityModel = {
     // Robot: "/models/Robot.glb",
-    Drone: { path: '/models/Drone.gltf', actionRecords: [] },
+    Drone: { path: '/models/Drone.gltf', actionRecords: [], eventMap: zombieEventMap },
     Mutant: {
         path: '/models/Mutant.gltf',
         actionRecords: mutantActionRecords,

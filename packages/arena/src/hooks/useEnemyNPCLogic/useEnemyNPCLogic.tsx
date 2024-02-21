@@ -64,18 +64,6 @@ export const useEnemyNPCLogic = (
         if (!enemy3DModel.current || !enemyBody.current) return;
         elapsedRef.current += delta;
 
-        if (elapsedRef.current >= 1.2) {
-            send(
-                [
-                    ChampionMachineStateEvents.ABILITY_1,
-                    ChampionMachineStateEvents.ABILITY_2,
-                    ChampionMachineStateEvents.ABILITY_3,
-                ][Number(parseInt(String(Math.random() * 3)))]
-            );
-
-            elapsedRef.current = 0;
-        }
-
         if (
             characterState?.group &&
             shouldFollow &&
@@ -90,6 +78,19 @@ export const useEnemyNPCLogic = (
                 },
                 speed
             );
+        }
+
+        if (elapsedRef.current >= 1.2) {
+            //&& state.context.playerIsTargeted) {
+            send(
+                [
+                    ChampionMachineStateEvents.ABILITY_1,
+                    ChampionMachineStateEvents.ABILITY_2,
+                    ChampionMachineStateEvents.ABILITY_3,
+                ][Number(parseInt(String(Math.random() * 3)))]
+            );
+
+            elapsedRef.current = 0;
         }
     });
 
