@@ -32,7 +32,7 @@ export const Zombie3DModel: FC<{
     );
 
     const { animationEffect } = use3DModelAnimationsHandler({
-        entity: EntityModel.Mutant,
+        entity: EntityModel.Zombie,
         stateValue,
         actions,
     });

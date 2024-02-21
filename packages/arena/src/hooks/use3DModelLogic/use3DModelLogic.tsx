@@ -57,6 +57,7 @@ export const use3DModelLogic = <T,>(
         }
     }, []);
 
+    // @ts-ignore
     return { group, scene, nodes, materials, animations, actions };
 };
 

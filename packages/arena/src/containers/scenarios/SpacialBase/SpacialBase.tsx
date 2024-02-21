@@ -6,6 +6,7 @@ import { Physics } from '@react-three/rapier';
 import Player2 from '../../../components/Entities/Robot/Player2.tsx';
 import Terrain from './Terrain.tsx';
 import { Vector3 } from 'three';
+import { ZombieNPC } from '../../../components/Entities/Robot/ZombieNPC.tsx';
 import { useControls } from 'leva';
 
 const SpacialBase = () => {
@@ -39,6 +40,9 @@ const SpacialBase = () => {
                         }
                         teamName="Mutant"
                     />
+                    {/* <group position={[0, 0, 6]}>
+                        <ZombieNPC />
+                    </group> */}
                     <Dummy teamName="Zombie" />
                 </>
             )}

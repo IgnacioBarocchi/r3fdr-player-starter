@@ -212,7 +212,7 @@ export const getChampionMachine = (params: {
                 }),
                 after: {
                     // attacked animation cool down
-                    1000: idle, //'validating',
+                    1000: 'validating',
                 },
             },
             validating: {

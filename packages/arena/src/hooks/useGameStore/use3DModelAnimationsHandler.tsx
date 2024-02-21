@@ -37,23 +37,20 @@ export const use3DModelAnimationsHandler = ({
     stateValue,
     actions,
 }: AnimationsHandlerParams) => {
-    const { IDLE, MOVE, TAKE_DAMAGE } = ChampionMachineStateEvents;
+    const { IDLE, MOVE } = ChampionMachineStateEvents;
     const loopableAbilities = [IDLE, MOVE];
 
     /**
      * @depends on [stateValue] and [actions]
      */
     const animationEffect = () => {
+        console.log(actions);
         let timeoutId = 0;
         const currentAnimation = String(stateValue);
         const currentAction = actions[currentAnimation];
         const currentAbility = entity.eventMap[currentAnimation];
         console.log(currentAbility, currentAnimation);
         if (!currentAnimation || !currentAction || !currentAbility) return;
-
-        if (currentAbility === TAKE_DAMAGE) {
-            debugger;
-        }
 
         const handleCleanup = () => {
             easeOutAnimation(currentAction);
