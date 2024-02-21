@@ -1,4 +1,5 @@
-import { AnimationAction } from 'three';
+import { AnimationAction, LoopOnce } from 'three';
+
 import { ChampionMachineStateEvents } from '../../constants/ChampionStateMachineObject';
 import { EntityModel } from '../../providers/entities';
 import { StateValue } from 'xstate';
@@ -11,6 +12,8 @@ export type AnimationsHandlerParams = {
         [x: string]: AnimationAction | null;
     };
 };
+
+const { IDLE, MOVE, DEATH } = ChampionMachineStateEvents;
 
 const blendAnimationTransition = (action: AnimationAction | null) => {
     if (!action) return;
@@ -32,24 +35,28 @@ const stopAnimation = (action: AnimationAction | null) => {
     action?.stop();
 };
 
+const playFinalAnimation = (action: AnimationAction | null) => {
+    if (!action) return;
+    action.setLoop(LoopOnce, 1);
+    action.clampWhenFinished = true;
+    action.enabled = true;
+    action.reset().play();
+};
+
 export const use3DModelAnimationsHandler = ({
     entity,
     stateValue,
     actions,
 }: AnimationsHandlerParams) => {
-    const { IDLE, MOVE } = ChampionMachineStateEvents;
     const loopableAbilities = [IDLE, MOVE];
-
     /**
      * @depends on [stateValue] and [actions]
      */
     const animationEffect = () => {
-        console.log(actions);
         let timeoutId = 0;
         const currentAnimation = String(stateValue);
         const currentAction = actions[currentAnimation];
         const currentAbility = entity.eventMap[currentAnimation];
-        console.log(currentAbility, currentAnimation);
         if (!currentAnimation || !currentAction || !currentAbility) return;
 
         const handleCleanup = () => {
@@ -57,20 +64,26 @@ export const use3DModelAnimationsHandler = ({
             clearTimeout(timeoutId);
         };
 
+        if (currentAbility === DEATH) {
+            const deathAnimation =
+                entity.actionRecords.find(
+                    ({ eventName }) => eventName === DEATH
+                )?.animationName || '';
+
+            playFinalAnimation(actions[deathAnimation]);
+        }
+
         if (loopableAbilities.includes(currentAbility)) {
             blendAnimationTransition(currentAction);
             return handleCleanup;
         } else {
-            console.log(currentAbility);
+            playOneShotAnimation(currentAction);
+
+            timeoutId = setTimeout(() => {
+                stopAnimation(currentAction);
+                handleCleanup();
+            }, getAnimationClipMilliseconds(actions, currentAnimation));
         }
-
-        playOneShotAnimation(currentAction);
-
-        timeoutId = setTimeout(() => {
-            stopAnimation(currentAction);
-            handleCleanup();
-        }, getAnimationClipMilliseconds(actions, currentAnimation));
-
         return handleCleanup;
     };
 

@@ -1,13 +1,15 @@
 import { useContext, useEffect, useState } from 'react';
 
 import { AppContext } from '../../../providers/GameSettingsProvider';
-import { Dummy } from './Dummy.tsx';
+import { Dummyies } from './Dummies.tsx';
 import { Physics } from '@react-three/rapier';
 import Player2 from '../../../components/Entities/Robot/Player2.tsx';
 import Terrain from './Terrain.tsx';
 import { Vector3 } from 'three';
 import { ZombieNPC } from '../../../components/Entities/Robot/ZombieNPC.tsx';
 import { useControls } from 'leva';
+
+const renderDummies = false;
 
 const SpacialBase = () => {
     const {
@@ -31,7 +33,6 @@ const SpacialBase = () => {
                 position={new Vector3(0, 0.2, 0)}
                 scale={new Vector3(50, 0.2, 50)}
             />
-            {/* </RigidBody> */}
             {!terrainIsLoading && (
                 <>
                     <Player2
@@ -42,8 +43,17 @@ const SpacialBase = () => {
                     />
                     {/* <group position={[0, 0, 6]}>
                         <ZombieNPC />
+                    </group>
+                    <group position={[0, 0, -6]}>
+                        <ZombieNPC />
+                    </group>
+                    <group position={[6, 0, 6]}>
+                        <ZombieNPC />
                     </group> */}
-                    <Dummy teamName="Zombie" />
+                    <group position={[-6, 0, -6]}>
+                        <ZombieNPC />
+                    </group>
+                    {renderDummies && <Dummyies teamName="Zombie" />}
                 </>
             )}
         </Physics>

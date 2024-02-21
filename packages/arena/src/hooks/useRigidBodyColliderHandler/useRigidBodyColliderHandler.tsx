@@ -25,7 +25,6 @@ export const useRigidBodyColliderHandler = (params: {
             if (ability.endsWith('3')) {
                 params.send(ChampionMachineStateEvents.TAKE_STUN);
             } else {
-                console.log('send take damage from: ' + ability);
                 params.send(ChampionMachineStateEvents.TAKE_DAMAGE);
             }
         }) as CollisionEnterHandler,

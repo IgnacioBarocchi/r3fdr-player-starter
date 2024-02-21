@@ -59,6 +59,7 @@ const Scenario = () => {
 
     return (
         <Canvas shadows camera={camera}>
+            <Perf position="bottom-left" />
             {/* {MONITOR_PERFORMANCE && <Perf position="bottom-left" />}
             {['LOW', 'NORMAL'].includes(GRAPHICS) ? (
                 // <></>

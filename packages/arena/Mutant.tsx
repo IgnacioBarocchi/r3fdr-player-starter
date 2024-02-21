@@ -11,16 +11,18 @@ import { GLTF } from 'three-stdlib'
 type GLTFResult = GLTF & {
   nodes: {
     Plane: THREE.Mesh
-    mesh: THREE.SkinnedMesh
+    meshmesh008: THREE.SkinnedMesh
+    meshmesh008_1: THREE.SkinnedMesh
     mixamorigHips: THREE.Bone
   }
   materials: {
     RHReference: THREE.MeshStandardMaterial
     ['Main material']: THREE.MeshStandardMaterial
+    RH: THREE.MeshStandardMaterial
   }
 }
 
-type ActionName = 'CrossPunching' | 'Dying' | 'Idle' | 'Kicking' | 'Running' | 'SidePunching' | 'Slamming' | 'Stunned' | 'TackingDamage'
+type ActionName = 'CrossPunching' | 'Dying' | 'Idle' | 'Kicking' | 'Running' | 'SidePunching' | 'Slamming' | 'Stunned' | 'TakingDamage'
 type GLTFActions = Record<ActionName, THREE.AnimationAction>
 
 export function Model(props: JSX.IntrinsicElements['group']) {
@@ -32,7 +34,10 @@ export function Model(props: JSX.IntrinsicElements['group']) {
       <group name="Scene">
         <group name="Armature" rotation={[Math.PI / 2, 0, 0]} scale={1.22}>
           <primitive object={nodes.mixamorigHips} />
-          <skinnedMesh name="mesh" geometry={nodes.mesh.geometry} material={materials['Main material']} skeleton={nodes.mesh.skeleton} />
+          <group name="mesh">
+            <skinnedMesh name="meshmesh008" geometry={nodes.meshmesh008.geometry} material={materials['Main material']} skeleton={nodes.meshmesh008.skeleton} />
+            <skinnedMesh name="meshmesh008_1" geometry={nodes.meshmesh008_1.geometry} material={materials.RH} skeleton={nodes.meshmesh008_1.skeleton} />
+          </group>
         </group>
       </group>
     </group>

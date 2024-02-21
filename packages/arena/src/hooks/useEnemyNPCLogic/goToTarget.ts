@@ -18,10 +18,10 @@ const getMeleeNPCMeleeNPCImpulse = (
     return impulse;
 };
 
-export const goToTarget = (references: Params, speed = .1) => {
+export const goToTarget = (references: Params) => {
     const { source3DModelGroup,
         sourceBody,
-        targetGroup } = references;
+        targetGroup, speed } = references;
 
     const targetPosition = targetGroup.getWorldPosition(
         new Vector3()
@@ -54,4 +54,5 @@ type Params = {
     source3DModelGroup: MutableRefObject<Group>;
     sourceBody: MutableRefObject<RapierRigidBody>;
     targetGroup: Group;
+    speed: number;
 }

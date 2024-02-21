@@ -42,10 +42,10 @@ export default function App() {
         <>
             <Leva isRoot collapsed hidden={!DEBUG_APP} />
             {/* <FullScreenVignette /> */}
-            <div>
+            {/* <div>
                 Graphics: {GRAPHICS} Controls: J | K | [Space] | 1 | 2 | 3
-            </div>
-            <GraphicsModal />
+            </div> */}
+            {/* <GraphicsModal /> */}
             <AbilityBar />
             <Suspense
                 fallback={

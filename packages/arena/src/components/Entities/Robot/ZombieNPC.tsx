@@ -3,11 +3,13 @@ import {
     RigidBody,
     CylinderCollider as Sensor,
 } from '@react-three/rapier';
+import { useEffect, useState } from 'react';
 
 import { EntityModel } from '../../../providers/entities';
 import { HitBox } from '../../utility/Hitbox/HitBox';
 // import { Skeleton23DModel } from './Skeleton23DModel';
 import { Zombie3DModel } from './Zombie3DModel';
+import getAnimationClipMilliseconds from '../../../lib/getAnimationClipDuration';
 import { useEnemyNPCLogic } from '../../../hooks/useEnemyNPCLogic/useEnemyNPCLogic';
 import { useRigidBodyColliderHandler } from '../../../hooks/useRigidBodyColliderHandler/useRigidBodyColliderHandler';
 import { useRigidBodySensorHandler } from '../../../hooks/useRigidBodySensorHandler/useRigidBodySensorHandler';
@@ -29,6 +31,34 @@ export const ZombieNPC = () => {
             send,
             teamName,
         });
+
+    const [isDead, setIsDead] = useState(false);
+
+    useEffect(() => {
+        let timeoutId = 0;
+
+        if (state.value === 'Dying') {
+            // Set a timeout to change isDead state to true after 5 seconds
+            timeoutId = setTimeout(() => {
+                setIsDead(true);
+                // state = null;
+                // send = null;
+                // onIntersectionEnter = null;
+                // onIntersectionExit = null;
+                // enemyBody = null;
+                // enemy3DModel = null;
+            }, 2000);
+        }
+
+        return () => {
+            clearTimeout(timeoutId);
+        };
+    }, [state.value]);
+
+    if (isDead) {
+        // cleanup component
+        return <></>;
+    }
 
     return (
         <RigidBody lockRotations={true} colliders={false} ref={enemyBody}>

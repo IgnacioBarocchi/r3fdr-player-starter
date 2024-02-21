@@ -55,7 +55,7 @@ type Stats = {
 const enemyFeatures = {
     context: {
         initialHP: 100,
-        currentHP: 100,
+        currentHP: 20,
         playerIsTargeted: false,
     },
     on: {
@@ -79,13 +79,11 @@ const playerFeatures = {
 };
 
 const validator = (context: { currentHP: number }) => {
-    console.log('validating');
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (context.currentHP) {
                 resolve(true);
             } else {
-                console.log('dead');
                 reject(`Error entity is dead ${context.currentHP} `);
             }
         }, 200);
@@ -206,7 +204,6 @@ export const getChampionMachine = (params: {
             [takeDamage]: {
                 entry: assign({
                     currentHP: (context: { currentHP: number }) => {
-                        console.log(context.currentHP);
                         return context.currentHP - 20;
                     },
                 }),
@@ -240,8 +237,5 @@ export const getChampionMachine = (params: {
         ...(params.isAnEnemy ? enemyFeatures : playerFeatures),
     };
 
-    if (params.isAnEnemy) {
-        console.log(championState);
-    }
     return championState;
 };

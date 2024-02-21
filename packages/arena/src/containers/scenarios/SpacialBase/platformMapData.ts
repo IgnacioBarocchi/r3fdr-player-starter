@@ -86,7 +86,6 @@ const explore = (startRow: number, startCol: number) => {
     const [row, col] = queue.shift()!;
 
     if (platformMapData[row][col]?.hasTarget) {
-      console.log("found target");
       const shortestPath: [number, number][] = [];
 
       let currentRow = row;

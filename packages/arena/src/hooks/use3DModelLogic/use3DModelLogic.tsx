@@ -3,8 +3,10 @@ import { useEffect, useMemo, useRef } from 'react';
 
 import { AppContext } from '../../providers/GameSettingsProvider';
 import { Group } from 'three';
+import { SkeletonUtils } from 'three-stdlib';
 import { useContext } from 'react';
 import { useGameStore } from '../useGameStore/useGameStore';
+import { useGraph } from '@react-three/fiber';
 
 // !register 3dmodel load + reference.
 export const use3DModelLogic = <T,>(
@@ -20,9 +22,12 @@ export const use3DModelLogic = <T,>(
         ? givenDependantGroupRef
         : useRef<Group>(null);
 
-    const { scene, nodes, materials, animations } = useGLTF(
+    const { scene, materials, animations } = useGLTF(
         modelPath
     ) as unknown as ModelResultType<T>;
+
+    const clone = useMemo(() => SkeletonUtils.clone(scene), [scene]);
+    const { nodes } = useGraph(clone);
 
     // @ts-ignore
     const { actions } = useAnimations<RobotGenericAnimationsWithActions>(

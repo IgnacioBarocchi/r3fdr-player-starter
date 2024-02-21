@@ -28,7 +28,6 @@ export const useRigidBodySensorHandler = (params: {
     const onIntersectionExit = useCallback(
         (({ other: { rigidBodyObject } }) => {
             if (rigidBodyObject?.name === 'Player') {
-                console.log('reachable');
                 setPlayerIsTargeted(false);
                 // @ts-ignore
                 params.send({
