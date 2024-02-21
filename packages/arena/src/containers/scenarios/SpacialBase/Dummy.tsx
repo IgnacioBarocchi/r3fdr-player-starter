@@ -14,7 +14,7 @@ export const Dummy = ({ teamName }: { teamName: 'Zombie' | 'Mutant' }) => {
         <>
             {abilities.map((ability, i) => {
                 return (
-                    <group position={[1, 0.05, i * 2]}>
+                    <group position={[1, 0.05, i * 2]} key={ability + i}>
                         <HitBox
                             stateValue={ability}
                             entity={EntityModel[teamName]}

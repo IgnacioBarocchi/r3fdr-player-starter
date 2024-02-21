@@ -37,9 +37,9 @@ const SpacialBase = () => {
                         useOrbitControls={
                             USE_ORBIT_CONTROLS && mockOrbitControls
                         }
-                        teamName="Zombie"
+                        teamName="Mutant"
                     />
-                    <Dummy teamName="Mutant" />
+                    <Dummy teamName="Zombie" />
                 </>
             )}
         </Physics>

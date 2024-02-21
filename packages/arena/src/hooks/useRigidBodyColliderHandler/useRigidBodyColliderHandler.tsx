@@ -15,17 +15,17 @@ export const useRigidBodyColliderHandler = (params: {
             ) {
                 return;
             }
+
             const [animationName, enemy] = rigidBodyObject.name.split('|');
             const ability =
                 EntityModel[enemy as 'Zombie' | 'Mutant'].eventMap[
                     animationName
                 ];
 
-            console.log(ability);
-
             if (ability.endsWith('3')) {
                 params.send(ChampionMachineStateEvents.TAKE_STUN);
             } else {
+                console.log('send take damage from: ' + ability);
                 params.send(ChampionMachineStateEvents.TAKE_DAMAGE);
             }
         }) as CollisionEnterHandler,

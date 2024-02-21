@@ -37,28 +37,34 @@ export const use3DModelAnimationsHandler = ({
     stateValue,
     actions,
 }: AnimationsHandlerParams) => {
-    const { IDLE, MOVE } = ChampionMachineStateEvents;
-    const loopableEvents = [IDLE, MOVE];
+    const { IDLE, MOVE, TAKE_DAMAGE } = ChampionMachineStateEvents;
+    const loopableAbilities = [IDLE, MOVE];
 
     /**
-     *
-     * @depends stateValue & actions
+     * @depends on [stateValue] and [actions]
      */
     const animationEffect = () => {
         let timeoutId = 0;
-        const currentAnimation = stateValue as string;
+        const currentAnimation = String(stateValue);
         const currentAction = actions[currentAnimation];
+        const currentAbility = entity.eventMap[currentAnimation];
+        console.log(currentAbility, currentAnimation);
+        if (!currentAnimation || !currentAction || !currentAbility) return;
 
-        if (!currentAnimation || !currentAction) return;
+        if (currentAbility === TAKE_DAMAGE) {
+            debugger;
+        }
 
         const handleCleanup = () => {
             easeOutAnimation(currentAction);
             clearTimeout(timeoutId);
         };
 
-        if (loopableEvents.includes(entity.eventMap[currentAnimation])) {
+        if (loopableAbilities.includes(currentAbility)) {
             blendAnimationTransition(currentAction);
             return handleCleanup;
+        } else {
+            console.log(currentAbility);
         }
 
         playOneShotAnimation(currentAction);
@@ -68,9 +74,7 @@ export const use3DModelAnimationsHandler = ({
             handleCleanup();
         }, getAnimationClipMilliseconds(actions, currentAnimation));
 
-        return () => {
-            handleCleanup();
-        };
+        return handleCleanup;
     };
 
     return { animationEffect };

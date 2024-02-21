@@ -1,9 +1,9 @@
+// todo encapsulate 3d logic
 import { FC, useEffect } from 'react';
 
 import { EntityModel } from '../../../providers/entities';
 import { GLTFResult } from './MutantTypes';
 import { StateValue } from 'xstate';
-import { Vector3 } from 'three';
 import { use3DModelAnimationsHandler } from '../../../hooks/useGameStore/use3DModelAnimationsHandler';
 import { use3DModelLogic } from '../../../hooks/use3DModelLogic/use3DModelLogic';
 // import { useControls } from 'leva';
@@ -13,7 +13,6 @@ const path = EntityModel.Mutant.path;
 const Mutant3DModel: FC<{ stateValue: StateValue }> = ({ stateValue }) => {
     // @ts-ignore
     const { group, nodes, materials, actions } = use3DModelLogic<GLTFResult>(
-        stateValue,
         true,
         path
     );

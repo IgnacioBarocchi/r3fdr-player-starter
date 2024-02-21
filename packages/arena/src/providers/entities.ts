@@ -37,6 +37,7 @@ const mutantActionRecords = [
         hitBox: {
             rigidBody: {
                 name: 'CrossPunching',
+                type: "fixed",
                 position: [0, 1.25, 1.2],
                 density: 1000,
             },
@@ -50,6 +51,7 @@ const mutantActionRecords = [
         hitBox: {
             rigidBody: {
                 name: 'Kicking',
+                type: "fixed",
                 position: [0, 1.25, 2],
                 density: 1000,
             },
@@ -63,6 +65,7 @@ const mutantActionRecords = [
         hitBox: {
             rigidBody: {
                 name: 'SidePunching',
+                type: "fixed",
                 position: [0, 1.25, 2],
                 density: 1000,
             },
@@ -76,6 +79,7 @@ const mutantActionRecords = [
         hitBox: {
             rigidBody: {
                 name: 'Slamming',
+                type: "fixed",
                 position: [0, 0.5, 2],
                 density: 1000,
             },

@@ -1,19 +1,13 @@
-// todo. split.
-// model loader
-// animation effect
 import { useAnimations, useGLTF } from '@react-three/drei';
 import { useEffect, useMemo, useRef } from 'react';
 
 import { AppContext } from '../../providers/GameSettingsProvider';
-import { ChampionMachineStateEvents } from '../../constants/ChampionStateMachineObject';
 import { Group } from 'three';
-import { StateValue } from 'xstate';
-import getAnimationClipMilliseconds from '../../lib/getAnimationClipDuration';
 import { useContext } from 'react';
 import { useGameStore } from '../useGameStore/useGameStore';
 
+// !register 3dmodel load + reference.
 export const use3DModelLogic = <T,>(
-    state: StateValue,
     player: boolean,
     modelPath: string,
     givenDependantGroupRef?: React.MutableRefObject<THREE.Group>
@@ -63,90 +57,9 @@ export const use3DModelLogic = <T,>(
         }
     }, []);
 
-    // useEffect(() => {
-    //     let timeout = 0;
-
-    //     if (!state) return;
-    //     const currentAnimation = state;
-    //     if (!actions || !actions[currentAnimation]) return;
-
-    //     const currentAction = actions[currentAnimation as string];
-    //     if (['Running', 'Idle'].includes(currentAnimation as string)) {
-    //         currentAction?.reset()?.fadeIn(0.2)?.play();
-
-    //         return () => {
-    //             currentAction?.fadeOut(0.2);
-    //         };
-    //     } else {
-    //         const millisecondsOfAnimation = getAnimationClipMilliseconds(
-    //             actions,
-    //             currentAnimation as string
-    //         );
-
-    //         currentAction?.reset()?.play();
-
-    //         timeout = setTimeout(() => {
-    //             currentAction?.stop();
-    //         }, millisecondsOfAnimation);
-    //     }
-
-    //     return () => {
-    //         currentAction?.fadeOut(0.2);
-    //         clearTimeout(timeout);
-    //     };
-    // }, [state]);
-    // todo export animation effect?
-    // todo convert to hook
-    // useEffect(() => {
-    //     if (player) console.log(state);
-    //     let timeoutId = 0;
-
-    //     if (!state) return;
-
-    //     const currentAnimation = state as string;
-    //     if (!actions || !actions[currentAnimation]) return;
-
-    //     const currentAction = actions[currentAnimation];
-    //     const isRunningOrIdle = ['Running', 'Idle'].includes(currentAnimation);
-
-    //     const handleCleanup = () => {
-    //         currentAction?.fadeOut(0.2);
-    //         clearTimeout(timeoutId);
-    //     };
-
-    //     if (isRunningOrIdle) {
-    //         currentAction?.reset()?.fadeIn(0.2)?.play();
-    //         return handleCleanup;
-    //     }
-
-    //     const millisecondsOfAnimation = getAnimationClipMilliseconds(
-    //         actions,
-    //         currentAnimation
-    //     );
-
-    //     currentAction?.reset()?.play();
-
-    //     timeoutId = setTimeout(() => {
-    //         currentAction?.stop();
-    //         handleCleanup();
-    //     }, millisecondsOfAnimation);
-
-    //     return () => {
-    //         handleCleanup();
-    //     };
-    // }, [state, actions]);
-
     return { group, scene, nodes, materials, animations, actions };
 };
 
-// setCharacterState({
-//     ...characterState,
-//     ...{ ability: currentAnimation },
-// });
-// setCharacterState({
-//     ...characterState,
-//     ...{ ability: ChampionMachineStateEvents.IDLE },
-// });
 type ModelResultType<T> = {
     scene: Group;
     nodes: {
@@ -159,3 +72,12 @@ type ModelResultType<T> = {
     animations: T;
     group: React.RefObject<Group>;
 };
+
+// setCharacterState({
+//     ...characterState,
+//     ...{ ability: currentAnimation },
+// });
+// setCharacterState({
+//     ...characterState,
+//     ...{ ability: ChampionMachineStateEvents.IDLE },
+// });

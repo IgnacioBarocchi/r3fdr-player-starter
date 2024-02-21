@@ -4,7 +4,6 @@ import {
     CylinderCollider as Sensor,
 } from '@react-three/rapier';
 
-import { ChampionMachineStateEvents } from '../../../constants/ChampionStateMachineObject';
 import { EntityModel } from '../../../providers/entities';
 import { FC } from 'react';
 import { HitBox } from '../../utility/Hitbox/HitBox';
@@ -19,7 +18,8 @@ const EntityComponent = {
         <Mutant3DModel stateValue={stateValue} />
     ),
     Zombie: ({ stateValue }: { stateValue: StateValue }) => (
-        <Zombie3DModel stateValue={stateValue} />
+        // @ts-ignore
+        <Zombie3DModel stateValue={stateValue} givenDependantGroupRef={null} />
     ),
     Drone: () => <></>,
 };
@@ -39,6 +39,7 @@ const Player2: FC<{
     });
 
     const Model = EntityComponent[teamName];
+
     return (
         <RigidBody
             lockRotations={true}
