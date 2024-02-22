@@ -10,14 +10,14 @@ import { SkeletonUtils } from 'three-stdlib';
 // import { SkeletonUtils } from 'three/examples/jsm/utils/SkeletonUtils';
 import { StateValue } from 'xstate';
 import { use3DModelAnimationsHandler } from '../../../hooks/useGameStore/use3DModelAnimationsHandler';
-import { use3DModelLogic } from '../../../hooks/use3DModelLogic/use3DModelLogic';
+import { use3DModelLoader } from '../../../hooks/use3DModelLoader/use3DModelLoader';
 import { useGraph } from '@react-three/fiber';
 
 const path = EntityModel.Mutant.path;
 const Mutant3DModel: FC<{ stateValue: StateValue }> = ({ stateValue }) => {
     // @ts-ignore
     const { group, nodes, scene, materials, actions } =
-        use3DModelLogic<GLTFResult>(true, path);
+        use3DModelLoader<GLTFResult>(true, path);
 
     const { animationEffect } = use3DModelAnimationsHandler({
         entity: EntityModel.Mutant,

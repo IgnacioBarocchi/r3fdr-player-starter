@@ -6,7 +6,7 @@ import { EntityModel } from '../../../providers/entities';
 import { GLTF } from 'three-stdlib';
 import { StateValue } from 'xstate';
 import { use3DModelAnimationsHandler } from '../../../hooks/useGameStore/use3DModelAnimationsHandler';
-import { use3DModelLogic } from '../../../hooks/use3DModelLogic/use3DModelLogic';
+import { use3DModelLoader } from '../../../hooks/use3DModelLoader/use3DModelLoader';
 import { useGLTF } from '@react-three/drei';
 
 type GLTFResult = GLTF & {
@@ -25,7 +25,7 @@ export const Zombie3DModel: FC<{
     givenDependantGroupRef: React.MutableRefObject<THREE.Group>;
 }> = ({ stateValue, givenDependantGroupRef }) => {
     // @ts-ignore
-    const { group, nodes, materials, actions } = use3DModelLogic<GLTFResult>(
+    const { group, nodes, materials, actions } = use3DModelLoader<GLTFResult>(
         false,
         path,
         givenDependantGroupRef

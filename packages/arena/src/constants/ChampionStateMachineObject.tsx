@@ -4,7 +4,7 @@
 // * Each unit has 4 non-cancelable abilities with cool downs
 // TODO: TAKE STUN AND FALL ARE THE SAME!
 
-import { EventObject, assign } from 'xstate';
+import { AnyStateMachine, EventObject, assign } from 'xstate';
 import { useAnimations, useGLTF } from '@react-three/drei';
 
 import { EntityModel } from '../providers/entities';

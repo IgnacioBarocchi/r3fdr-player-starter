@@ -9,7 +9,7 @@ import { useGameStore } from '../useGameStore/useGameStore';
 import { useGraph } from '@react-three/fiber';
 
 // !register 3dmodel load + reference.
-export const use3DModelLogic = <T,>(
+export const use3DModelLoader = <T,>(
     player: boolean,
     modelPath: string,
     givenDependantGroupRef?: React.MutableRefObject<THREE.Group>
@@ -53,6 +53,7 @@ export const use3DModelLogic = <T,>(
         });
     }, [scene, GRAPHICS]);
 
+    //todo: remove state synchronization
     useEffect(() => {
         if (player) {
             if (group?.current !== null || group?.current !== undefined) {

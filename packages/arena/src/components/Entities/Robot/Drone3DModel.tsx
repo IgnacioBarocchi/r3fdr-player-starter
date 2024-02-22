@@ -5,7 +5,7 @@ import { FC } from 'react';
 import { GLTF } from 'three-stdlib';
 import { PointLight } from 'three';
 import { StateValue } from 'xstate';
-import { use3DModelLogic } from '../../../hooks/use3DModelLogic/use3DModelLogic';
+import { use3DModelLoader } from '../../../hooks/use3DModelLoader/use3DModelLoader';
 import { useControls } from 'leva';
 import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
@@ -82,7 +82,7 @@ export const Drone3DModel: FC<{
     state: StateValue;
     givenDependantGroupRef: React.MutableRefObject<THREE.Group>;
 }> = ({ state, givenDependantGroupRef }) => {
-    const { group, nodes, materials } = use3DModelLogic<GLTFResult>(
+    const { group, nodes, materials } = use3DModelLoader<GLTFResult>(
         state,
         false,
         path,
