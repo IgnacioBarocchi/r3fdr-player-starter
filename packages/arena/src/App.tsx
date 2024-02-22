@@ -2,14 +2,12 @@ import { Suspense, useContext, useEffect } from 'react';
 
 import AbilityBar from './components/UI/AbilityBar';
 import { AppContext } from './providers/GameSettingsProvider';
-import FullScreenVignette from './components/UI/Vignette/FullScreenVignette';
-import GraphicsModal from './components/UI/GraphicsModal';
 import { Leva } from 'leva';
 import Scenario from './components/Scenario';
 
 export default function App() {
     const {
-        state: { USE_FULL_SCREEN, GRAPHICS, DEBUG_APP },
+        state: { USE_FULL_SCREEN, DEBUG_APP },
     } = useContext(AppContext);
 
     useEffect(() => {
@@ -41,11 +39,6 @@ export default function App() {
     return (
         <>
             <Leva isRoot collapsed hidden={!DEBUG_APP} />
-            {/* <FullScreenVignette /> */}
-            {/* <div>
-                Graphics: {GRAPHICS} Controls: J | K | [Space] | 1 | 2 | 3
-            </div> */}
-            {/* <GraphicsModal /> */}
             <AbilityBar />
             <Suspense
                 fallback={

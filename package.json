@@ -1,7 +1,12 @@
 {
   "name": "my-monorepo",
   "private": true,
-  "workspaces": ["packages/*"],
-  "scripts": {
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {},
+  "dependencies": {
+    "@react-three/fiber": "^8.15.16",
+    "three": "^0.161.0"
   }
 }

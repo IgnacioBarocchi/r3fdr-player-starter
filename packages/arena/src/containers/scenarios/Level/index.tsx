@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 
-import { AppContext } from '../../../providers/GameSettingsProvider';
+import { AppContext } from '../../../providers/GameSettingsProvider.tsx';
 import { Dummyies } from './Dummies.tsx';
 import { Physics } from '@react-three/rapier';
-import Player2 from '../../../components/Entities/Robot/Player2.tsx';
+import Player from '../../../components/Entities/Robot/Player.tsx';
 import Terrain from './Terrain.tsx';
 import { Vector3 } from 'three';
-import { ZombieNPC } from '../../../components/Entities/Robot/ZombieNPC.tsx';
+import { Zombies } from './Zombies.tsx';
 import { useControls } from 'leva';
 
 const renderDummies = false;
@@ -17,7 +17,7 @@ const SpacialBase = () => {
     } = useContext(AppContext);
 
     const { mockOrbitControls } = useControls({ mockOrbitControls: false });
-    const [terrainIsLoading, setTerrainIsLoading] = useState(true);
+    const [terrainIsLoading, setTerrainIsLoading] = useState(DEBUG_APP);
 
     useEffect(() => {
         const timeout = setTimeout(() => {
@@ -27,6 +27,7 @@ const SpacialBase = () => {
             clearTimeout(timeout);
         };
     }, []);
+
     return (
         <Physics timeStep="vary" debug={true}>
             <Terrain
@@ -35,24 +36,13 @@ const SpacialBase = () => {
             />
             {!terrainIsLoading && (
                 <>
-                    <Player2
+                    <Player
                         useOrbitControls={
                             USE_ORBIT_CONTROLS && mockOrbitControls
                         }
                         teamName="Mutant"
                     />
-                    {/* <group position={[0, 0, 6]}>
-                        <ZombieNPC />
-                    </group>
-                    <group position={[0, 0, -6]}>
-                        <ZombieNPC />
-                    </group>
-                    <group position={[6, 0, 6]}>
-                        <ZombieNPC />
-                    </group> */}
-                    <group position={[-6, 0, -6]}>
-                        <ZombieNPC />
-                    </group>
+                    <Zombies />
                     {renderDummies && <Dummyies teamName="Zombie" />}
                 </>
             )}

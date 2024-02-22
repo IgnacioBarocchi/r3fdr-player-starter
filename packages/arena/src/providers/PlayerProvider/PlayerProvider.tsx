@@ -4,6 +4,7 @@
 
 import { EntityModel } from '../entities';
 import { ReactNode } from 'react';
+import { createActorContext } from '@xstate/react';
 import { createMachine } from 'xstate';
 import { getChampionMachine } from '../../constants/ChampionStateMachineObject';
 
@@ -144,7 +145,6 @@ import { getChampionMachine } from '../../constants/ChampionStateMachineObject';
 // });
 
 // console.log('machine', m);
-// export const Context = createActorContext(m);
 // // @ts-ignore
 
 // export const PlayerProvider = ({ children }: { children: ReactNode }) => {
@@ -156,19 +156,24 @@ import { getChampionMachine } from '../../constants/ChampionStateMachineObject';
 //         </Context.Provider>
 //     );
 // };
-export const PlayerProvider = ({ children }: { children: ReactNode }) => {
-    const obj = getChampionMachine({
+
+const machine = createMachine(
+    // @ts-ignore
+    getChampionMachine({
         id: 'Player',
         player: EntityModel.Mutant,
         isAnEnemy: false,
-    });
-    console.log('playerProvider', obj);
+    })
+);
 
+export const Context = createActorContext(machine);
+
+export const PlayerProvider = ({ children }: { children: ReactNode }) => {
     return (
-        <div
+        <Context.Provider
         // options={{ context: { value: ChampionMachineStateEvents.IDLE } }}
         >
             {children}
-        </div>
+        </Context.Provider>
     );
 };

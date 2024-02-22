@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Hitbox from '../../utility/Hitbox/Hitbox';
-import { Hitboxes } from '../../../lib/object3DHelper';
+import { Hitboxes } from '../lib/object3DHelper';
 // import { PlayerMachineStateValues } from "../../../hooks/usePlayerLogic/getPlayerMachine";
 import { PositionalAudio } from '@react-three/drei';
 import { StateValue } from 'xstate';

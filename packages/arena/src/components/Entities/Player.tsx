@@ -4,14 +4,14 @@ import {
     CylinderCollider as Sensor,
 } from '@react-three/rapier';
 
-import { EntityModel } from '../../../providers/entities';
+import { EntityModel } from '../../providers/entities';
 import { FC } from 'react';
-import { HitBox } from '../../utility/Hitbox/HitBox';
+import { HitBox } from '../utility/Hitbox/HitBox';
 import Mutant3DModel from './Mutant3DModel';
 import { StateValue } from 'xstate';
 import { Zombie3DModel } from './Zombie3DModel';
-import { usePlayerLogic } from '../../../hooks/usePlayerLogic/usePlayerLogic2';
-import { useRigidBodyColliderHandler } from '../../../hooks/useRigidBodyColliderHandler/useRigidBodyColliderHandler';
+import { usePlayerLogic } from '../../hooks/usePlayerLogic/usePlayerLogic2';
+import { useRigidBodyColliderHandler } from '../../hooks/useRigidBodyColliderHandler/useRigidBodyColliderHandler';
 
 const EntityComponent = {
     Mutant: ({ stateValue }: { stateValue: StateValue }) => (
@@ -24,7 +24,7 @@ const EntityComponent = {
     Drone: () => <></>,
 };
 
-const Player2: FC<{
+const Player: FC<{
     useOrbitControls: boolean;
     teamName: 'Zombie' | 'Mutant';
 }> = ({ useOrbitControls, teamName }) => {
@@ -63,4 +63,4 @@ const Player2: FC<{
     );
 };
 
-export default Player2;
+export default Player;

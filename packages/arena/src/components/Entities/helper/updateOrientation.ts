@@ -1,5 +1,5 @@
-import { Keys } from "../../../../lib/keysMap";
-import NORMALIZED_ANGLES from "../../../../lib/normalizedTurnAngles";
+import { Keys } from "../../../lib/keysMap";
+import NORMALIZED_ANGLES from "../../../lib/normalizedTurnAngles";
 import { SetStateAction } from "react";
 
 const { PI, atan2, sin, cos } = Math;

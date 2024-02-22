@@ -1,4 +1,4 @@
-import { Keys } from "../../../../lib/keysMap";
+import { Keys } from "../../../lib/keysMap";
 
 export default function getImpulse(
   linvelY: number,

@@ -1,0 +1,23 @@
+type FogProps = {
+    color?: ColorRepresentation;
+    near?: number;
+    far?: number;
+};
+
+function Fog(props: FogProps) {
+    const { color = 'white', near = 10, far = 80 } = props;
+    // @ts-ignore
+    const scene = useThree((state) => state.scene);
+    // @ts-ignore
+    useEffect(() => {
+        const col =
+            (color as Color) instanceof Color ? color : new Color(color);
+        scene.fog = new ThreeFog(col, near, far);
+
+        return () => {
+            scene.fog = null;
+        };
+    }, [scene, color, near, far]);
+
+    return null;
+}

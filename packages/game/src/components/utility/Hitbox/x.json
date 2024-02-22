@@ -1,0 +1,134 @@
+{
+  "status": "success",
+  "response": {
+    "uuid": "cbb4f6c1-cd60-4808-ada0-3bf1aa9358fa",
+    "username": "ignacio123",
+    "type": "imagine_3d_one",
+    "status": "completed",
+    "input": {
+      "text": "main character boxer robot with nuclear tank backpack with metal skull head",
+      "jobParams": { "seed": "648103003" },
+      "imageCaption": "main character boxer robot with nuclear tank backpack with metal skull head, 3d asset"
+    },
+    "output": [
+      {
+        "file_id": "bd7e478a773c",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/8caa7740-53f8-4612-803e-532ccd74f94e/bd7e478a773c_main_character_boxer_robot_w_0_glb_min.glb",
+        "metadata": {
+          "key": "model_draco_compressed_glb",
+          "type": "3d_model",
+          "file_size": "1.9 MB",
+          "uploaded_time": "2024-02-10T08:57:33.578334",
+          "file_extension": ".glb",
+          "original_file_name": "main_character_boxer_robot_w_0_glb_min.glb"
+        }
+      },
+      {
+        "file_id": "117a8b0b8cce",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/8caa7740-53f8-4612-803e-532ccd74f94e/117a8b0b8cce_main_character_boxer_robot_w_0_glb.glb",
+        "metadata": {
+          "key": "model_glb",
+          "type": "3d_model",
+          "file_size": "3.8 MB",
+          "uploaded_time": "2024-02-10T08:57:33.577128",
+          "file_extension": ".glb",
+          "original_file_name": "main_character_boxer_robot_w_0_glb.glb"
+        }
+      },
+      {
+        "file_id": "36f66bad5b13",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/8caa7740-53f8-4612-803e-532ccd74f94e/36f66bad5b13_main_character_boxer_robot_w_0_usdz.usdz",
+        "metadata": {
+          "key": "model_usdz",
+          "type": "3d_model",
+          "file_size": "5.0 MB",
+          "uploaded_time": "2024-02-10T08:57:33.576100",
+          "file_extension": ".usdz",
+          "original_file_name": "main_character_boxer_robot_w_0_usdz.usdz"
+        }
+      },
+      {
+        "file_id": "f8c160ea626b",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/8caa7740-53f8-4612-803e-532ccd74f94e/f8c160ea626b_video_360_rgb_whitebg.mp4",
+        "metadata": {
+          "key": "video_360_rgb_whitebg",
+          "type": "video",
+          "file_size": "100.0 kB",
+          "uploaded_time": "2024-02-10T08:57:19.008853",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb_whitebg.mp4"
+        }
+      },
+      {
+        "file_id": "84c1b7cf2df2",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/8caa7740-53f8-4612-803e-532ccd74f94e/84c1b7cf2df2_video_360_alpha.mp4",
+        "metadata": {
+          "key": "video_360_alpha_mp4",
+          "type": "video",
+          "file_size": "66.7 kB",
+          "uploaded_time": "2024-02-10T08:57:19.007773",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_alpha.mp4"
+        }
+      },
+      {
+        "file_id": "6c066955c7fb",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/8caa7740-53f8-4612-803e-532ccd74f94e/6c066955c7fb_video_360_rgb.mp4",
+        "metadata": {
+          "key": "video_360_rgb_mp4",
+          "type": "video",
+          "file_size": "95.0 kB",
+          "uploaded_time": "2024-02-10T08:57:19.006658",
+          "file_extension": ".mp4",
+          "original_file_name": "video_360_rgb.mp4"
+        }
+      },
+      {
+        "file_id": "0b94cdd44a47",
+        "file_url": "https://cdn-luma.com/imagine_3d_one/8caa7740-53f8-4612-803e-532ccd74f94e/0b94cdd44a47_thumbnail.png",
+        "metadata": {
+          "key": "thumbnail",
+          "type": "image",
+          "file_size": "46.2 kB",
+          "uploaded_time": "2024-02-10T08:57:17.490218",
+          "file_extension": ".png",
+          "original_file_name": "thumbnail.png"
+        }
+      }
+    ],
+    "createdAt": "2024-02-10T08:57:14.000Z",
+    "metadata": {
+      "progress": {},
+      "interactionUuid": "7055c274-67dd-47f1-87f1-9ee61c3888cb",
+      "convertResults": [
+        {
+          "config": {
+            "decimate": true,
+            "export_obj": true,
+            "cage_extrusion": 0.1,
+            "target_num_faces": 5000
+          },
+          "jobUuid": "fd5fcccd-67a6-4953-bde3-3ae2d3b4b02e",
+          "results": [
+            {
+              "file_id": "a07bb15af743",
+              "file_url": "https://cdn-luma.com/blender_convert/fd5fcccd-67a6-4953-bde3-3ae2d3b4b02e/a07bb15af743_bd7e478a773c_main_character_boxe_obj.zip",
+              "metadata": {
+                "file_size": "2.0 MB",
+                "uploaded_time": "2024-02-10T08:59:02.393696",
+                "file_extension": ".zip",
+                "original_file_name": "bd7e478a773c_main_character_boxe_obj.zip"
+              }
+            }
+          ]
+        }
+      ],
+      "linkedCreations": [
+        "cbb4f6c1-cd60-4808-ada0-3bf1aa9358fa",
+        "929198b1-83c4-476f-a50b-c069600a588a",
+        "bc9ce231-326a-4e60-97e9-1edbadadfad9",
+        "499b8029-6830-46b6-a7e0-fc8103cfc8c3"
+      ]
+    }
+  }
+}

@@ -10,8 +10,8 @@ import { EntityModel } from '../../providers/entities';
 import { Keys } from '../../lib/keysMap';
 import { RapierRigidBody } from '@react-three/rapier';
 import { createMachine } from 'xstate';
-import getImpulse from '../../components/Entities/Robot/helper/getImpulse';
-import updateOrientation from '../../components/Entities/Robot/helper/updateOrientation';
+import getImpulse from '../../components/Entities/helper/getImpulse';
+import updateOrientation from '../../components/Entities/helper/updateOrientation';
 import { useKeyboardControls } from '@react-three/drei';
 import { useMachine } from '@xstate/react';
 

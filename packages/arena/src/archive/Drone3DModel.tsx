@@ -1,11 +1,11 @@
 import * as THREE from 'three';
 
-import { EntityModel } from '../../../providers/entities';
+import { EntityModel } from '../providers/entities';
 import { FC } from 'react';
 import { GLTF } from 'three-stdlib';
 import { PointLight } from 'three';
 import { StateValue } from 'xstate';
-import { use3DModelLoader } from '../../../hooks/use3DModelLoader/use3DModelLoader';
+import { use3DModelLoader } from '../hooks/use3DModelLoader/use3DModelLoader';
 import { useControls } from 'leva';
 import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';

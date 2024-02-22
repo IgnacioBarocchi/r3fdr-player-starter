@@ -2,11 +2,11 @@ import * as THREE from 'three';
 
 import { FC, useEffect } from 'react';
 
-import { EntityModel } from '../../../providers/entities';
+import { EntityModel } from '../../providers/entities';
 import { GLTF } from 'three-stdlib';
 import { StateValue } from 'xstate';
-import { use3DModelAnimationsHandler } from '../../../hooks/useGameStore/use3DModelAnimationsHandler';
-import { use3DModelLoader } from '../../../hooks/use3DModelLoader/use3DModelLoader';
+import { use3DModelAnimationsHandler } from '../../hooks/useGameStore/use3DModelAnimationsHandler';
+import { use3DModelLoader } from '../../hooks/use3DModelLoader/use3DModelLoader';
 import { useGLTF } from '@react-three/drei';
 
 type GLTFResult = GLTF & {
