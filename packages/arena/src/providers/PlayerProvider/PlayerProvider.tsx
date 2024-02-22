@@ -1,3 +1,5 @@
+// it works nut i cant use it ouside canvas. champion machine should have no r3f hooks
+// @ts-ignore
 import { EntityModel } from '../entities';
 import { ReactNode } from 'react';
 import { createActorContext } from '@xstate/react';
