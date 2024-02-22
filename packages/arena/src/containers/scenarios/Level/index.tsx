@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../../providers/GameSettingsProvider.tsx';
 import { Dummyies } from './Dummies.tsx';
 import { Physics } from '@react-three/rapier';
-import Player from '../../../components/Entities/Robot/Player.tsx';
+import Player from '../../../components/Entities/Player.tsx';
 import Terrain from './Terrain.tsx';
 import { Vector3 } from 'three';
 import { Zombies } from './Zombies.tsx';

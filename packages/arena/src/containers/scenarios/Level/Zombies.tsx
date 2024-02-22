@@ -1,4 +1,4 @@
-import { ZombieNPC } from '../../../components/Entities/Robot/ZombieNPC';
+import { ZombieNPC } from '../../../components/Entities/ZombieNPC';
 
 export const Zombies = () => {
     return (

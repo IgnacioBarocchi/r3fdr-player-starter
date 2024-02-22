@@ -5,14 +5,12 @@ import {
 } from '@react-three/rapier';
 import { useEffect, useState } from 'react';
 
-import { EntityModel } from '../../../providers/entities';
-import { HitBox } from '../../utility/Hitbox/HitBox';
-// import { Skeleton23DModel } from './Skeleton23DModel';
+import { EntityModel } from '../../providers/entities';
+import { HitBox } from '../utility/Hitbox/HitBox';
 import { Zombie3DModel } from './Zombie3DModel';
-import getAnimationClipMilliseconds from '../../../lib/getAnimationClipDuration';
-import { useEnemyNPCLogic } from '../../../hooks/useEnemyNPCLogic/useEnemyNPCLogic';
-import { useRigidBodyColliderHandler } from '../../../hooks/useRigidBodyColliderHandler/useRigidBodyColliderHandler';
-import { useRigidBodySensorHandler } from '../../../hooks/useRigidBodySensorHandler/useRigidBodySensorHandler';
+import { useEnemyNPCLogic } from '../../hooks/useEnemyNPCLogic/useEnemyNPCLogic';
+import { useRigidBodyColliderHandler } from '../../hooks/useRigidBodyColliderHandler/useRigidBodyColliderHandler';
+import { useRigidBodySensorHandler } from '../../hooks/useRigidBodySensorHandler/useRigidBodySensorHandler';
 
 const teamName = 'Zombie';
 export const ZombieNPC = () => {
