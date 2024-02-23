@@ -95,10 +95,10 @@ export const usePlayerLogic = (
             : getMachineStateFromInputtedKeys(keys);
 
         send(action);
-        const linearVelocityYaxis: number | undefined =
+        const linearVelocityYAxis: number | undefined =
             robotBody.current?.linvel().y;
         const impulse = getImpulse(
-            linearVelocityYaxis,
+            linearVelocityYAxis,
             keys,
             numberOfKeysPressed,
             delta

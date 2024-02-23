@@ -2,7 +2,7 @@ import { EntityModel } from '../../../providers/entities';
 import { HitBox } from '../../../components/utility/Hitbox/HitBox';
 import { useMemo } from 'react';
 
-export const Dummyies = ({ teamName }: { teamName: 'Zombie' | 'Mutant' }) => {
+export const Dummies = ({ teamName }: { teamName: 'Zombie' | 'Mutant' }) => {
     const abilities = useMemo(() => {
         return {
             Zombie: ['Attacking1', 'Attacking2', 'Attacking3'],

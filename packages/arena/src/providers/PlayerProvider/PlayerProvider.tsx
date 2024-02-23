@@ -3,25 +3,13 @@
 import { EntityModel } from '../entities';
 import { ReactNode } from 'react';
 import { createActorContext } from '@xstate/react';
-import { createMachine } from 'xstate';
-import { getChampionMachine } from '../../constants/ChampionStateMachineObject';
+import { MutantMachine } from '../../Machines/MutantMachine';
 
-const machine = createMachine(
-    // @ts-ignore
-    getChampionMachine({
-        id: 'Player',
-        player: EntityModel.Mutant,
-        isAnEnemy: false,
-    })
-);
-
-export const Context = createActorContext(machine);
+export const Context = createActorContext(MutantMachine);
 
 export const PlayerProvider = ({ children }: { children: ReactNode }) => {
     return (
-        <Context.Provider
-        // options={{ context: { value: ChampionMachineStateEvents.IDLE } }}
-        >
+        <Context.Provider>
             {children}
         </Context.Provider>
     );

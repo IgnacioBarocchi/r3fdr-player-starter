@@ -236,6 +236,6 @@ export const getChampionMachine = (params: {
         },
         ...(params.isAnEnemy ? enemyFeatures : playerFeatures),
     };
-
+    console.log(championState);
     return championState;
 };
