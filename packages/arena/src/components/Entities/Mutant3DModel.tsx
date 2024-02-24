@@ -6,23 +6,26 @@ import { StateValue } from 'xstate';
 import { use3DModelAnimationsHandler } from '../../hooks/useGameStore/use3DModelAnimationsHandler';
 import { use3DModelLoader } from '../../hooks/use3DModelLoader/use3DModelLoader';
 import { useGLTF } from '@react-three/drei';
+import { states } from '../../Machines/MutantMachine';
+import { Context } from '../../providers/PlayerProvider/PlayerProvider';
 
 const path = EntityModel.Mutant.path;
-const Mutant3DModel: FC<{ stateValue: StateValue }> = ({ stateValue }) => {
+const Mutant3DModel = () => {
+    const [state] = Context.useActor();
     // @ts-ignore
     const { group, nodes, scene, materials, actions } =
         use3DModelLoader<GLTFResult>(true, path);
 
     const { animationEffect } = use3DModelAnimationsHandler({
-        entity: EntityModel.Mutant,
-        stateValue,
+        states,
+        stateValue: state.value,
         actions,
     });
 
-    useEffect(animationEffect, [stateValue, actions]);
+    useEffect(animationEffect, [state.value, actions]);
 
     return (
-        <group ref={group} dispose={null}>
+        <group ref={group} dispose={null} >
             <group name="Scene">
                 <group
                     name="Armature"
@@ -39,6 +42,7 @@ const Mutant3DModel: FC<{ stateValue: StateValue }> = ({ stateValue }) => {
                         material={materials['Main material']}
                         // @ts-ignore
                         skeleton={nodes.meshmesh008.skeleton}
+                        castShadow
                     />
 
                     <skinnedMesh

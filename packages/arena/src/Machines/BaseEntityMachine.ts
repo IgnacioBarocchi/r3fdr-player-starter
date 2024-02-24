@@ -1,5 +1,17 @@
 import { createMachine } from "xstate"
 
+export const getHPValidator = (checkHPDelay = 200) => (context: { currentHP: number }) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (context.currentHP) {
+                resolve(true);
+            } else {
+                reject(`Error entity is dead ${context.currentHP} `);
+            }
+        }, checkHPDelay);
+    });
+};
+
 export const BaseMachineInput = {
     "predictableActionArguments": true,
     "id": "Player",
@@ -20,22 +32,22 @@ export const BaseMachineInput = {
         },
         "Using1stAbility": {
             "after": {
-                "1000": "Idle"
+                1000: "Idle"
             }
         },
         "Using2ndAbility": {
             "after": {
-                "1000": "Idle"
+                1000: "Idle"
             }
         },
         "Using3rdAbility": {
             "after": {
-                "1000": "Idle"
+                1000: "Idle"
             }
         },
         "Using4thAbility": {
             "after": {
-                "1000": "Idle"
+                1000: "Idle"
             }
         },
         "Running": {
@@ -57,7 +69,7 @@ export const BaseMachineInput = {
                 "assignment": {}
             },
             "after": {
-                "1000": "validating"
+                1000: "validating"
             }
         },
         "validating": {
@@ -73,7 +85,7 @@ export const BaseMachineInput = {
         },
         "Stunned": {
             "after": {
-                "1000": "Idle"
+                1000: "Idle"
             }
         },
         "Dying": {
@@ -88,6 +100,7 @@ export const BaseMachineInput = {
 
 export const baseOneShotActions = ['Using1stAbility', 'Using2ndAbility', 'Using3rdAbility', 'Using4thAbility', "TakingDamage", "Stunned", "Dying"];
 export const baseLoopableActions = ['Idle', 'Running'];
+export const baseSkills = baseOneShotActions    .filter(skill => skill.startsWith("Using"));
 
 // @ts-ignore
 export const BaseEntityMachine = createMachine(BaseMachineInput);

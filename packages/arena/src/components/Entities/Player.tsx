@@ -4,47 +4,33 @@ import {
     CylinderCollider as Sensor,
 } from '@react-three/rapier';
 
-import { EntityModel } from '../../providers/entities';
-import { FC } from 'react';
-import { HitBox } from '../utility/Hitbox/HitBox';
 import Mutant3DModel from './Mutant3DModel';
-import { StateValue } from 'xstate';
-import { Zombie3DModel } from './Zombie3DModel';
-import { usePlayerLogic } from '../../hooks/usePlayerLogic/usePlayerLogic2';
+import { usePlayerLogic } from '../../hooks/usePlayerLogic/usePlayerLogic';
 import { useRigidBodyColliderHandler } from '../../hooks/useRigidBodyColliderHandler/useRigidBodyColliderHandler';
+import { Context } from '../../providers/PlayerProvider/PlayerProvider';
+import { FC } from 'react';
+import { HitBox } from '../utility/HitBox/HitBox';
+import { MutantHitBoxes } from '../utility/HitBox/hitBoxes';
 
-const EntityComponent = {
-    Mutant: ({ stateValue }: { stateValue: StateValue }) => (
-        <Mutant3DModel stateValue={stateValue} />
-    ),
-    Zombie: ({ stateValue }: { stateValue: StateValue }) => (
-        // @ts-ignore
-        <Zombie3DModel stateValue={stateValue} givenDependantGroupRef={null} />
-    ),
-    Drone: () => <></>,
-};
 
 const Player: FC<{
     useOrbitControls: boolean;
     teamName: 'Zombie' | 'Mutant';
 }> = ({ useOrbitControls, teamName }) => {
-    // @ts-ignore
-    const { robotBody, orientation, machineState, send } = usePlayerLogic(
-        useOrbitControls,
-        EntityModel[teamName]
-    );
+    const [state, send] = Context.useActor();
+
+    const { playerBody } = usePlayerLogic(useOrbitControls);
+
     const { onCollisionEnter } = useRigidBodyColliderHandler({
         send,
         teamName,
     });
 
-    const Model = EntityComponent[teamName];
-
     return (
         <RigidBody
             lockRotations={true}
             colliders={false}
-            ref={robotBody}
+            ref={playerBody}
             name="Player"
         >
             <Bounding
@@ -53,10 +39,10 @@ const Player: FC<{
                 onCollisionEnter={onCollisionEnter}
             />
             <Sensor args={[0.2, 2]} position={[0, 0.5, 0]} sensor />
-            <Model stateValue={machineState.value} />
+            <Mutant3DModel />
             <HitBox
-                stateValue={machineState.value}
-                entity={EntityModel[teamName]}
+                stateValue={state.value}
+                hitBoxesRecords={MutantHitBoxes}
                 teamName={teamName}
             />
         </RigidBody>

@@ -41,9 +41,12 @@ export default function Terrain({ position, scale, rotation }: WallProps) {
                         map={colorMap}
                         metalnessMap={metalMap}
                         displacementMap={displacementMap}
-                        normalMap={normalMap}
+                        bumpMap={normalMap}
+                        bumpScale={0.02}
                         aoMap={aoMap4}
                         roughnessMap={roughnessMap}
+                        roughness={100}
+
                     />
                 </mesh>
             </RigidBody>

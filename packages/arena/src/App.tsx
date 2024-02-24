@@ -1,6 +1,5 @@
 import { Suspense, useContext, useEffect } from 'react';
 
-import AbilityBar from './components/UI/AbilityBar';
 import { AppContext } from './providers/GameSettingsProvider';
 import { Leva } from 'leva';
 import Scenario from './components/Scenario';
@@ -39,7 +38,6 @@ export default function App() {
     return (
         <>
             <Leva isRoot collapsed hidden={!DEBUG_APP} />
-            <AbilityBar />
             <Suspense
                 fallback={
                     <div>

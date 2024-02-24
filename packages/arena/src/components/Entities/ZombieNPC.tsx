@@ -6,7 +6,7 @@ import {
 import { useEffect, useState } from 'react';
 
 import { EntityModel } from '../../providers/entities';
-import { HitBox } from '../utility/Hitbox/HitBox';
+import { HitBox } from '../utility/HitBox/HitBox';
 import { Zombie3DModel } from './Zombie3DModel';
 import { useEnemyNPCLogic } from '../../hooks/useEnemyNPCLogic/useEnemyNPCLogic';
 import { useRigidBodyColliderHandler } from '../../hooks/useRigidBodyColliderHandler/useRigidBodyColliderHandler';

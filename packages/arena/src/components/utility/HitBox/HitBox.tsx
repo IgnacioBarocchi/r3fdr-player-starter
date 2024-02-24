@@ -1,32 +1,28 @@
 import { BallCollider, RigidBody } from '@react-three/rapier';
 
-import { EntityModel } from '../../../providers/entities';
 import { PositionalAudio } from '@react-three/drei';
 import { StateValue } from 'xstate';
-import { useMemo } from 'react';
+import { HitBoxesRecords,  } from './hitBoxes';
 
 export const HitBox = ({
     stateValue,
-    entity,
+    hitBoxesRecords,
     teamName,
 }: {
     stateValue: StateValue;
-    entity: (typeof EntityModel)[keyof typeof EntityModel];
+    hitBoxesRecords: HitBoxesRecords;
     teamName: 'Zombie' | 'Mutant';
 }) => {
-    const action = useMemo(
-        () =>
-            // @ts-ignore
-            entity.actionRecords.find(
-                // @ts-ignore
-                ({ animationName, hitBox }) =>
-                    animationName === stateValue && hitBox
-            ),
-        [stateValue, entity]
-    );
+    const record = hitBoxesRecords[stateValue as string];
+    
+    if (!record) {
+        return null;
+    }
 
-    if (!action) return null;
-    const { rigidBody: rigidBodyProps, size } = action.hitBox;
+    const { rigidBody: rigidBodyProps, size } =
+        hitBoxesRecords[stateValue as string];
+
+
     return (
         <group>
             <RigidBody

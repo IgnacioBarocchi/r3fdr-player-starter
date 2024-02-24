@@ -42,14 +42,14 @@ export const use3DModelLoader = <T,>(
     }));
 
     useMemo(() => {
-        if (GRAPHICS === 'LOW') return;
+        // if (GRAPHICS === 'LOW') return;
 
         scene.traverse((obj) => {
             obj.castShadow = true;
 
-            if (GRAPHICS === 'HIGH') {
-                obj.receiveShadow = true;
-            }
+            // if (GRAPHICS === 'HIGH') {
+            //     obj.receiveShadow = true;
+            // }
         });
     }, [scene, GRAPHICS]);
 

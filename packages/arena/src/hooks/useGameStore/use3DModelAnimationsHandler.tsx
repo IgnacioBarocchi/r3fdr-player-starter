@@ -1,19 +1,16 @@
 import { AnimationAction, LoopOnce } from 'three';
-
-import { ChampionMachineStateEvents } from '../../constants/ChampionStateMachineObject';
-import { EntityModel } from '../../providers/entities';
 import { StateValue } from 'xstate';
+import { MachineStates } from '../../Machines/MutantMachine';
+import { baseLoopableActions, baseOneShotActions } from '../../Machines/BaseEntityMachine';
 import getAnimationClipMilliseconds from '../../lib/getAnimationClipDuration';
 
 export type AnimationsHandlerParams = {
-    entity: (typeof EntityModel)[keyof typeof EntityModel];
+    states: MachineStates;
     stateValue: StateValue;
     actions: {
         [x: string]: AnimationAction | null;
     };
 };
-
-const { IDLE, MOVE, DEATH } = ChampionMachineStateEvents;
 
 const blendAnimationTransition = (action: AnimationAction | null) => {
     if (!action) return;
@@ -44,36 +41,33 @@ const playFinalAnimation = (action: AnimationAction | null) => {
 };
 
 export const use3DModelAnimationsHandler = ({
-    entity,
+    states,
     stateValue,
     actions,
 }: AnimationsHandlerParams) => {
-    const loopableAbilities = [IDLE, MOVE];
     /**
      * @depends on [stateValue] and [actions]
      */
     const animationEffect = () => {
+
+        // ["CrossPunching","Kicking", "SidePunching", "Slamming"].forEach(o => {
+        //     console.log(o, getAnimationClipMilliseconds(actions, o))
+        // })
+        
         let timeoutId = 0;
-        const currentAnimation = String(stateValue);
-        const currentAction = actions[currentAnimation];
-        const currentAbility = entity.eventMap[currentAnimation];
-        if (!currentAnimation || !currentAction || !currentAbility) return;
+        const { animation } = states[String(stateValue)];
+        const currentAction = actions[animation.name];
 
         const handleCleanup = () => {
             easeOutAnimation(currentAction);
             clearTimeout(timeoutId);
         };
 
-        if (currentAbility === DEATH) {
-            const deathAnimation =
-                entity.actionRecords.find(
-                    ({ eventName }) => eventName === DEATH
-                )?.animationName || '';
-
-            playFinalAnimation(actions[deathAnimation]);
+        if (stateValue === "Dying") {
+            playFinalAnimation(actions[states.Dying.animation.name]);
         }
 
-        if (loopableAbilities.includes(currentAbility)) {
+        if (baseLoopableActions.includes(animation.name)) {
             blendAnimationTransition(currentAction);
             return handleCleanup;
         } else {
@@ -82,7 +76,7 @@ export const use3DModelAnimationsHandler = ({
             timeoutId = setTimeout(() => {
                 stopAnimation(currentAction);
                 handleCleanup();
-            }, getAnimationClipMilliseconds(actions, currentAnimation));
+            }, animation.duration);
         }
         return handleCleanup;
     };

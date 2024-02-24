@@ -1,23 +1,16 @@
 import { useContext, useEffect, useState } from 'react';
 
 import { AppContext } from '../../../providers/GameSettingsProvider.tsx';
-import { Dummies } from './Dummies.tsx';
 import { Physics } from '@react-three/rapier';
 import Player from '../../../components/Entities/Player.tsx';
 import Terrain from './Terrain.tsx';
 import { Vector3 } from 'three';
-import { Zombies } from './Zombies.tsx';
 import { useControls } from 'leva';
-import {
-    Context,
-    PlayerProvider,
-} from '../../../providers/PlayerProvider/PlayerProvider.tsx';
-
+import { Dummies } from './Dummies.tsx';
 const renderDummies = false;
 
 const LVL1 = () => {
-    const [state, send] = Context.useActor();
-    console.log(state.value)
+
     const {
         state: { USE_ORBIT_CONTROLS, DEBUG_APP },
     } = useContext(AppContext);
@@ -43,12 +36,12 @@ const LVL1 = () => {
             {!terrainIsLoading && (
                 <>
                     <Player
+                        teamName="Mutant"
                         useOrbitControls={
                             USE_ORBIT_CONTROLS && mockOrbitControls
                         }
-                        teamName="Mutant"
                     />
-                    {/* {renderDummies && <Dummies teamName="Zombie" />} */}
+                    {renderDummies && <Dummies teamName="Zombie" />}
                 </>
             )}
         </Physics>

@@ -1,23 +1,15 @@
-import { EntityModel } from '../../../providers/entities';
-import { HitBox } from '../../../components/utility/Hitbox/HitBox';
-import { useMemo } from 'react';
+import { HitBox } from "../../../components/utility/HitBox/HitBox";
+import { MutantHitBoxes } from "../../../components/utility/HitBox/hitBoxes";
 
 export const Dummies = ({ teamName }: { teamName: 'Zombie' | 'Mutant' }) => {
-    const abilities = useMemo(() => {
-        return {
-            Zombie: ['Attacking1', 'Attacking2', 'Attacking3'],
-            Mutant: ['CrossPunching', 'Kicking', 'SidePunching', 'Slamming'],
-        }[teamName];
-    }, [teamName]);
-
     return (
         <>
-            {abilities.map((ability, i) => {
+            {Object.entries(MutantHitBoxes).map(([ability, value], i) => {
                 return (
                     <group position={[1, 0.05, i * 2]} key={ability + i}>
                         <HitBox
                             stateValue={ability}
-                            entity={EntityModel[teamName]}
+                            hitBoxesRecords={MutantHitBoxes}
                             teamName={teamName}
                         />
                     </group>
