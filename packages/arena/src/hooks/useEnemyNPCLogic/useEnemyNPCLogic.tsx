@@ -1,24 +1,20 @@
 import {
     ChampionMachineStateEvents,
-    getChampionMachine,
 } from '../../constants/ChampionStateMachineObject';
 import { GameState, useGameStore } from '../useGameStore/useGameStore';
 import { MutableRefObject, useEffect, useRef } from 'react';
 
-import { EntityModel } from '../../providers/entities';
 import { Group } from 'three';
 import { RapierRigidBody } from '@react-three/rapier';
-import { createMachine } from 'xstate';
 import { goToTarget } from './goToTarget';
 import { useFrame } from '@react-three/fiber';
 import { useMachine } from '@xstate/react';
+import { ZombieMachine } from '../../Machines/ZombieMachine';
 
-const { ABILITY_1, ABILITY_2, ABILITY_3 } = ChampionMachineStateEvents;
-const attacks = [ABILITY_1, ABILITY_2, ABILITY_3];
+const attacks = ["ABILITY_1", "ABILITY_2", "ABILITY_3"];
 const speed = 1.2;
 
 export const useEnemyNPCLogic = (
-    npc: (typeof EntityModel)[keyof typeof EntityModel],
     shouldFollow?: boolean
 ) => {
     const { characterState } = useGameStore((state: GameState) => ({
@@ -29,14 +25,9 @@ export const useEnemyNPCLogic = (
     const enemyBody =
         useRef<RapierRigidBody>() as MutableRefObject<RapierRigidBody>;
     const enemy3DModel = useRef<Group>(null) as MutableRefObject<Group>;
-    const machine = getChampionMachine({
-        id: 'Zombie',
-        player: npc,
-        isAnEnemy: true,
-    });
 
     // @ts-ignore
-    const [state, send] = useMachine(createMachine(machine), {
+    const [state, send] = useMachine(ZombieMachine, {
         actions: {
             reduceHP: (context) => {
                 context.currentHP -= 10;

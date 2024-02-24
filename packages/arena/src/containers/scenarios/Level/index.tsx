@@ -7,10 +7,11 @@ import Terrain from './Terrain.tsx';
 import { Vector3 } from 'three';
 import { useControls } from 'leva';
 import { Dummies } from './Dummies.tsx';
+import { Zombies } from './Zombies.tsx';
 const renderDummies = false;
+const renderZombies = true;
 
 const LVL1 = () => {
-
     const {
         state: { USE_ORBIT_CONTROLS, DEBUG_APP },
     } = useContext(AppContext);
@@ -28,7 +29,7 @@ const LVL1 = () => {
     }, []);
 
     return (
-        <Physics timeStep="vary" debug={true}>
+        <Physics timeStep="vary" debug={false}>
             <Terrain
                 position={new Vector3(0, 0.2, 0)}
                 scale={new Vector3(50, 0.2, 50)}
@@ -42,6 +43,7 @@ const LVL1 = () => {
                         }
                     />
                     {renderDummies && <Dummies teamName="Zombie" />}
+                    {renderZombies && <Zombies/>}
                 </>
             )}
         </Physics>

@@ -1,5 +1,12 @@
 import { createMachine } from "xstate"
 
+export type MachineStates = {
+    [state: string]: {
+        animation: { name: string; duration: number };
+        effect?: 'STUN' | 'AOE';
+    };
+};
+
 export const getHPValidator = (checkHPDelay = 200) => (context: { currentHP: number }) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {

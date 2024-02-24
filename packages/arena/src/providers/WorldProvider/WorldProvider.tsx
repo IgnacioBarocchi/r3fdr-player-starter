@@ -31,7 +31,7 @@ const camera: CameraOptions = {
     position: [-2, 10, -10],
 };
 
-const World = ({ children }: { children: ReactNode }) => {
+const WithWorld = ({ children }: { children: ReactNode }) => {
     return (
         <Canvas shadows camera={camera}>
             <Perf position="bottom-left" />
@@ -40,4 +40,4 @@ const World = ({ children }: { children: ReactNode }) => {
         </Canvas>
     );
 };
-export default World;
+export default WithWorld;

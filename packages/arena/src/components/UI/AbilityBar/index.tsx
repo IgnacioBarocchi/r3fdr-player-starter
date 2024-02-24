@@ -3,16 +3,23 @@ import { Context } from '../../../providers/PlayerProvider/PlayerProvider';
 import { states } from '../../../Machines/MutantMachine';
 import { baseSkills } from '../../../Machines/BaseEntityMachine';
 
-const ProgressBarContainer = styled.div`
+const HPBarContainer = styled.div`
     width: 280px;
     height: 20px;
-    background-color: #ddd;
+    background: linear-gradient(
+        0deg,
+        rgba(60, 60, 60, 1) 0%,
+        rgba(105, 105, 105, 1) 25%,
+        rgba(121, 121, 121, 1) 50%,
+        rgba(105, 105, 105, 1) 75%,
+        rgba(60, 60, 60, 1) 100%
+    );
     border-radius: 10px;
     overflow: hidden;
     border: 3px ridge #838383;
 `;
 
-const ProgressBarFill = styled.div<{ percentage: number }>`
+const HPBarFill = styled.div<{ percentage: number }>`
     height: 100%;
     width: ${({ percentage }) => `${percentage}%`};
     background-color: #4caf50;
@@ -95,14 +102,14 @@ const AbilityBar = () => {
                     );
                 })}
             </Abilities>
-            <ProgressBarContainer>
-                <ProgressBarFill
+            <HPBarContainer>
+                <HPBarFill
                     percentage={
                         (state.context.currentHP * 100) /
                         state.context.initialHP
                     }
                 />
-            </ProgressBarContainer>
+            </HPBarContainer>
         </Container>
     );
 };

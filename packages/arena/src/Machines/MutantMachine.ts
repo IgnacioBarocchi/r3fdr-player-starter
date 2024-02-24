@@ -1,16 +1,12 @@
 import { assign, createMachine } from 'xstate';
 import {
     BaseMachineInput,
+    MachineStates,
     baseOneShotActions,
     getHPValidator,
 } from './BaseEntityMachine';
 
-export type MachineStates = {
-    [state: string]: {
-        animation: { name: string; duration: number };
-        effect?: 'STUN' | 'AOE';
-    };
-};
+
 
 export const states: MachineStates = {
     Idle: {
@@ -108,7 +104,6 @@ MutantMachineInput.states.TakingDamage = {
         },
     }),
 };
-console.log(MutantMachineInput);
 
 // @ts-ignore
 export const MutantMachine = createMachine(MutantMachineInput);

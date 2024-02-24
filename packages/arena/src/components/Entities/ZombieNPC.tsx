@@ -11,6 +11,7 @@ import { Zombie3DModel } from './Zombie3DModel';
 import { useEnemyNPCLogic } from '../../hooks/useEnemyNPCLogic/useEnemyNPCLogic';
 import { useRigidBodyColliderHandler } from '../../hooks/useRigidBodyColliderHandler/useRigidBodyColliderHandler';
 import { useRigidBodySensorHandler } from '../../hooks/useRigidBodySensorHandler/useRigidBodySensorHandler';
+import { ZombieHitBoxes } from '../utility/HitBox/hitBoxes';
 
 const teamName = 'Zombie';
 export const ZombieNPC = () => {
@@ -78,7 +79,7 @@ export const ZombieNPC = () => {
             />
             <HitBox
                 stateValue={state.value}
-                entity={EntityModel[teamName]}
+                hitBoxesRecords={ZombieHitBoxes}
                 teamName={teamName}
             />
         </RigidBody>

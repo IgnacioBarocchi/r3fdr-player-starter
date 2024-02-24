@@ -8,6 +8,7 @@ import { StateValue } from 'xstate';
 import { use3DModelAnimationsHandler } from '../../hooks/useGameStore/use3DModelAnimationsHandler';
 import { use3DModelLoader } from '../../hooks/use3DModelLoader/use3DModelLoader';
 import { useGLTF } from '@react-three/drei';
+import { states } from '../../Machines/ZombieMachine';
 
 type GLTFResult = GLTF & {
     nodes: {
@@ -32,7 +33,7 @@ export const Zombie3DModel: FC<{
     );
 
     const { animationEffect } = use3DModelAnimationsHandler({
-        entity: EntityModel.Zombie,
+        states,
         stateValue,
         actions,
     });
@@ -64,9 +65,9 @@ export const Zombie3DModel: FC<{
 useGLTF.preload(path);
 
 // type ActionName =
-//     | 'Attacking1'
-//     | 'Attacking2'
-//     | 'Attacking3'
+//     | ''
+//     | ''
+//     | ''
 //     | 'Dying'
 //     | 'Idle'
 //     | 'Running'
