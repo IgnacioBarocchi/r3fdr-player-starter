@@ -5,7 +5,6 @@ import {
 } from '@react-three/rapier';
 import { useEffect, useState } from 'react';
 
-import { EntityModel } from '../../providers/entities';
 import { HitBox } from '../utility/HitBox/HitBox';
 import { Zombie3DModel } from './Zombie3DModel';
 import { useEnemyNPCLogic } from '../../hooks/useEnemyNPCLogic/useEnemyNPCLogic';
@@ -15,10 +14,7 @@ import { ZombieHitBoxes } from '../utility/HitBox/hitBoxes';
 
 const teamName = 'Zombie';
 export const ZombieNPC = () => {
-    const { state, send, enemyBody, enemy3DModel } = useEnemyNPCLogic(
-        EntityModel.Zombie,
-        true
-    );
+    const { state, send, enemyBody, enemy3DModel } = useEnemyNPCLogic();
 
     const { onCollisionEnter } = useRigidBodyColliderHandler({
         send,
@@ -35,17 +31,11 @@ export const ZombieNPC = () => {
 
     useEffect(() => {
         let timeoutId = 0;
-
+        console.log(state.context.currentHP)
         if (state.value === 'Dying') {
-            // Set a timeout to change isDead state to true after 5 seconds
+
             timeoutId = setTimeout(() => {
                 setIsDead(true);
-                // state = null;
-                // send = null;
-                // onIntersectionEnter = null;
-                // onIntersectionExit = null;
-                // enemyBody = null;
-                // enemy3DModel = null;
             }, 2000);
         }
 
@@ -55,7 +45,6 @@ export const ZombieNPC = () => {
     }, [state.value]);
 
     if (isDead) {
-        // cleanup component
         return <></>;
     }
 

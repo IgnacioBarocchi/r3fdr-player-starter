@@ -7,16 +7,16 @@ export const useRigidBodySensorHandler = (params: {
     teamName: 'Zombie' | 'Mutant';
     send: (action: string) => void;
 }) => {
-    const [playerIsTargeted, setPlayerIsTargeted] = useState(false);
+    // const [playerIsTargeted, setPlayerIsTargeted] = useState(false);
 
     const onIntersectionEnter = useCallback(
         (({ other: { rigidBodyObject } }) => {
             if (rigidBodyObject?.name === 'Player') {
-                setPlayerIsTargeted(true);
+                // setPlayerIsTargeted(true);
                 // @ts-ignore
                 params.send({
                     type: 'PLAYER_REACHABLE_CHANGE',
-                    reachable: playerIsTargeted,
+                    reachable: true,
                 });
 
                 params.send(ChampionMachineStateEvents.ABILITY_1);
@@ -28,11 +28,11 @@ export const useRigidBodySensorHandler = (params: {
     const onIntersectionExit = useCallback(
         (({ other: { rigidBodyObject } }) => {
             if (rigidBodyObject?.name === 'Player') {
-                setPlayerIsTargeted(false);
+                // setPlayerIsTargeted(false);
                 // @ts-ignore
                 params.send({
                     type: 'PLAYER_REACHABLE_CHANGE',
-                    targeted: playerIsTargeted,
+                    targeted: false,
                 });
             }
         }) as IntersectionExitHandler,

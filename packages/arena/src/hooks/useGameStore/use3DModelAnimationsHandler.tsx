@@ -55,7 +55,10 @@ export const use3DModelAnimationsHandler = ({
         // })
         
         let timeoutId = 0;
-        const { animation } = states[String(stateValue)];
+        if(!((stateValue as string) in states)){
+            return;
+        }
+        const { animation } = states[stateValue];
         const currentAction = actions[animation.name];
 
         const handleCleanup = () => {

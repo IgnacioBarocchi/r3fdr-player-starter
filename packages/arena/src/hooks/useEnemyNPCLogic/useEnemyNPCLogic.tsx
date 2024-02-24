@@ -1,8 +1,5 @@
-import {
-    ChampionMachineStateEvents,
-} from '../../constants/ChampionStateMachineObject';
 import { GameState, useGameStore } from '../useGameStore/useGameStore';
-import { MutableRefObject, useEffect, useRef } from 'react';
+import { MutableRefObject, useRef } from 'react';
 
 import { Group } from 'three';
 import { RapierRigidBody } from '@react-three/rapier';
@@ -10,13 +7,12 @@ import { goToTarget } from './goToTarget';
 import { useFrame } from '@react-three/fiber';
 import { useMachine } from '@xstate/react';
 import { ZombieMachine } from '../../Machines/ZombieMachine';
+import { getDistance } from './getDistance';
 
-const attacks = ["ABILITY_1", "ABILITY_2", "ABILITY_3"];
+const attacks = ['ABILITY_1', 'ABILITY_2', 'ABILITY_3'];
 const speed = 1.2;
 
-export const useEnemyNPCLogic = (
-    shouldFollow?: boolean
-) => {
+export const useEnemyNPCLogic = () => {
     const { characterState } = useGameStore((state: GameState) => ({
         characterState: state.characterState,
         setCaption: state.setCaption,
@@ -34,19 +30,29 @@ export const useEnemyNPCLogic = (
             },
         },
     });
-    const elapsedRef = useRef(0);
 
-    useFrame((_, delta) => {
-        if (!enemy3DModel.current || !enemyBody.current) return;
-        elapsedRef.current += delta;
+    const sendRandomAttack =  () => {
+        send(attacks[Number(parseInt(String(Math.random() * 3)))]);
+    };
 
+    useFrame(() => {
         if (
-            characterState?.group &&
-            shouldFollow &&
-            state.context.currentHP &&
-            // @ts-ignore
-            !state.context.playerIsTargeted
+            !enemy3DModel.current ||
+            !enemyBody.current ||
+            !characterState?.group
         ) {
+            return;
+        }
+
+        const distance = getDistance(
+            enemy3DModel.current,
+            characterState.group
+        );
+
+        if (distance < 1.6) {
+            sendRandomAttack();
+        } else {
+            send('MOVE');
             goToTarget({
                 targetGroup: characterState?.group,
                 sourceBody: enemyBody,
@@ -54,20 +60,7 @@ export const useEnemyNPCLogic = (
                 speed,
             });
         }
-
-        if (elapsedRef.current >= 1.2) {
-            //!&& state.context.playerIsTargeted) {
-            send(attacks[Number(parseInt(String(Math.random() * 3)))]);
-            elapsedRef.current = 0;
-        }
     });
-
-    useEffect(() => {
-        if (state.context.playerIsTargeted) {
-        } else {
-            send(ChampionMachineStateEvents.MOVE);
-        }
-    }, [state.context.playerIsTargeted]);
 
     return {
         state,

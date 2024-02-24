@@ -1,9 +1,8 @@
-import { assign, createMachine } from 'xstate';
+import { EventObject, assign, createMachine } from 'xstate';
 import {
     BaseMachineInput,
     MachineStates,
     baseOneShotActions,
-    getHPValidator,
 } from './BaseEntityMachine';
 
 export const states: MachineStates = {
@@ -65,7 +64,18 @@ export const states: MachineStates = {
     },
 };
 
-const HPValidator = getHPValidator();
+const HPValidator =  (context: { currentHP: number }) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (context.currentHP) {
+                resolve(true);
+            } else {
+                reject(`Error entity is dead ${context.currentHP} `);
+            }
+        }, 200);
+    });
+}
+
 const ZombieMachineInput = { ...BaseMachineInput };
 
 for (const action of baseOneShotActions) {
@@ -96,6 +106,9 @@ ZombieMachineInput.states.Dying = {
 
 ZombieMachineInput.states.TakingDamage = {
     ...ZombieMachineInput.states.TakingDamage,
+    after: {
+        1000: "validating"
+    },
     entry: assign({
         currentHP: (context: { currentHP: number }) => {
             return context.currentHP - 20;
@@ -105,11 +118,28 @@ ZombieMachineInput.states.TakingDamage = {
 
 ZombieMachineInput.context = {
     ...ZombieMachineInput.context,
+    initialHP: 20,
+    currentHP: 20,
     // @ts-ignore
     playerIsTargeted: false,
 };
 
-ZombieMachineInput.id = "Zombie";
+// @ts-ignore
+ZombieMachineInput.on = {
+    PLAYER_REACHABLE_CHANGE: {
+        actions: assign(
+            (context, event: EventObject & { reachable: boolean }) => {
+                return {
+                    ...context,
+                    playerIsReachable: event.reachable,
+                };
+            }
+        ),
+    },
+};
+
+ZombieMachineInput.id = 'Zombie';
+console.log(ZombieMachineInput)
 
 // @ts-ignore
 export const ZombieMachine = createMachine(ZombieMachineInput);
