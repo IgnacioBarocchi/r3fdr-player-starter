@@ -31,9 +31,7 @@ export const ZombieNPC = () => {
 
     useEffect(() => {
         let timeoutId = 0;
-        console.log(state.context.currentHP)
         if (state.value === 'Dying') {
-
             timeoutId = setTimeout(() => {
                 setIsDead(true);
             }, 2000);

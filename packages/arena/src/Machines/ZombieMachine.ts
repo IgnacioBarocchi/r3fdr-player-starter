@@ -1,6 +1,6 @@
 import { EventObject, assign, createMachine } from 'xstate';
 import {
-    BaseMachineInput,
+    getBaseMachineInput,
     MachineStates,
     baseOneShotActions,
 } from './BaseEntityMachine';
@@ -39,10 +39,16 @@ export const states: MachineStates = {
     },
     Using4thAbility: {
         animation: {
-            name: 'Attacking3',
+            name: 'Attacking4',
             duration: 1000,
         },
         effect: 'AOE',
+    },
+    Taunting: {
+        animation: {
+            name: 'Taunting',
+            duration: 1000,
+        },
     },
     Dying: {
         animation: {
@@ -64,7 +70,7 @@ export const states: MachineStates = {
     },
 };
 
-const HPValidator =  (context: { currentHP: number }) => {
+const HPValidator = (context: { currentHP: number }) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (context.currentHP) {
@@ -74,10 +80,33 @@ const HPValidator =  (context: { currentHP: number }) => {
             }
         }, 200);
     });
-}
+};
 
-const ZombieMachineInput = { ...BaseMachineInput };
+const ZombieMachineInput =  getBaseMachineInput();
+ZombieMachineInput.states.Idle.on = {
+    // @ts-ignore
+    ...ZombieMachineInput.states.Idle.on,
+    // @ts-ignore
+    TAUNT: 'Taunting', //states.Taunting.animation.name,
+};
 
+ZombieMachineInput.states.Running.on = {
+    // @ts-ignore
+    ...ZombieMachineInput.states.Running.on,
+    // @ts-ignore
+    TAUNT: 'Taunting', //states.Taunting.animation.name,
+};
+
+ZombieMachineInput.states = {
+    ...ZombieMachineInput.states,
+    // @ts-ignore
+    Taunting: {
+        after: {
+            // @ts-ignore
+            [states.Taunting.animation.duration]: 'Idle',
+        },
+    },
+};
 for (const action of baseOneShotActions) {
     // @ts-ignore
     ZombieMachineInput.states[action] = {
@@ -107,7 +136,7 @@ ZombieMachineInput.states.Dying = {
 ZombieMachineInput.states.TakingDamage = {
     ...ZombieMachineInput.states.TakingDamage,
     after: {
-        1000: "validating"
+        1000: 'validating',
     },
     entry: assign({
         currentHP: (context: { currentHP: number }) => {
@@ -139,7 +168,7 @@ ZombieMachineInput.on = {
 };
 
 ZombieMachineInput.id = 'Zombie';
-console.log(ZombieMachineInput)
+console.log(ZombieMachineInput);
 
 // @ts-ignore
 export const ZombieMachine = createMachine(ZombieMachineInput);

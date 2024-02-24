@@ -1,25 +1,23 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 
-import { ChampionMachineStateEvents } from '../../constants/ChampionStateMachineObject';
 import { IntersectionExitHandler } from '@react-three/rapier';
 
 export const useRigidBodySensorHandler = (params: {
     teamName: 'Zombie' | 'Mutant';
     send: (action: string) => void;
 }) => {
-    // const [playerIsTargeted, setPlayerIsTargeted] = useState(false);
 
     const onIntersectionEnter = useCallback(
         (({ other: { rigidBodyObject } }) => {
-            if (rigidBodyObject?.name === 'Player') {
-                // setPlayerIsTargeted(true);
+            if (rigidBodyObject?.name === 'Player' && params.teamName ==="Zombie") {
                 // @ts-ignore
                 params.send({
                     type: 'PLAYER_REACHABLE_CHANGE',
                     reachable: true,
                 });
-
-                params.send(ChampionMachineStateEvents.ABILITY_1);
+                if(Math.random() > 0.5){
+                    params.send("TAUNT");
+                }
             }
         }) as IntersectionExitHandler,
         [params.teamName]
@@ -28,7 +26,6 @@ export const useRigidBodySensorHandler = (params: {
     const onIntersectionExit = useCallback(
         (({ other: { rigidBodyObject } }) => {
             if (rigidBodyObject?.name === 'Player') {
-                // setPlayerIsTargeted(false);
                 // @ts-ignore
                 params.send({
                     type: 'PLAYER_REACHABLE_CHANGE',

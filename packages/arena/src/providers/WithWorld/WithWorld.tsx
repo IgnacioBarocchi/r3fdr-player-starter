@@ -34,6 +34,7 @@ const camera: CameraOptions = {
 
 const WithWorld = ({ children }: { children: ReactNode }) => {
     const [state] = Context.useActor();
+
     return (
         <Canvas shadows camera={camera}>
             <Perf position="bottom-left" />

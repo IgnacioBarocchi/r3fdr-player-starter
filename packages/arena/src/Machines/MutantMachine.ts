@@ -3,6 +3,7 @@ import {
     BaseMachineInput,
     MachineStates,
     baseOneShotActions,
+    getBaseMachineInput,
     getHPValidator,
 } from './BaseEntityMachine';
 
@@ -68,7 +69,7 @@ export const states: MachineStates = {
 };
 
 const HPValidator = getHPValidator();
-const MutantMachineInput = { ...BaseMachineInput };
+const MutantMachineInput = getBaseMachineInput();
 
 for (const action of baseOneShotActions) {
     // @ts-ignore
@@ -104,6 +105,8 @@ MutantMachineInput.states.TakingDamage = {
         },
     }),
 };
-
+MutantMachineInput.id = "Z"
+delete MutantMachineInput.states.Idle.on.TAUNT;
+delete MutantMachineInput.states.Running.on.TAUNT;
 // @ts-ignore
 export const MutantMachine = createMachine(MutantMachineInput);

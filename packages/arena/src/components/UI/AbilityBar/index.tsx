@@ -99,7 +99,7 @@ const Container = styled.div`
 
 const AbilityBar = () => {
     const [state] = Context.useActor();
-
+    
     return (
         <Container>
             <Abilities>

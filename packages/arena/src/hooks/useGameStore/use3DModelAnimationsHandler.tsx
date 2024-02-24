@@ -58,6 +58,9 @@ export const use3DModelAnimationsHandler = ({
         if(!((stateValue as string) in states)){
             return;
         }
+        if(String(stateValue).toLocaleLowerCase().startsWith("taun")){
+            console.log(stateValue)
+        }
         const { animation } = states[stateValue];
         const currentAction = actions[animation.name];
 

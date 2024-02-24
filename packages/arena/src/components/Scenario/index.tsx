@@ -21,18 +21,5 @@ const Scenario = () => {
             </WithWorld>
         </PlayerProvider>
     );
-
-    // return (
-    //     <WithWorld>
-    //         <spotLight position={[x, y, z]} intensity={i} penumbra={1} />
-    //         <LVL1 />
-    //     </WithWorld>
-    // );
 };
 export default Scenario;
-{
-    /* <directionalLight castShadow intensity={10} /> */
-}
-{
-    /* <spotLight position={[x, y, z]} intensity={i} /> */
-}
