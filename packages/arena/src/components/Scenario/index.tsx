@@ -1,7 +1,7 @@
 import { useControls } from 'leva';
 import LVL1 from '../../containers/scenarios/Level';
 import { PlayerProvider } from '../../providers/PlayerProvider/PlayerProvider';
-import WithWorld from '../../providers/WorldProvider/WorldProvider';
+import WithWorld from '../../providers/WithWorld/WithWorld';
 import AbilityBar from '../UI/AbilityBar';
 
 const Scenario = () => {

@@ -6,6 +6,7 @@ import { Perf } from 'r3f-perf';
 import { ReactNode } from 'react';
 import { ReactThreeFiber } from '@react-three/fiber';
 import keysMap from '../../lib/keysMap';
+import { Context } from '../PlayerProvider/PlayerProvider';
 
 export type CameraOptions = (
     | Camera
@@ -32,11 +33,15 @@ const camera: CameraOptions = {
 };
 
 const WithWorld = ({ children }: { children: ReactNode }) => {
+    const [state] = Context.useActor();
     return (
         <Canvas shadows camera={camera}>
             <Perf position="bottom-left" />
             <OrbitControls makeDefault />
             <KeyboardControls map={keysMap}>{children}</KeyboardControls>
+            {state.matches('Dying') && (
+                <fog attach="fog" color="red" far={100} near={1} />
+            )}
         </Canvas>
     );
 };

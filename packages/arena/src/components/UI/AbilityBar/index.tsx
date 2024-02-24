@@ -3,7 +3,17 @@ import { Context } from '../../../providers/PlayerProvider/PlayerProvider';
 import { states } from '../../../Machines/MutantMachine';
 import { baseSkills } from '../../../Machines/BaseEntityMachine';
 
-const HPBarContainer = styled.div`
+const horizontalShaking = keyframes`
+    0% { transform: translateX(0) }
+    25% { transform: translateX(3px) }
+    50% { transform: translateX(-3px);
+        border-color: crimson;
+    }
+    75% { transform: translateX(3px) }
+    100% { transform: translateX(0) }
+   `;
+
+const HPBarContainer = styled.div<{ hit: boolean }>`
     width: 280px;
     height: 20px;
     background: linear-gradient(
@@ -17,6 +27,8 @@ const HPBarContainer = styled.div`
     border-radius: 10px;
     overflow: hidden;
     border: 3px ridge #838383;
+    animation-name: ${({ hit }) => (hit ? horizontalShaking : 'none')};
+    animation-duration: 0.35s;
 `;
 
 const HPBarFill = styled.div<{ percentage: number }>`
@@ -102,7 +114,7 @@ const AbilityBar = () => {
                     );
                 })}
             </Abilities>
-            <HPBarContainer>
+            <HPBarContainer hit={state.matches('TakingDamage')}>
                 <HPBarFill
                     percentage={
                         (state.context.currentHP * 100) /
