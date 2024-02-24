@@ -1,6 +1,5 @@
 import { assign, createMachine } from 'xstate';
 import {
-    BaseMachineInput,
     MachineStates,
     baseOneShotActions,
     getBaseMachineInput,
@@ -68,7 +67,7 @@ export const states: MachineStates = {
     },
 };
 
-const HPValidator = getHPValidator();
+const HPValidator = getHPValidator(200);
 const MutantMachineInput = getBaseMachineInput();
 
 for (const action of baseOneShotActions) {
@@ -99,14 +98,16 @@ MutantMachineInput.states.Dying = {
 
 MutantMachineInput.states.TakingDamage = {
     ...MutantMachineInput.states.TakingDamage,
+    after: {
+        1000: 'validating',
+    },
     entry: assign({
         currentHP: (context: { currentHP: number }) => {
             return context.currentHP - 20;
         },
     }),
 };
-MutantMachineInput.id = "Z"
-delete MutantMachineInput.states.Idle.on.TAUNT;
-delete MutantMachineInput.states.Running.on.TAUNT;
+
+MutantMachineInput.id = "Player"
 // @ts-ignore
 export const MutantMachine = createMachine(MutantMachineInput);

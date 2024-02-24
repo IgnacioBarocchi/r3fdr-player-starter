@@ -49,11 +49,6 @@ export const use3DModelAnimationsHandler = ({
      * @depends on [stateValue] and [actions]
      */
     const animationEffect = () => {
-
-        // ["CrossPunching","Kicking", "SidePunching", "Slamming"].forEach(o => {
-        //     console.log(o, getAnimationClipMilliseconds(actions, o))
-        // })
-        
         let timeoutId = 0;
         if(!((stateValue as string) in states)){
             return;

@@ -12,7 +12,6 @@ import { FC } from 'react';
 import { HitBox } from '../utility/HitBox/HitBox';
 import { MutantHitBoxes } from '../utility/HitBox/hitBoxes';
 
-
 const Player: FC<{
     useOrbitControls: boolean;
     teamName: 'Zombie' | 'Mutant';
@@ -26,6 +25,10 @@ const Player: FC<{
         teamName,
     });
 
+    if (state.matches('Dying') && state.context.currentHP >= 0) {
+        return <></>;
+    }
+    
     return (
         <RigidBody
             lockRotations={true}

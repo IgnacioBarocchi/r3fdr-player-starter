@@ -6,7 +6,8 @@ import Player from '../../../components/Entities/Player.tsx';
 import Terrain from './Terrain.tsx';
 import { Vector3 } from 'three';
 import { useControls } from 'leva';
-import { ZombieNPC } from '../../../components/Entities/ZombieNPC.tsx';
+import { Zombies } from './Zombies.tsx';
+
 const renderDummies = false;
 const renderZombies = true;
 
@@ -41,7 +42,7 @@ const LVL1 = () => {
                             USE_ORBIT_CONTROLS && mockOrbitControls
                         }
                     />
-                    <ZombieNPC/>
+                    {renderZombies && <Zombies/>}
                     {/* {renderDummies && <Dummies teamName="Zombie" />}
                     {renderZombies && <Zombies/>} */}
                 </>
