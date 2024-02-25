@@ -88,6 +88,7 @@ export const usePlayerLogic = (
 
         const quaternionRotation = new Quaternion();
         quaternionRotation.setFromEuler(new Euler(0, orientation, 0));
+        // console.log(quaternionRotation)
         playerBody.current.setRotation(quaternionRotation, false);
 
         const playerVectorialPosition = playerBody.current.translation();

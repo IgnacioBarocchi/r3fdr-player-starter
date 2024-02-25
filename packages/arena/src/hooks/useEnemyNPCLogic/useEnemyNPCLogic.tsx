@@ -1,7 +1,7 @@
 import { GameState, useGameStore } from '../useGameStore/useGameStore';
 import { MutableRefObject, useRef } from 'react';
 
-import { Group } from 'three';
+import { Group, Quaternion, Vector3 } from 'three';
 import { RapierRigidBody } from '@react-three/rapier';
 import { goToTarget } from './goToTarget';
 import { useFrame } from '@react-three/fiber';
@@ -44,6 +44,7 @@ export const useEnemyNPCLogic = () => {
             return;
         }
 
+        // console.log("er", enemy3DModel.current.getWorldDirection(new Vector3()))
         const distance = getDistance(
             enemy3DModel.current,
             characterState.group

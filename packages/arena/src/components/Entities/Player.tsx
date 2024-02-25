@@ -1,5 +1,6 @@
 import {
     CapsuleCollider as Bounding,
+    CuboidCollider,
     RigidBody,
     CylinderCollider as Sensor,
 } from '@react-three/rapier';
@@ -29,13 +30,13 @@ const Player: FC<{
     if (state.matches('Dying') && state.context.currentHP >= 0) {
         return <></>;
     }
-    
+
     return (
         <RigidBody
-        lockRotations={true}
-        colliders={false}
-        ref={playerBody}
-        name="Player"
+            lockRotations={true}
+            colliders={false}
+            ref={playerBody}
+            name="Player"
         >
             <Bounding
                 args={[0.2, 0.6]}
@@ -44,6 +45,7 @@ const Player: FC<{
             />
             <Sensor args={[0.2, 2]} position={[0, 0.5, 0]} sensor />
             <Mutant3DModel />
+            <CuboidCollider position={[0, 1.25, 1.5]} args={[.1, .1, .5]} />
             <HitBox
                 stateValue={state.value}
                 hitBoxesRecords={MutantHitBoxes}

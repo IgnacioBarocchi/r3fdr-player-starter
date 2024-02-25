@@ -1,5 +1,6 @@
 import {
     CapsuleCollider as Bounding,
+    CuboidCollider,
     RigidBody,
     CylinderCollider as Sensor,
 } from '@react-three/rapier';
@@ -47,7 +48,8 @@ export const ZombieNPC = () => {
     }
 
     return (
-        <RigidBody lockRotations={true} colliders={false} ref={enemyBody}>
+        // lockRotations={true}
+        <RigidBody  lockRotations={true} colliders={false} ref={enemyBody}>
             <Bounding
                 args={[0.2, 0.6]}
                 position={[0, 0.8, 0]}
@@ -64,11 +66,12 @@ export const ZombieNPC = () => {
                 stateValue={state.value}
                 givenDependantGroupRef={enemy3DModel}
             />
-            <HitBox
+            <CuboidCollider position={[0, 1.25, 1.5]} args={[.1, .1, .5]} />
+            {/* <HitBox
                 stateValue={state.value}
                 hitBoxesRecords={ZombieHitBoxes}
                 teamName={teamName}
-            />
+            /> */}
         </RigidBody>
     );
 };
