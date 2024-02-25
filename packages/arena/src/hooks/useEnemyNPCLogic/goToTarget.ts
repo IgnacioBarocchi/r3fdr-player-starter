@@ -1,8 +1,8 @@
-import { Group, Vector3 } from "three";
+import { Group, Quaternion, Vector3 } from 'three';
 
-import { MutableRefObject } from "react";
-import { RapierRigidBody } from "@react-three/rapier";
-import getNormalizedTurnAngle from "../../lib/getNormalizedTurnAngle";
+import { MutableRefObject } from 'react';
+import { RapierRigidBody } from '@react-three/rapier';
+import getNormalizedTurnAngle from '../../lib/getNormalizedTurnAngle';
 
 const getMeleeNPCMeleeNPCImpulse = (
     playerPosition: Vector3,
@@ -19,23 +19,23 @@ const getMeleeNPCMeleeNPCImpulse = (
 };
 
 export const goToTarget = (references: Params) => {
-    const { source3DModelGroup,
-        sourceBody,
-        targetGroup, speed } = references;
+    const { source3DModelGroup, sourceBody, targetGroup, speed } = references;
 
-    const targetPosition = targetGroup.getWorldPosition(
-        new Vector3()
-    );
+    const targetPosition = targetGroup.getWorldPosition(new Vector3());
+    const targetRotation = targetGroup.getWorldQuaternion(new Quaternion());
     const meleeNPCPosition = source3DModelGroup.current?.getWorldPosition(
         new Vector3()
     );
 
     source3DModelGroup.current.lookAt(targetPosition);
-    source3DModelGroup.current.rotation.x = 0;
-    source3DModelGroup.current.rotation.z = 0;
-    source3DModelGroup.current.rotation.y = Math.abs(
-        getNormalizedTurnAngle(source3DModelGroup.current.rotation.y)
-    );
+    source3DModelGroup.current.quaternion.copy(targetRotation)
+    // const yval = -targetRotation.y
+    // Math.abs(
+    //     getNormalizedTurnAngle(source3DModelGroup.current.rotation.y)
+    // );
+    // source3DModelGroup.current.rotation.y = yval;//yval;
+
+    // console.log('y', yval);
 
     const meleeNPCImpulseForce = getMeleeNPCMeleeNPCImpulse(
         targetPosition,
@@ -55,4 +55,4 @@ type Params = {
     sourceBody: MutableRefObject<RapierRigidBody>;
     targetGroup: Group;
     speed: number;
-}
+};

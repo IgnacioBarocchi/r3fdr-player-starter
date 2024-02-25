@@ -22,7 +22,7 @@ const LVL1 = () => {
     useEffect(() => {
         const timeout = setTimeout(() => {
             setTerrainIsLoading(false);
-        }, 200);
+        }, 1000);
         return () => {
             clearTimeout(timeout);
         };

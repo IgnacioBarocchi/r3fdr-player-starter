@@ -11,6 +11,7 @@ import { Context } from '../../providers/PlayerProvider/PlayerProvider';
 import { FC } from 'react';
 import { HitBox } from '../utility/HitBox/HitBox';
 import { MutantHitBoxes } from '../utility/HitBox/hitBoxes';
+import { Text } from '@react-three/drei';
 
 const Player: FC<{
     useOrbitControls: boolean;
@@ -31,10 +32,10 @@ const Player: FC<{
     
     return (
         <RigidBody
-            lockRotations={true}
-            colliders={false}
-            ref={playerBody}
-            name="Player"
+        lockRotations={true}
+        colliders={false}
+        ref={playerBody}
+        name="Player"
         >
             <Bounding
                 args={[0.2, 0.6]}

@@ -5,7 +5,7 @@ import { GLTFResult } from './MutantTypes';
 import { StateValue } from 'xstate';
 import { use3DModelAnimationsHandler } from '../../hooks/useGameStore/use3DModelAnimationsHandler';
 import { use3DModelLoader } from '../../hooks/use3DModelLoader/use3DModelLoader';
-import { useGLTF } from '@react-three/drei';
+import { Text, useGLTF } from '@react-three/drei';
 import { states } from '../../Machines/MutantMachine';
 import { Context } from '../../providers/PlayerProvider/PlayerProvider';
 
@@ -25,7 +25,7 @@ const Mutant3DModel = () => {
     useEffect(animationEffect, [state.value, actions]);
 
     return (
-        <group ref={group} dispose={null} >
+        <group ref={group} dispose={null}>
             <group name="Scene">
                 <group
                     name="Armature"

@@ -1,8 +1,7 @@
 import { AnimationAction, LoopOnce } from 'three';
 import { StateValue } from 'xstate';
 import { MachineStates } from '../../Machines/MutantMachine';
-import { baseLoopableActions, baseOneShotActions } from '../../Machines/BaseEntityMachine';
-import getAnimationClipMilliseconds from '../../lib/getAnimationClipDuration';
+import { baseLoopableActions } from '../../Machines/BaseEntityMachine';
 
 export type AnimationsHandlerParams = {
     states: MachineStates;
