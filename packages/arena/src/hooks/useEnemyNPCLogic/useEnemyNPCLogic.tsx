@@ -13,8 +13,8 @@ const attacks = ['ABILITY_1', 'ABILITY_2', 'ABILITY_3'];
 const speed = 1.2;
 
 export const useEnemyNPCLogic = () => {
-    const { characterState } = useGameStore((state: GameState) => ({
-        characterState: state.characterState,
+    const { playerState } = useGameStore((state: GameState) => ({
+        playerState: state.playerState,
         setCaption: state.setCaption,
     }));
 
@@ -39,7 +39,7 @@ export const useEnemyNPCLogic = () => {
         if (
             !enemy3DModel.current ||
             !enemyBody.current ||
-            !characterState?.group
+            !playerState?.group
         ) {
             return;
         }
@@ -47,7 +47,7 @@ export const useEnemyNPCLogic = () => {
         // console.log("er", enemy3DModel.current.getWorldDirection(new Vector3()))
         const distance = getDistance(
             enemy3DModel.current,
-            characterState.group
+            playerState.group
         );
 
         if (distance < 1.6) {
@@ -55,7 +55,7 @@ export const useEnemyNPCLogic = () => {
         } else {
             send('MOVE');
             goToTarget({
-                targetGroup: characterState?.group,
+                targetGroup: playerState?.group,
                 sourceBody: enemyBody,
                 source3DModelGroup: enemy3DModel,
                 speed,

@@ -45,7 +45,6 @@ const Player: FC<{
             />
             <Sensor args={[0.2, 2]} position={[0, 0.5, 0]} sensor />
             <Mutant3DModel />
-            <CuboidCollider position={[0, 1.25, 1.5]} args={[.1, .1, .5]} />
             <HitBox
                 stateValue={state.value}
                 hitBoxesRecords={MutantHitBoxes}

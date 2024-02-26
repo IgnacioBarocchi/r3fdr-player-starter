@@ -21,13 +21,13 @@ const Debug = styled.div`
     text-stroke: 1px blue;
 `;
 export const DebugBar = () => {
-    const { characterState } = useGameStore((state: GameState) => ({
-        characterState: state.characterState,
+    const { playerState } = useGameStore((state: GameState) => ({
+        playerState: state.playerState,
     }));
 
-    const wp = characterState.group?.getWorldPosition(new Vector3());
-    const wd = characterState.group?.getWorldDirection(new Vector3());
-    const wr = characterState.group?.getWorldQuaternion(new Quaternion());
+    const wp = playerState.group?.getWorldPosition(new Vector3());
+    const wd = playerState.group?.getWorldDirection(new Vector3());
+    const wr = playerState.group?.getWorldQuaternion(new Quaternion());
 
     return (
         <Debug>

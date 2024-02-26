@@ -36,9 +36,9 @@ export const use3DModelLoader = <T,>(
         group
     );
 
-    const { characterState, setCharacterState } = useGameStore((state) => ({
-        characterState: state.characterState,
-        setCharacterState: state.setCharacterState,
+    const { playerState, setPlayerState } = useGameStore((state) => ({
+        playerState: state.playerState,
+        setPlayerState: state.setPlayerState,
     }));
 
     useMemo(() => {
@@ -58,7 +58,7 @@ export const use3DModelLoader = <T,>(
         if (player) {
             if (group?.current !== null || group?.current !== undefined) {
                 const payload = group?.current;
-                setCharacterState({ ...characterState, ...{ group: payload } });
+                setPlayerState({ ...playerState, ...{ group: payload } });
             }
         }
     }, []);
@@ -80,11 +80,11 @@ type ModelResultType<T> = {
     group: React.RefObject<Group>;
 };
 
-// setCharacterState({
-//     ...characterState,
+// setPlayerState({
+//     ...playerState,
 //     ...{ ability: currentAnimation },
 // });
-// setCharacterState({
-//     ...characterState,
+// setPlayerState({
+//     ...playerState,
 //     ...{ ability: ChampionMachineStateEvents.IDLE },
 // });

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Context } from '../../../providers/PlayerProvider/PlayerProvider';
 import { HPBar } from './HPBar';
 import { SkillBar } from './SkillBar';
-import { DebugBar } from './DebugBar';
 
 const Container = styled.div`
     display: flex;
@@ -16,7 +15,6 @@ const Container = styled.div`
     transform: translate(-50%, -50%);
 `;
 
-// Create a styled component for the black screen
 const BlackScreen = styled.div`
     background-color: black;
     width: 100vw;
@@ -37,7 +35,6 @@ const AbilityBar = () => {
 
     return (
         <>
-            <DebugBar />
             <Container>
                 <SkillBar />
                 <HPBar />

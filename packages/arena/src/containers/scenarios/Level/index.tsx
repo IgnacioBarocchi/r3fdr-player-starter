@@ -6,10 +6,11 @@ import Player from '../../../components/Entities/Player.tsx';
 import Terrain from './Terrain.tsx';
 import { Vector3 } from 'three';
 import { useControls } from 'leva';
-import { Zombies } from './Zombies.tsx';
+import { ZombieSpawner } from '../../../components/Entities/ZombieSpawner.tsx';
+import { Dummies } from './Dummies.tsx';
 
 const renderDummies = false;
-const renderZombies = true;
+const renderZombies = false;
 
 const LVL1 = () => {
     const {
@@ -29,7 +30,7 @@ const LVL1 = () => {
     }, []);
 
     return (
-        <Physics timeStep="vary" debug={true}>
+        <Physics timeStep="vary" debug={false}>
             <Terrain
                 position={new Vector3(0, 0.2, 0)}
                 scale={new Vector3(50, 0.2, 50)}
@@ -42,9 +43,8 @@ const LVL1 = () => {
                             USE_ORBIT_CONTROLS && mockOrbitControls
                         }
                     />
-                    {renderZombies && <Zombies/>}
-                    {/* {renderDummies && <Dummies teamName="Zombie" />}
-                    {renderZombies && <Zombies/>} */}
+                    {renderZombies && <ZombieSpawner position={[5, 0, 5]} />}
+                    {renderDummies && <Dummies teamName="Zombie" />}
                 </>
             )}
         </Physics>
