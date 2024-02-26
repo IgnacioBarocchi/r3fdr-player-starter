@@ -53,7 +53,7 @@ export const ZombieHitBoxes: HitBoxesRecords = {
         rigidBody: {
             name: zombieStates.Using1stAbility.animation.name,
             type: 'fixed',
-            position: [0, 1.25, 1.2],
+            position: [0, 1.25, .9],
             density: 1000,
         },
         size: 0.3,
@@ -62,7 +62,7 @@ export const ZombieHitBoxes: HitBoxesRecords = {
         rigidBody: {
             name: zombieStates.Using2ndAbility.animation.name,
             type: 'fixed',
-            position: [0, 1.25, 2],
+            position: [0, 1.25, .9],
             density: 1000,
         },
         size: 0.3,
@@ -71,7 +71,7 @@ export const ZombieHitBoxes: HitBoxesRecords = {
         rigidBody: {
             name: zombieStates.Using3rdAbility.animation.name,
             type: 'fixed',
-            position: [0, 1.25, 2],
+            position: [0, 1.25, .9],
             density: 1000,
         },
         size: 0.3,
@@ -80,7 +80,7 @@ export const ZombieHitBoxes: HitBoxesRecords = {
         rigidBody: {
             name: zombieStates.Using4thAbility.animation.name,
             type: 'fixed',
-            position: [0, 0.5, 2],
+            position: [0, 0.5, .9],
             density: 1000,
         },
         size: 0.3,

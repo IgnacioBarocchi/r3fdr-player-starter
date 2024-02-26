@@ -1,20 +1,31 @@
-import { FC, useEffect } from 'react';
+import { RefObject, useEffect } from 'react';
 
 import { EntityModel } from '../../providers/entities';
-import { GLTFResult } from './MutantTypes';
-import { StateValue } from 'xstate';
 import { use3DModelAnimationsHandler } from '../../hooks/useGameStore/use3DModelAnimationsHandler';
 import { use3DModelLoader } from '../../hooks/use3DModelLoader/use3DModelLoader';
-import { Text, useGLTF } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
 import { states } from '../../Machines/MutantMachine';
 import { Context } from '../../providers/PlayerProvider/PlayerProvider';
+import { useGameStore } from '../../hooks/useGameStore/useGameStore';
+import { Group } from 'three';
 
 const path = EntityModel.Mutant.path;
 const Mutant3DModel = () => {
     const [state] = Context.useActor();
+    const { playerState, setPlayerState } = useGameStore((state) => ({
+        playerState: state.playerState,
+        setPlayerState: state.setPlayerState,
+    }));
+
+    const makePlayerVisible = (group: RefObject<Group>) => () => {
+        if (group?.current) {
+            const payload = group?.current;
+            setPlayerState({ ...playerState, ...{ group: payload } });
+        }
+    };
     // @ts-ignore
     const { group, nodes, scene, materials, actions } =
-        use3DModelLoader<GLTFResult>(true, path);
+        use3DModelLoader({modelPath:path, onLoadEffect:makePlayerVisible});
 
     const { animationEffect } = use3DModelAnimationsHandler({
         states,

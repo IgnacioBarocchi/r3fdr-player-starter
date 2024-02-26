@@ -26,11 +26,10 @@ export const Zombie3DModel: FC<{
     givenDependantGroupRef: React.MutableRefObject<THREE.Group>;
 }> = ({ stateValue, givenDependantGroupRef }) => {
     // @ts-ignore
-    const { group, nodes, materials, actions } = use3DModelLoader<GLTFResult>(
-        false,
-        path,
-        givenDependantGroupRef
-    );
+    const { group, nodes, materials, actions } = use3DModelLoader({
+        modelPath: path,
+        givenDependantGroupRef,
+    });
 
     const { animationEffect } = use3DModelAnimationsHandler({
         states,

@@ -8,6 +8,7 @@ import { Vector3 } from 'three';
 import { useControls } from 'leva';
 import { ZombieSpawner } from '../../../components/Entities/ZombieSpawner.tsx';
 import { Dummies } from './Dummies.tsx';
+import { ZombieNPC } from '../../../components/Entities/ZombieNPC.tsx';
 
 const renderDummies = false;
 const renderZombies = false;
@@ -30,7 +31,7 @@ const LVL1 = () => {
     }, []);
 
     return (
-        <Physics timeStep="vary" debug={false}>
+        <Physics timeStep="vary" debug={true}>
             <Terrain
                 position={new Vector3(0, 0.2, 0)}
                 scale={new Vector3(50, 0.2, 50)}
@@ -43,6 +44,7 @@ const LVL1 = () => {
                             USE_ORBIT_CONTROLS && mockOrbitControls
                         }
                     />
+                    <ZombieNPC enemyId="a" onDead={() => {}} />
                     {renderZombies && <ZombieSpawner position={[5, 0, 5]} />}
                     {renderDummies && <Dummies teamName="Zombie" />}
                 </>

@@ -1,30 +1,22 @@
 import { useAnimations, useGLTF } from '@react-three/drei';
 import { useEffect, useMemo, useRef } from 'react';
 
-import { AppContext } from '../../providers/GameSettingsProvider';
 import { Group } from 'three';
 import { SkeletonUtils } from 'three-stdlib';
-import { useContext } from 'react';
-import { useGameStore } from '../useGameStore/useGameStore';
 import { useGraph } from '@react-three/fiber';
 
-// !register 3dmodel load + reference.
-export const use3DModelLoader = <T,>(
-    player: boolean,
-    modelPath: string,
-    givenDependantGroupRef?: React.MutableRefObject<THREE.Group>
-): ModelResultType<T> => {
-    const {
-        state: { GRAPHICS },
-    } = useContext(AppContext);
-
-    const group = givenDependantGroupRef
-        ? givenDependantGroupRef
+export type LoaderParams = {
+    onLoadEffect?: (group: React.RefObject<Group>) => () => void;
+    modelPath: string;
+    givenDependantGroupRef?: React.MutableRefObject<THREE.Group>;
+};
+export const use3DModelLoader = (params: LoaderParams) => {
+    const group = params.givenDependantGroupRef
+        ? params.givenDependantGroupRef
         : useRef<Group>(null);
 
-    const { scene, materials, animations } = useGLTF(
-        modelPath
-    ) as unknown as ModelResultType<T>;
+    // @ts-ignore
+    const { scene, materials, animations } = useGLTF(params.modelPath);
 
     const clone = useMemo(() => SkeletonUtils.clone(scene), [scene]);
     const { nodes } = useGraph(clone);
@@ -36,55 +28,13 @@ export const use3DModelLoader = <T,>(
         group
     );
 
-    const { playerState, setPlayerState } = useGameStore((state) => ({
-        playerState: state.playerState,
-        setPlayerState: state.setPlayerState,
-    }));
-
     useMemo(() => {
-        // if (GRAPHICS === 'LOW') return;
-
-        scene.traverse((obj) => {
+        scene.traverse((obj: { castShadow: boolean }) => {
             obj.castShadow = true;
-
-            // if (GRAPHICS === 'HIGH') {
-            //     obj.receiveShadow = true;
-            // }
         });
-    }, [scene, GRAPHICS]);
+    }, [scene]);
 
-    //todo: remove state synchronization
-    useEffect(() => {
-        if (player) {
-            if (group?.current !== null || group?.current !== undefined) {
-                const payload = group?.current;
-                setPlayerState({ ...playerState, ...{ group: payload } });
-            }
-        }
-    }, []);
+    useEffect(params.onLoadEffect ? params.onLoadEffect(group) : () => {}, []);
 
-    // @ts-ignore
     return { group, scene, nodes, materials, animations, actions };
 };
-
-type ModelResultType<T> = {
-    scene: Group;
-    nodes: {
-        mesh: THREE.SkinnedMesh;
-        mixamorigHips: THREE.Bone;
-    };
-    materials: {
-        robot: THREE.MeshStandardMaterial;
-    };
-    animations: T;
-    group: React.RefObject<Group>;
-};
-
-// setPlayerState({
-//     ...playerState,
-//     ...{ ability: currentAnimation },
-// });
-// setPlayerState({
-//     ...playerState,
-//     ...{ ability: ChampionMachineStateEvents.IDLE },
-// });
