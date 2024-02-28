@@ -10,38 +10,38 @@ export type RigibBodyWithColliderProps = {
 export type HitBoxesRecords = { [x: string]: RigibBodyWithColliderProps }
 
 export const MutantHitBoxes: HitBoxesRecords = {
-    Using1stAbility: {
+    Using1stSkill: {
         rigidBody: {
-            name: mutantStates.Using1stAbility.animation.name,
+            name: mutantStates.Using1stSkill.animation.name,
             type: 'fixed',
             position: [0, 1.25, 1.2],
             density: 1000,
         },
         size: 0.3,
     },
-    Using2ndAbility: {
+    Using2ndSkill: {
         rigidBody: {
-            name: mutantStates.Using2ndAbility.animation.name,
+            name: mutantStates.Using2ndSkill.animation.name,
             type: 'fixed',
             position: [0, 1.25, 2],
             density: 1000,
         },
         size: 0.3,
     },
-    Using3rdAbility: {
+    Using3rdSkill: {
         rigidBody: {
-            name: mutantStates.Using3rdAbility.animation.name,
+            name: mutantStates.Using3rdSkill.animation.name,
             type: 'fixed',
             position: [0, 1.25, 2],
             density: 1000,
         },
         size: 0.3,
     },
-    Using4thAbility: {
+    Using4thSkill: {
         rigidBody: {
-            name: mutantStates.Using4thAbility.animation.name,
+            name: mutantStates.Using4thSkill.animation.name,
             type: 'fixed',
-            position: [0, 0.5, 2],
+            position: [0, 0.5, 5],
             density: 1000,
         },
         size: 0.3,
@@ -49,36 +49,36 @@ export const MutantHitBoxes: HitBoxesRecords = {
 };
 
 export const ZombieHitBoxes: HitBoxesRecords = {
-    Using1stAbility: {
+    Using1stSkill: {
         rigidBody: {
-            name: zombieStates.Using1stAbility.animation.name,
+            name: zombieStates.Using1stSkill.animation.name,
             type: 'fixed',
             position: [0, 1.25, .9],
             density: 1000,
         },
         size: 0.3,
     },
-    Using2ndAbility: {
+    Using2ndSkill: {
         rigidBody: {
-            name: zombieStates.Using2ndAbility.animation.name,
+            name: zombieStates.Using2ndSkill.animation.name,
             type: 'fixed',
             position: [0, 1.25, .9],
             density: 1000,
         },
         size: 0.3,
     },
-    Using3rdAbility: {
+    Using3rdSkill: {
         rigidBody: {
-            name: zombieStates.Using3rdAbility.animation.name,
+            name: zombieStates.Using3rdSkill.animation.name,
             type: 'fixed',
             position: [0, 1.25, .9],
             density: 1000,
         },
         size: 0.3,
     },
-    Using4thAbility: {
+    Using4thSkill: {
         rigidBody: {
-            name: zombieStates.Using4thAbility.animation.name,
+            name: zombieStates.Using4thSkill.animation.name,
             type: 'fixed',
             position: [0, 0.5, .9],
             density: 1000,

@@ -13,6 +13,7 @@ import { FC } from 'react';
 import { HitBox } from '../utility/HitBox/HitBox';
 import { MutantHitBoxes } from '../utility/HitBox/hitBoxes';
 import { Text } from '@react-three/drei';
+import { Footsteps } from '../../containers/scenarios/Level/Footsteps';
 
 const Player: FC<{
     useOrbitControls: boolean;
@@ -50,6 +51,7 @@ const Player: FC<{
                 hitBoxesRecords={MutantHitBoxes}
                 teamName={teamName}
             />
+            {state.matches('Running') && <Footsteps />}
         </RigidBody>
     );
 };

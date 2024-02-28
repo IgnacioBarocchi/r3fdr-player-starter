@@ -17,12 +17,12 @@ export const useRigidBodyColliderHandler = (params: {
             }
 
             const [animationName, enemy] = rigidBodyObject.name.split('|');
-            const ability =
+            const skill =
                 EntityModel[enemy as 'Zombie' | 'Mutant'].eventMap[
                     animationName
                 ];
 
-            if (ability.endsWith('3')) {
+            if (skill.endsWith('3')) {
                 params.send(ChampionMachineStateEvents.TAKE_STUN);
             } else {
                 params.send(ChampionMachineStateEvents.TAKE_DAMAGE);

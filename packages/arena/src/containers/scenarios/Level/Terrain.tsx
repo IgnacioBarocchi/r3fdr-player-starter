@@ -1,9 +1,10 @@
 import { Euler, RepeatWrapping, Texture, Vector3 } from 'three';
 
-import { RigidBody } from '@react-three/rapier';
+import { CylinderCollider, RigidBody } from '@react-three/rapier';
 import { useTexture } from '@react-three/drei';
 
 export default function Terrain({ position, scale, rotation }: WallProps) {
+    
     const textures: Texture[] = useTexture([
         '/images/grass/grass_albedo.png',
         '/images/grass/grass_displace.png',

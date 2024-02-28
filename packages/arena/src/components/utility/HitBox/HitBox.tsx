@@ -1,8 +1,8 @@
-import { BallCollider, RigidBody } from '@react-three/rapier';
+import { BallCollider, CuboidCollider, RigidBody } from '@react-three/rapier';
 
 import { PositionalAudio } from '@react-three/drei';
 import { StateValue } from 'xstate';
-import { HitBoxesRecords,  } from './hitBoxes';
+import { HitBoxesRecords } from './hitBoxes';
 
 export const HitBox = ({
     stateValue,
@@ -14,14 +14,13 @@ export const HitBox = ({
     teamName: 'Zombie' | 'Mutant';
 }) => {
     const record = hitBoxesRecords[stateValue as string];
-    
+
     if (!record) {
         return null;
     }
 
     const { rigidBody: rigidBodyProps, size } =
         hitBoxesRecords[stateValue as string];
-
 
     return (
         <group>
@@ -33,14 +32,15 @@ export const HitBox = ({
                 gravityScale={0}
                 shape={'ball'}
             >
-                <BallCollider args={[size]} />
+                {/* <BallCollider args={[size]} /> */}
+                <CuboidCollider sensor args={[.2, .2, 5]} />
             </RigidBody>
             <PositionalAudio
                 load
                 autoplay
                 loop={false}
                 distance={1}
-                url="/sounds/Robot/kick.mp3"
+                url="/sounds/Entity/kick.mp3"
             />
         </group>
     );

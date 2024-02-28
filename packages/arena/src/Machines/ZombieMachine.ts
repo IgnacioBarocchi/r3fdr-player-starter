@@ -18,26 +18,26 @@ export const states: MachineStates = {
             duration: 1000,
         },
     },
-    Using1stAbility: {
+    Using1stSkill: {
         animation: {
             name: 'Attacking1',
             duration: 1000,
         },
     },
-    Using2ndAbility: {
+    Using2ndSkill: {
         animation: {
             name: 'Attacking2',
             duration: 1000,
         },
         effect: 'STUN',
     },
-    Using3rdAbility: {
+    Using3rdSkill: {
         animation: {
             name: 'Attacking3',
             duration: 1000,
         },
     },
-    Using4thAbility: {
+    Using4thSkill: {
         animation: {
             name: 'Attacking4',
             duration: 1000,

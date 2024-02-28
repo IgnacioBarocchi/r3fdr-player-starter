@@ -1,7 +1,7 @@
 // * All the entities have the same model.
 // * The actions came bundled as an ActionObject[]
-// * The Idle action gets pop from the array while the remaining abilities are filtered.
-// * Each unit has 4 non-cancelable abilities with cool downs
+// * The Idle action gets pop from the array while the remaining skills are filtered.
+// * Each unit has 4 non-cancelable skills with cool downs
 // TODO: TAKE STUN AND FALL ARE THE SAME!
 
 import { AnyStateMachine, EventObject, assign } from 'xstate';
@@ -27,7 +27,7 @@ const getActionByKey =
     ) =>
     (record: ActionObject) =>
         record[key];
-const filterFourAbilities = (actionRecord: ActionObject) => {
+const filterFourSkills = (actionRecord: ActionObject) => {
     const { isIdle, isMove, isTakingDamage, isTakingStun, isFinal } =
         actionRecord;
     return !isIdle && !isMove && !isTakingDamage && !isTakingStun && !isFinal;
@@ -35,10 +35,10 @@ const filterFourAbilities = (actionRecord: ActionObject) => {
 
 export const ChampionMachineStateEvents = {
     IDLE: 'IDLE',
-    ABILITY_1: 'ABILITY_1',
-    ABILITY_2: 'ABILITY_2',
-    ABILITY_3: 'ABILITY_3',
-    ABILITY_4: 'ABILITY_4',
+    SKILL_1: 'SKILL_1',
+    SKILL_2: 'SKILL_2',
+    SKILL_3: 'SKILL_3',
+    SKILL_4: 'SKILL_4',
     MOVE: 'MOVE',
     FALL: 'FALL',
     DEATH: 'DEATH',
@@ -100,17 +100,17 @@ export const getChampionMachine = (params: {
         new Group()
     ).actions;
 
-    const fourAbilities =
-        params.player.actionRecords.filter(filterFourAbilities);
-    const [ability_1, ability_2, ability_3, ability_4] = fourAbilities.map(
+    const fourSkills =
+        params.player.actionRecords.filter(filterFourSkills);
+    const [skill_1, skill_2, skill_3, skill_4] = fourSkills.map(
         ({ animationName }) => animationName
     );
     const [
-        ability_1CoolDown,
-        ability_2CoolDown,
-        ability_3CoolDown,
-        ability_4CoolDown,
-    ] = fourAbilities.map(
+        skill_1CoolDown,
+        skill_2CoolDown,
+        skill_3CoolDown,
+        skill_4CoolDown,
+    ] = fourSkills.map(
         ({ animationName }) =>
             getAnimationClipMilliseconds(
                 animationActionByName,
@@ -139,10 +139,10 @@ export const getChampionMachine = (params: {
 
     const {
         IDLE,
-        ABILITY_1,
-        ABILITY_2,
-        ABILITY_3,
-        ABILITY_4,
+        SKILL_1,
+        SKILL_2,
+        SKILL_3,
+        SKILL_4,
         MOVE,
         FALL,
         DEATH,
@@ -157,10 +157,10 @@ export const getChampionMachine = (params: {
         states: {
             [idle]: {
                 on: {
-                    [ABILITY_1]: ability_1,
-                    [ABILITY_2]: ability_2,
-                    [ABILITY_3]: ability_3,
-                    [ABILITY_4]: ability_4,
+                    [SKILL_1]: skill_1,
+                    [SKILL_2]: skill_2,
+                    [SKILL_3]: skill_3,
+                    [SKILL_4]: skill_4,
                     [MOVE]: move,
                     [FALL]: fall,
                     [DEATH]: final,
@@ -168,33 +168,33 @@ export const getChampionMachine = (params: {
                     [TAKE_STUN]: fall,
                 },
             },
-            [ability_1]: {
+            [skill_1]: {
                 after: {
-                    [ability_1CoolDown]: idle,
+                    [skill_1CoolDown]: idle,
                 },
             },
-            [ability_2]: {
+            [skill_2]: {
                 after: {
                     500: idle,
                 },
             },
-            [ability_3]: {
+            [skill_3]: {
                 after: {
-                    [ability_3CoolDown]: idle,
+                    [skill_3CoolDown]: idle,
                 },
             },
-            [ability_4]: {
+            [skill_4]: {
                 after: {
-                    [ability_4CoolDown]: idle,
+                    [skill_4CoolDown]: idle,
                 },
             },
             [move]: {
                 on: {
                     [IDLE]: idle,
-                    [ABILITY_1]: ability_1,
-                    [ABILITY_2]: ability_2,
-                    [ABILITY_3]: ability_3,
-                    [ABILITY_4]: ability_4,
+                    [SKILL_1]: skill_1,
+                    [SKILL_2]: skill_2,
+                    [SKILL_3]: skill_3,
+                    [SKILL_4]: skill_4,
                     [MOVE]: move,
                     [DEATH]: final,
                     [TAKE_DAMAGE]: takeDamage,

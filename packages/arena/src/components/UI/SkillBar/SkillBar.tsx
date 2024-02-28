@@ -21,7 +21,7 @@ const generatePulseAnimation = (imageUrl: string) => keyframes`
     }
 `;
 
-const AbilityBox = styled.div<{
+const SkillBox = styled.div<{
     active: boolean;
     duration: number;
     image: string;
@@ -37,7 +37,7 @@ const AbilityBox = styled.div<{
     border: 3px ridge #838383;
 `;
 
-const Abilities = styled.div`
+const Skills = styled.div`
     display: flex;
     gap: 16px;
 `;
@@ -46,17 +46,17 @@ export const SkillBar = () => {
     const [state] = Context.useActor();
 
     return (
-        <Abilities>
+        <Skills>
             {baseSkills.map((skill, i) => {
                 return (
-                    <AbilityBox
+                    <SkillBox
                         key={skill + i}
                         active={state.matches(skill)}
                         duration={states[skill].animation.duration}
-                        image={`images/skills/ability_${i + 1}.png`}
+                        image={`images/skills/skill_${i + 1}.png`}
                     />
                 );
             })}
-        </Abilities>
+        </Skills>
     );
 };

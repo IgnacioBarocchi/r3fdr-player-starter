@@ -33,7 +33,7 @@ const mutantActionRecords = [
     },
     {
         animationName: 'CrossPunching',
-        eventName: ChampionMachineStateEvents.ABILITY_1,
+        eventName: ChampionMachineStateEvents.SKILL_1,
         hitBox: {
             rigidBody: {
                 name: 'CrossPunching',
@@ -47,7 +47,7 @@ const mutantActionRecords = [
     },
     {
         animationName: 'Kicking',
-        eventName: ChampionMachineStateEvents.ABILITY_2,
+        eventName: ChampionMachineStateEvents.SKILL_2,
         hitBox: {
             rigidBody: {
                 name: 'Kicking',
@@ -61,7 +61,7 @@ const mutantActionRecords = [
     },
     {
         animationName: 'SidePunching',
-        eventName: ChampionMachineStateEvents.ABILITY_3,
+        eventName: ChampionMachineStateEvents.SKILL_3,
         hitBox: {
             rigidBody: {
                 name: 'SidePunching',
@@ -75,7 +75,7 @@ const mutantActionRecords = [
     },
     {
         animationName: 'Slamming',
-        eventName: ChampionMachineStateEvents.ABILITY_4,
+        eventName: ChampionMachineStateEvents.SKILL_4,
         hitBox: {
             rigidBody: {
                 name: 'Slamming',
@@ -119,7 +119,7 @@ const zombieActionRecords = [
     {
         // punching is missing
         animationName: 'Attacking1',
-        eventName: ChampionMachineStateEvents.ABILITY_1,
+        eventName: ChampionMachineStateEvents.SKILL_1,
         hitBox: {
             rigidBody: {
                 name: 'Attacking1',
@@ -133,7 +133,7 @@ const zombieActionRecords = [
     },
     {
         animationName: 'Attacking1',
-        eventName: ChampionMachineStateEvents.ABILITY_2,
+        eventName: ChampionMachineStateEvents.SKILL_2,
         hitBox: {
             rigidBody: {
                 name: 'Attacking1',
@@ -147,7 +147,7 @@ const zombieActionRecords = [
     },
     {
         animationName: 'Attacking2',
-        eventName: ChampionMachineStateEvents.ABILITY_3,
+        eventName: ChampionMachineStateEvents.SKILL_3,
         hitBox: {
             rigidBody: {
                 name: 'Attacking2',
@@ -161,7 +161,7 @@ const zombieActionRecords = [
     },
     {
         animationName: 'Attacking3',
-        eventName: ChampionMachineStateEvents.ABILITY_4,
+        eventName: ChampionMachineStateEvents.SKILL_4,
         hitBox: {
             rigidBody: {
                 name: 'Attacking3',

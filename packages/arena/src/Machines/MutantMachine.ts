@@ -21,26 +21,26 @@ export const states: MachineStates = {
             duration: Infinity,
         },
     },
-    Using1stAbility: {
+    Using1stSkill: {
         animation: {
             name: 'CrossPunching',
             duration: 1016.66,
         },
     },
-    Using2ndAbility: {
+    Using2ndSkill: {
         animation: {
             name: 'Kicking',
             duration: 1200,
         },
         effect: 'STUN',
     },
-    Using3rdAbility: {
+    Using3rdSkill: {
         animation: {
             name: 'SidePunching',
             duration: 1766.66,
         },
     },
-    Using4thAbility: {
+    Using4thSkill: {
         animation: {
             name: 'Slamming',
             duration: 2383.33,

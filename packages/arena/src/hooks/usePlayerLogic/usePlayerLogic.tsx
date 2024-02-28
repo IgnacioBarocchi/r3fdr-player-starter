@@ -15,22 +15,22 @@ const getMachineStateFromInputtedKeys = (keys: Keys) => {
         backward,
         leftward,
         rightward,
-        ability_1,
-        ability_2,
-        ability_3,
-        ability_4,
+        skill_1,
+        skill_2,
+        skill_3,
+        skill_4,
     } = keys;
     if (forward || backward || leftward || rightward) {
         return "MOVE";
     }
 
-    if (ability_4) return "ABILITY_4";
+    if (skill_4) return "SKILL_4";
 
-    if (ability_3) return "ABILITY_3";
+    if (skill_3) return "SKILL_3";
 
-    if (ability_2) return "ABILITY_2";
+    if (skill_2) return "SKILL_2";
 
-    if (ability_1) return "ABILITY_1";
+    if (skill_1) return "SKILL_1";
 
     return "IDLE";
 };

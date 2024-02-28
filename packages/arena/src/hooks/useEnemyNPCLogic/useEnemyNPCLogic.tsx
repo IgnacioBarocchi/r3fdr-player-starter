@@ -9,7 +9,7 @@ import { useMachine } from '@xstate/react';
 import { ZombieMachine } from '../../Machines/ZombieMachine';
 import { getDistance } from './getDistance';
 
-const attacks = ['ABILITY_1', 'ABILITY_2', 'ABILITY_3'];
+const attacks = ['SKILL_1', 'SKILL_2', 'SKILL_3'];
 const speed = 1.2;
 
 export const useEnemyNPCLogic = () => {

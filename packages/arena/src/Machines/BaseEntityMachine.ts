@@ -30,32 +30,37 @@ export const getBaseMachineInput = () => {
             Idle: {
                 on: {
                     MOVE: 'Running',
-                    ABILITY_1: 'Using1stAbility',
-                    ABILITY_2: 'Using2ndAbility',
-                    ABILITY_3: 'Using3rdAbility',
-                    ABILITY_4: 'Using4thAbility',
+                    SKILL_1: 'Using1stSkill',
+                    SKILL_2: 'Using2ndSkill',
+                    SKILL_3: 'Using3rdSkill',
+                    SKILL_4: 'Using4thSkill',
+                    // REACT_TO_SKILL_1:"ReactingTo1stSkill",
+                    // REACT_TO_SKILL_2:"ReactingTo2ndSkill",
+                    // REACT_TO_SKILL_3:"ReactingTo3rdSkill",
+                    // REACT_TO_SKILL_4:"ReactingTo4thSkill",
+                    // ENGAGE: "Engaging",
                     FALL: 'Stunned',
                     TAKE_DAMAGE: 'TakingDamage',
                     TAKE_STUN: 'Stunned',
                     DEATH: 'Dying',
                 },
             },
-            Using1stAbility: {
+            Using1stSkill: {
                 after: {
                     1000: 'Idle',
                 },
             },
-            Using2ndAbility: {
+            Using2ndSkill: {
                 after: {
                     1000: 'Idle',
                 },
             },
-            Using3rdAbility: {
+            Using3rdSkill: {
                 after: {
                     1000: 'Idle',
                 },
             },
-            Using4thAbility: {
+            Using4thSkill: {
                 after: {
                     1000: 'Idle',
                 },
@@ -64,10 +69,15 @@ export const getBaseMachineInput = () => {
                 on: {
                     IDLE: 'Idle',
                     MOVE: 'Running',
-                    ABILITY_1: 'Using1stAbility',
-                    ABILITY_2: 'Using2ndAbility',
-                    ABILITY_3: 'Using3rdAbility',
-                    ABILITY_4: 'Using4thAbility',
+                    SKILL_1: 'Using1stSkill',
+                    SKILL_2: 'Using2ndSkill',
+                    SKILL_3: 'Using3rdSkill',
+                    SKILL_4: 'Using4thSkill',
+                    // REACT_TO_SKILL_1:"ReactingTo1stSkill",
+                    // REACT_TO_SKILL_2:"ReactingTo2ndSkill",
+                    // REACT_TO_SKILL_3:"ReactingTo3rdSkill",
+                    // REACT_TO_SKILL_4:"ReactingTo4thSkill",
+                    // ENGAGE: "Engaging",
                     TAKE_DAMAGE: 'TakingDamage',
                     TAKE_STUN: 'Stunned',
                     DEATH: 'Dying',
@@ -110,10 +120,10 @@ export const getBaseMachineInput = () => {
 };
 
 export const baseOneShotActions = [
-    'Using1stAbility',
-    'Using2ndAbility',
-    'Using3rdAbility',
-    'Using4thAbility',
+    'Using1stSkill',
+    'Using2ndSkill',
+    'Using3rdSkill',
+    'Using4thSkill',
     'TakingDamage',
     'Stunned',
     'Dying',

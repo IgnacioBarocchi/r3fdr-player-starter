@@ -11,11 +11,11 @@ export const Dummies = ({ teamName }: { teamName: 'Zombie' | 'Mutant' }) => {
     
     return (
         <>
-            {Object.keys(records).map((ability, i) => {
+            {Object.keys(records).map((skill, i) => {
                 return (
-                    <group position={[1, 0.05, i * 2]} key={ability + i}>
+                    <group position={[1, 0.05, i * 2]} key={skill + i}>
                         <HitBox
-                            stateValue={ability}
+                            stateValue={skill}
                             hitBoxesRecords={records}
                             teamName={teamName}
                         />

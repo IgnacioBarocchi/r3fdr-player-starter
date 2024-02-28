@@ -26,7 +26,7 @@ const BlackScreen = styled.div`
     font-size: 24px;
 `;
 
-const AbilityBar = () => {
+const UI = () => {
     const [state] = Context.useActor();
 
     if (state.matches('Dying')) {
@@ -43,4 +43,4 @@ const AbilityBar = () => {
     );
 };
 
-export default AbilityBar;
+export default UI;
