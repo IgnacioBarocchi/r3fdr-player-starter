@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { Context } from '../../../providers/PlayerProvider/PlayerProvider';
 import { HPBar } from './HPBar';
-import { SkillBar } from './SkillBar';
+import { ActionBar } from './ActionBar';
 
 const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
     position: absolute;
     bottom: 20px;
     left: 50%;
@@ -36,8 +36,8 @@ const UI = () => {
     return (
         <>
             <Container>
-                <SkillBar />
                 <HPBar />
+                <ActionBar />
             </Container>
         </>
     );

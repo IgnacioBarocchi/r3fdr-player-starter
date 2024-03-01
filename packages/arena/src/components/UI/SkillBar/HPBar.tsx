@@ -12,7 +12,7 @@ const horizontalShaking = keyframes`
    `;
 
 const HPBarContainer = styled.div<{ hit: boolean }>`
-    width: 280px;
+    width: 268px;
     height: 20px;
     background: linear-gradient(
         0deg,

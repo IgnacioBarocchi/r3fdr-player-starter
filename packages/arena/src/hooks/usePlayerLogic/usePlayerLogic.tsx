@@ -21,18 +21,18 @@ const getMachineStateFromInputtedKeys = (keys: Keys) => {
         skill_4,
     } = keys;
     if (forward || backward || leftward || rightward) {
-        return "MOVE";
+        return "move";
     }
 
-    if (skill_4) return "SKILL_4";
+    if (skill_4) return "use_skill_4";
 
-    if (skill_3) return "SKILL_3";
+    if (skill_3) return "use_skill_3";
 
-    if (skill_2) return "SKILL_2";
+    if (skill_2) return "use_skill_2";
 
-    if (skill_1) return "SKILL_1";
+    if (skill_1) return "use_skill_1";
 
-    return "IDLE";
+    return "idle";
 };
 
 const updateCameraMovement = (

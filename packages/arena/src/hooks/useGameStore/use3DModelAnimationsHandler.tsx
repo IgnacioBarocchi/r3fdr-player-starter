@@ -48,6 +48,7 @@ export const use3DModelAnimationsHandler = ({
      * @depends on [stateValue] and [actions]
      */
     const animationEffect = () => {
+        console.log(stateValue)
         let timeoutId = 0;
         if(!((stateValue as string) in states)){
             return;

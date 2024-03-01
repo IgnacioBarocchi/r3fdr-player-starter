@@ -46,11 +46,11 @@ const Player: FC<{
             />
             <Sensor args={[0.2, 2]} position={[0, 0.5, 0]} sensor />
             <Mutant3DModel />
-            <HitBox
+            {/* <HitBox
                 stateValue={state.value}
                 hitBoxesRecords={MutantHitBoxes}
                 teamName={teamName}
-            />
+            /> */}
             {state.matches('Running') && <Footsteps />}
         </RigidBody>
     );

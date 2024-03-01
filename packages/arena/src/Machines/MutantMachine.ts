@@ -5,8 +5,7 @@ import {
     getBaseMachineInput,
     getHPValidator,
 } from './BaseEntityMachine';
-import { getMachineInput } from './base2';
-
+import { NonLoopableStates, getMachineInput } from './base2';
 
 const actionDurationByStateKey: Map<NonLoopableStates, number> = new Map([
     ['Use skill 1', 1016.66],
@@ -22,7 +21,7 @@ const actionDurationByStateKey: Map<NonLoopableStates, number> = new Map([
     ['Death', 2283.33],
 ]);
 
-const input = getMachineInput(actionDurationByStateKey)
+const input = getMachineInput('Player', 'a player', actionDurationByStateKey);
 
 export const states: MachineStates = {
     Idle: {
@@ -31,32 +30,34 @@ export const states: MachineStates = {
             duration: Infinity,
         },
     },
-    Running: {
+    //! change name
+    //Running: {
+        Move: {
         animation: {
             name: 'Running',
             duration: Infinity,
         },
     },
-    Using1stSkill: {
+    'Use skill 1': {
         animation: {
             name: 'CrossPunching',
             duration: 1016.66,
         },
     },
-    Using2ndSkill: {
+    'Use skill 2': {
         animation: {
             name: 'Kicking',
             duration: 1200,
         },
         effect: 'STUN',
     },
-    Using3rdSkill: {
+    'Use skill 3': {
         animation: {
             name: 'SidePunching',
             duration: 1766.66,
         },
     },
-    Using4thSkill: {
+    'Use skill 4': {
         animation: {
             name: 'Slamming',
             duration: 2383.33,
@@ -83,47 +84,47 @@ export const states: MachineStates = {
     },
 };
 
-const HPValidator = getHPValidator(200);
-const MutantMachineInput = getBaseMachineInput();
+// const HPValidator = getHPValidator(200);
+// const MutantMachineInput = getBaseMachineInput();
 
-for (const action of baseOneShotActions) {
-    // @ts-ignore
-    MutantMachineInput.states[action] = {
-        // @ts-ignore
-        after: { [states[action].animation.duration]: 'Idle' },
-    };
-}
+// for (const action of baseOneShotActions) {
+//     // @ts-ignore
+//     MutantMachineInput.states[action] = {
+//         // @ts-ignore
+//         after: { [states[action].animation.duration]: 'Idle' },
+//     };
+// }
 
-MutantMachineInput.states.validating = {
-    invoke: {
-        id: 'HPValidator',
-        // @ts-ignore
-        src: HPValidator,
-        onDone: {
-            target: states.Idle.animation.name,
-        },
-        onError: {
-            target: states.Dying.animation.name,
-        },
-    },
-};
+// MutantMachineInput.states.validating = {
+//     invoke: {
+//         id: 'HPValidator',
+//         // @ts-ignore
+//         src: HPValidator,
+//         onDone: {
+//             target: states.Idle.animation.name,
+//         },
+//         onError: {
+//             target: states.Dying.animation.name,
+//         },
+//     },
+// };
 
-MutantMachineInput.states.Dying = {
-    type: 'final',
-};
+// MutantMachineInput.states.Dying = {
+//     type: 'final',
+// };
 
-MutantMachineInput.states.TakingDamage = {
-    ...MutantMachineInput.states.TakingDamage,
-    after: {
-        1000: 'validating',
-    },
-    entry: assign({
-        currentHP: (context: { currentHP: number }) => {
-            return context.currentHP - 20;
-        },
-    }),
-};
+// MutantMachineInput.states.TakingDamage = {
+//     ...MutantMachineInput.states.TakingDamage,
+//     after: {
+//         1000: 'validating',
+//     },
+//     entry: assign({
+//         currentHP: (context: { currentHP: number }) => {
+//             return context.currentHP - 20;
+//         },
+//     }),
+// };
 
-MutantMachineInput.id = "Player"
+// MutantMachineInput.id = 'Player';
 // @ts-ignore
-export const MutantMachine = createMachine(MutantMachineInput);
+export const MutantMachine = createMachine(input);

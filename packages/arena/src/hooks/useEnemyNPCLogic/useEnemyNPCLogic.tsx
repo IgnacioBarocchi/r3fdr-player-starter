@@ -1,7 +1,7 @@
 import { GameState, useGameStore } from '../useGameStore/useGameStore';
 import { MutableRefObject, useRef } from 'react';
 
-import { Group, Quaternion, Vector3 } from 'three';
+import { Group } from 'three';
 import { RapierRigidBody } from '@react-three/rapier';
 import { goToTarget } from './goToTarget';
 import { useFrame } from '@react-three/fiber';
@@ -10,7 +10,7 @@ import { ZombieMachine } from '../../Machines/ZombieMachine';
 import { getDistance } from './getDistance';
 
 const attacks = ['SKILL_1', 'SKILL_2', 'SKILL_3'];
-const speed = 1.2;
+const speed = 1.5;
 
 export const useEnemyNPCLogic = () => {
     const { playerState } = useGameStore((state: GameState) => ({

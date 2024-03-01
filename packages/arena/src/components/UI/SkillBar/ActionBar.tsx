@@ -21,7 +21,7 @@ const generatePulseAnimation = (imageUrl: string) => keyframes`
     }
 `;
 
-const SkillBox = styled.div<{
+const Icon = styled.div<{
     active: boolean;
     duration: number;
     image: string;
@@ -42,21 +42,43 @@ const Skills = styled.div`
     gap: 16px;
 `;
 
-export const SkillBar = () => {
+const SkillBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50px;
+    gap: 8px;
+`;
+
+const Key = styled.div`
+    background: #9C9A99;
+    font-family: Times New Roman;
+    color: black;
+    font-weight: bold;
+    width: 24px;
+    text-align: center;
+    border: 3px ridge #15100D;
+    border-radius: 4px;
+`;
+
+export const ActionBar = () => {
     const [state] = Context.useActor();
 
     return (
         <Skills>
-            {baseSkills.map((skill, i) => {
+            {/* {baseSkills.map((skill, i) => {
                 return (
-                    <SkillBox
-                        key={skill + i}
-                        active={state.matches(skill)}
-                        duration={states[skill].animation.duration}
-                        image={`images/skills/skill_${i + 1}.png`}
-                    />
+                    <SkillBox>
+                        <Icon
+                            key={skill + i}
+                            active={state.matches(skill)}
+                            duration={states[skill].animation.duration}
+                            image={`images/skills/skill_${i + 1}.png`}
+                        />
+                        <Key>{['J', 'K', 'L', 'I'][i]}</Key>
+                    </SkillBox>
                 );
-            })}
+            })} */}
         </Skills>
     );
 };
