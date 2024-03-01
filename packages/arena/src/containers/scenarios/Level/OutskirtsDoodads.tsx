@@ -1,5 +1,6 @@
 import { CuboidCollider, CylinderCollider } from '@react-three/rapier';
 import { useState } from 'react';
+import { WoodWall } from './WoodWall';
 
 export const OutskirtsDoodads = () => {
     const [shouldRender, setShouldRender] = useState(false);
@@ -15,8 +16,11 @@ export const OutskirtsDoodads = () => {
                     setShouldRender(false);
                 }}
             />
-            <CuboidCollider position={[20,0,20]} args={[1,1,1]}/>
-            {shouldRender ? <></> : null}
+            {true ? (
+                <>
+                    <WoodWall position={[0,0,0]} rotation={[0, 0, 0]} />
+                </>
+            ) : null}
         </>
     );
 };

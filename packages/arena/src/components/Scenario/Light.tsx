@@ -28,8 +28,8 @@ const KeyLight = () => {
 
   export const Light = () => {
     return <>
-    <KeyLight />
-    <FillLight />
-    <BackLight />
+    {/* <KeyLight /> */}
+    {/* <FillLight />
+    <BackLight /> */}
     </>
   }

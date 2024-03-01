@@ -2,6 +2,7 @@ import {
     CapsuleCollider as Bounding,
     RigidBody,
     CylinderCollider as Sensor,
+    TrimeshCollider,
 } from '@react-three/rapier';
 import { useEffect, useState } from 'react';
 
@@ -11,7 +12,6 @@ import { useEnemyNPCLogic } from '../../hooks/useEnemyNPCLogic/useEnemyNPCLogic'
 import { useRigidBodyColliderHandler } from '../../hooks/useRigidBodyColliderHandler/useRigidBodyColliderHandler';
 import { useRigidBodySensorHandler } from '../../hooks/useRigidBodySensorHandler/useRigidBodySensorHandler';
 import { ZombieHitBoxes } from '../utility/HitBox/hitBoxes';
-import { GameState, useGameStore } from '../../hooks/useGameStore/useGameStore';
 
 const teamName = 'Zombie';
 
@@ -50,7 +50,6 @@ export const ZombieNPC = ({ enemyId, onDead }: { enemyId: string; onDead: ()=> v
     }
 
     return (
-        // lockRotations={true}
         <RigidBody lockRotations={true} colliders={false} ref={enemyBody}>
             <Bounding
                 args={[0.2, 0.6]}

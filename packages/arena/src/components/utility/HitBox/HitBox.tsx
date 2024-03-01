@@ -32,8 +32,8 @@ export const HitBox = ({
                 gravityScale={0}
                 shape={'ball'}
             >
-                {/* <BallCollider args={[size]} /> */}
-                <CuboidCollider sensor args={[.2, .2, 5]} />
+                <BallCollider args={[size]} />
+                {/* <CuboidCollider sensor args={[.2, .2, 5]} /> */}
             </RigidBody>
             <PositionalAudio
                 load

@@ -28,11 +28,11 @@ export const use3DModelLoader = (params: LoaderParams) => {
         group
     );
 
-    useMemo(() => {
-        scene.traverse((obj: { castShadow: boolean }) => {
-            obj.castShadow = true;
-        });
-    }, [scene]);
+    // useMemo(() => {
+    //     scene.traverse((obj: { castShadow: boolean }) => {
+    //         obj.castShadow = true;
+    //     });
+    // }, [scene]);
 
     useEffect(params.onLoadEffect ? params.onLoadEffect(group) : () => {}, []);
 

@@ -8,10 +8,9 @@ import { Vector3 } from 'three';
 import { useControls } from 'leva';
 import { ZombieSpawner } from '../../../components/Entities/ZombieSpawner.tsx';
 import { Dummies } from './Dummies.tsx';
-import { OutskirtsDoodads } from './OutskirtsDoodads.tsx';
 
 const renderDummies = false;
-const renderZombies = false;
+const renderZombies = true;
 
 const LVL1 = () => {
     const {
@@ -36,7 +35,7 @@ const LVL1 = () => {
                 position={new Vector3(0, 0.2, 0)}
                 scale={new Vector3(100, 0.2, 100)}
             />
-            <OutskirtsDoodads/>
+            {/* <OutskirtsDoodads /> */}
             {!terrainIsLoading && (
                 <>
                     <Player
@@ -55,5 +54,6 @@ const LVL1 = () => {
 
 export default LVL1;
 
-
-                    {/* <ZombieNPC enemyId="a" onDead={() => {}} /> */}
+{
+    /* <ZombieNPC enemyId="a" onDead={() => {}} /> */
+}
