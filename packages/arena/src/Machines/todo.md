@@ -1,0 +1,2 @@
+hacer q el mismo modelo mutant sea un NPC. de ese modo podemos asegurarnos de hacer todo lo mas simple posible.
+cuando tengamos que agregar un enemigo, lo unico especifico seran los nombres de las animaciones y la duracion

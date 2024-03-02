@@ -66,7 +66,7 @@ export const ActionBar = () => {
 
     return (
         <Skills>
-            {/* {baseSkills.map((skill, i) => {
+            {baseSkills.map((skill, i) => {
                 return (
                     <SkillBox>
                         <Icon
@@ -78,7 +78,7 @@ export const ActionBar = () => {
                         <Key>{['J', 'K', 'L', 'I'][i]}</Key>
                     </SkillBox>
                 );
-            })} */}
+            })}
         </Skills>
     );
 };

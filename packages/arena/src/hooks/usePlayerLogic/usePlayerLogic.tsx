@@ -21,18 +21,18 @@ const getMachineStateFromInputtedKeys = (keys: Keys) => {
         skill_4,
     } = keys;
     if (forward || backward || leftward || rightward) {
-        return "move";
+        return 'move';
     }
 
-    if (skill_4) return "use_skill_4";
+    if (skill_4) return 'use_skill_4';
 
-    if (skill_3) return "use_skill_3";
+    if (skill_3) return 'use_skill_3';
 
-    if (skill_2) return "use_skill_2";
+    if (skill_2) return 'use_skill_2';
 
-    if (skill_1) return "use_skill_1";
+    if (skill_1) return 'use_skill_1';
 
-    return "idle";
+    return 'idle';
 };
 
 const updateCameraMovement = (
@@ -56,16 +56,14 @@ const updateCameraMovement = (
     rootState.camera.lookAt(cameraTarget);
 };
 
-export const usePlayerLogic = (
-    useOrbitControls: boolean,
-) => {
-    const playerBody = useRef<RapierRigidBody>(null);
+export const usePlayerLogic = (useOrbitControls: boolean) => {
+    const playerRigidBodyReference = useRef<RapierRigidBody>(null);
     const [orientation, setOrientation] = useState(Math.PI);
     const [_, getKeys] = useKeyboardControls() as unknown as [null, () => Keys];
     const [, send] = Context.useActor();
 
     useFrame((rootState, delta) => {
-        if (!playerBody.current) return;
+        if (!playerRigidBodyReference.current) return;
         const keys = getKeys() as unknown as Keys;
         const numberOfKeysPressed = Object.values(keys).filter(
             (key) => key
@@ -74,7 +72,7 @@ export const usePlayerLogic = (
         send(getMachineStateFromInputtedKeys(keys));
 
         const linearVelocityYAxis: number | undefined =
-            playerBody.current?.linvel().y;
+            playerRigidBodyReference.current?.linvel().y;
         const impulse = getImpulse(
             linearVelocityYAxis,
             keys,
@@ -82,17 +80,19 @@ export const usePlayerLogic = (
             delta
         );
 
-        playerBody.current.setLinvel(impulse, false);
+        playerRigidBodyReference.current.setLinvel(impulse, false);
 
         updateOrientation(orientation, setOrientation, keys);
 
         const quaternionRotation = new Quaternion();
         quaternionRotation.setFromEuler(new Euler(0, orientation, 0));
         // console.log(quaternionRotation)
-        playerBody.current.setRotation(quaternionRotation, false);
+        playerRigidBodyReference.current.setRotation(quaternionRotation, false);
 
-        const playerVectorialPosition = playerBody.current.translation();
-        const playerVectorialRotation = playerBody.current.rotation();
+        const playerVectorialPosition =
+            playerRigidBodyReference.current.translation();
+        const playerVectorialRotation =
+            playerRigidBodyReference.current.rotation();
 
         if (!useOrbitControls) {
             updateCameraMovement(
@@ -104,7 +104,7 @@ export const usePlayerLogic = (
     });
 
     return {
-        playerBody,
+        playerRigidBodyReference,
         orientation,
         setOrientation,
         getKeys,

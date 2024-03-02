@@ -10,36 +10,36 @@ export type RigibBodyWithColliderProps = {
 export type HitBoxesRecords = { [x: string]: RigibBodyWithColliderProps }
 
 export const MutantHitBoxes: HitBoxesRecords = {
-    Using1stSkill: {
+    'Use skill 1': {
         rigidBody: {
-            name: mutantStates.Using1stSkill.animation.name,
+            name: mutantStates['Use skill 1'].animation.name,
             type: 'fixed',
             position: [0, 1.25, 1.2],
             density: 1000,
         },
         size: 0.3,
     },
-    Using2ndSkill: {
+    'Use skill 2': {
         rigidBody: {
-            name: mutantStates.Using2ndSkill.animation.name,
+            name: mutantStates['Use skill 2'].animation.name,
             type: 'fixed',
             position: [0, 1.25, 2],
             density: 1000,
         },
         size: 0.3,
     },
-    Using3rdSkill: {
+    'Use skill 3': {
         rigidBody: {
-            name: mutantStates.Using3rdSkill.animation.name,
+            name: mutantStates['Use skill 3'].animation.name,
             type: 'fixed',
             position: [0, 1.25, 2],
             density: 1000,
         },
         size: 0.3,
     },
-    Using4thSkill: {
+    'Use skill 4': {
         rigidBody: {
-            name: mutantStates.Using4thSkill.animation.name,
+            name: mutantStates['Use skill 4'].animation.name,
             type: 'fixed',
             position: [0, 0.5, 5],
             density: 1000,

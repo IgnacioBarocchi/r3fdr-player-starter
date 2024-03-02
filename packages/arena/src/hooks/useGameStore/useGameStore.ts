@@ -1,3 +1,4 @@
+import { RapierRigidBody } from '@react-three/rapier';
 import { Group } from 'three';
 import { SetState, create } from 'zustand';
 
@@ -11,6 +12,10 @@ export const useGameStore = create<GameState>(
             set({ shouldRenderOutskirts }),
         playerState: {},
         enemies: [],
+        playerRigidBody: {},
+        setPlayerRigidBody: (playerRigidBody) => {
+            set({ playerRigidBody });
+        },
         setPlayerState: (playerState: PlayerState): void =>
             set({ playerState }),
         addEnemy: (enemy: { id: string }): void =>
@@ -29,7 +34,9 @@ export type GameState = {
     setShouldRenderOutskirts: (shouldRenderOutskirts: boolean) => void;
     enemies: { id: string }[];
     playerState: PlayerState;
+    playerRigidBody: RapierRigidBody;
     setPlayerState: (playerState: PlayerState) => void;
+    setPlayerRigidBody: (playerRigidBody: RapierRigidBody) => void;
     addEnemy: (enemy: { id: string }) => void;
     removeEnemyById: (id: string) => void;
 };

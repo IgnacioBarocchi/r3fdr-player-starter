@@ -131,9 +131,11 @@ export const baseOneShotActions = [
 
 export const baseLoopableActions = ['Idle', 'Running'];
 
-export const baseSkills = baseOneShotActions.filter((skill) =>
-    skill.startsWith('Using')
-);
+// export const baseSkills = baseOneShotActions.filter((skill) =>
+//     skill.startsWith('Using')
+// );
+
+export const baseSkills = ["Use skill 1", 'Use skill 2', 'Use skill 3', 'Use skill 4'];
 
 // @ts-ignore
 export const BaseEntityMachine = createMachine(getBaseMachineInput());

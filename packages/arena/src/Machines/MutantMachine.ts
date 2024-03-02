@@ -1,27 +1,6 @@
-import { assign, createMachine } from 'xstate';
-import {
-    MachineStates,
-    baseOneShotActions,
-    getBaseMachineInput,
-    getHPValidator,
-} from './BaseEntityMachine';
-import { NonLoopableStates, getMachineInput } from './base2';
-
-const actionDurationByStateKey: Map<NonLoopableStates, number> = new Map([
-    ['Use skill 1', 1016.66],
-    ['Use skill 2', 1200],
-    ['Use skill 3', 1766.66],
-    ['Use skill 4', 2383.33],
-    ['React to skill 1', 1333.33],
-    ['React to skill 2', 2150],
-    ['React to skill 3', 1333.33],
-    ['React to skill 4', 1333.33],
-    ['Engage', 1000],
-    ['Provoke', 1000],
-    ['Death', 2283.33],
-]);
-
-const input = getMachineInput('Player', 'a player', actionDurationByStateKey);
+import { createMachine } from 'xstate';
+import { MachineStates } from './BaseEntityMachine';
+import { getMachineInput } from './base2';
 
 export const states: MachineStates = {
     Idle: {
@@ -30,9 +9,7 @@ export const states: MachineStates = {
             duration: Infinity,
         },
     },
-    //! change name
-    //Running: {
-        Move: {
+    Move: {
         animation: {
             name: 'Running',
             duration: Infinity,
@@ -64,6 +41,7 @@ export const states: MachineStates = {
         },
         effect: 'AOE',
     },
+    // todo this
     Dying: {
         animation: {
             name: 'Dying',
@@ -84,47 +62,36 @@ export const states: MachineStates = {
     },
 };
 
-// const HPValidator = getHPValidator(200);
-// const MutantMachineInput = getBaseMachineInput();
+export const animationByState = new Map([
+    ['Idle', 'Idle'],
+    ['Move', 'Running'],
+    ['Use skill 1', 'CrossPunching'],
+    ['Use skill 2', 'Kicking'],
+    ['Use skill 3', 'SidePunching'],
+    ['Use skill 4', 'Slamming'],
+    ['Death', 'Dying'],
+    ['Reacting to skill 1', 'TakingDamage'],
+    ['Reacting to skill 2', 'Stunned'],
+]);
 
-// for (const action of baseOneShotActions) {
-//     // @ts-ignore
-//     MutantMachineInput.states[action] = {
-//         // @ts-ignore
-//         after: { [states[action].animation.duration]: 'Idle' },
-//     };
-// }
-
-// MutantMachineInput.states.validating = {
-//     invoke: {
-//         id: 'HPValidator',
-//         // @ts-ignore
-//         src: HPValidator,
-//         onDone: {
-//             target: states.Idle.animation.name,
-//         },
-//         onError: {
-//             target: states.Dying.animation.name,
-//         },
-//     },
-// };
-
-// MutantMachineInput.states.Dying = {
-//     type: 'final',
-// };
-
-// MutantMachineInput.states.TakingDamage = {
-//     ...MutantMachineInput.states.TakingDamage,
-//     after: {
-//         1000: 'validating',
-//     },
-//     entry: assign({
-//         currentHP: (context: { currentHP: number }) => {
-//             return context.currentHP - 20;
-//         },
-//     }),
-// };
-
-// MutantMachineInput.id = 'Player';
 // @ts-ignore
-export const MutantMachine = createMachine(input);
+export const MutantMachine = createMachine(
+    // @ts-ignore
+    getMachineInput(
+        'Player',
+        'a player',
+        new Map([
+            ['Use skill 1', 1016.66],
+            ['Use skill 2', 1200],
+            ['Use skill 3', 1766.66],
+            ['Use skill 4', 2383.33],
+            ['React to skill 1', 1333.33],
+            ['React to skill 2', 2150],
+            ['React to skill 3', 1333.33],
+            ['React to skill 4', 1333.33],
+            ['Engage', 1000],
+            ['Provoke', 1000],
+            ['Death', 2283.33],
+        ])
+    )
+);

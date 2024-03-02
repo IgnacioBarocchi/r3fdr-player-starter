@@ -6,12 +6,12 @@ import Player from '../../../components/Entities/Player.tsx';
 import Terrain from './Terrain.tsx';
 import { Vector3 } from 'three';
 import { useControls } from 'leva';
-import { ZombieSpawner } from '../../../components/Entities/ZombieSpawner.tsx';
-import { Dummies } from './Dummies.tsx';
-import { ZombieNPC } from '../../../components/Entities/ZombieNPC.tsx';
+import { NPC } from '../../../components/UI/SkillBar/NPC.tsx';
+import { getMachineInput } from '../../../Machines/base2.ts';
+import { Mutant3DModel } from '../../../components/Entities/MutantModel.tsx';
 
-const renderDummies = false;
-const renderZombies = true;
+// const renderDummies = false;
+// const renderZombies = true;
 
 const LVL1 = () => {
     const {
@@ -31,7 +31,7 @@ const LVL1 = () => {
     }, []);
 
     return (
-        <Physics timeStep="vary" debug={false}>
+        <Physics timeStep="vary" debug={true}>
             <Terrain
                 position={new Vector3(0, 0.2, 0)}
                 scale={new Vector3(100, 0.2, 100)}
@@ -44,10 +44,30 @@ const LVL1 = () => {
                         useOrbitControls={
                             USE_ORBIT_CONTROLS && mockOrbitControls
                         }
+                        Model={Mutant3DModel}
                     />
-                    {/* <ZombieNPC enemyId='x' onDead={()=>{}}/> */}
-                    {/* {renderZombies && <ZombieSpawner position={[5, 0, 5]} />} */}
-                    {/* {renderDummies && <Dummies teamName="Zombie" />} */}
+                    <NPC
+                        machineInput={getMachineInput(
+                            'NPC',
+                            'a player',
+                            new Map([
+                                ['Use skill 1', 1016.66],
+                                ['Use skill 2', 1200],
+                                ['Use skill 3', 1766.66],
+                                ['Use skill 4', 2383.33],
+                                ['React to skill 1', 1333.33],
+                                ['React to skill 2', 2150],
+                                ['React to skill 3', 1333.33],
+                                ['React to skill 4', 1333.33],
+                                ['Engage', 1000],
+                                ['Provoke', 1000],
+                                ['Death', 2283.33],
+                            ])
+                        )}
+
+                        Model={Mutant3DModel}
+                    />
+                    
                 </>
             )}
         </Physics>
@@ -56,6 +76,7 @@ const LVL1 = () => {
 
 export default LVL1;
 
-{
-    /* <ZombieNPC enemyId="a" onDead={() => {}} /> */
-}
+/* <ZombieNPC enemyId="a" onDead={() => {}} /> */
+/* <ZombieNPC enemyId='x' onDead={()=>{}}/> */
+/* {renderZombies && <ZombieSpawner position={[5, 0, 5]} />} */
+/* {renderDummies && <Dummies teamName="Zombie" />} */

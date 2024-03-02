@@ -2,7 +2,6 @@ import {
     CapsuleCollider as Bounding,
     RigidBody,
     CylinderCollider as Sensor,
-    TrimeshCollider,
 } from '@react-three/rapier';
 import { useEffect, useState } from 'react';
 
@@ -67,7 +66,6 @@ export const ZombieNPC = ({ enemyId, onDead }: { enemyId: string; onDead: ()=> v
                 stateValue={state.value}
                 givenDependantGroupRef={enemy3DModel}
             />
-            {/* <CuboidCollider position={[0, 1.25, 1.5]} args={[.1, .1, .5]} /> */}
             <HitBox
                 stateValue={state.value}
                 hitBoxesRecords={ZombieHitBoxes}

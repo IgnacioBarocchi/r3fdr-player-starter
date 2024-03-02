@@ -10,7 +10,7 @@ import { useGameStore } from '../../hooks/useGameStore/useGameStore';
 import { Group } from 'three';
 
 const path = EntityModel.Mutant.path;
-const Mutant3DModel = () => {
+const ControlledMutant3DModel = () => {
     const [state] = Context.useActor();
     const { playerState, setPlayerState } = useGameStore((state) => ({
         playerState: state.playerState,
@@ -76,4 +76,4 @@ const Mutant3DModel = () => {
 
 useGLTF.preload(path);
 
-export default Mutant3DModel;
+export default ControlledMutant3DModel;

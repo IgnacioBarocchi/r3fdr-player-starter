@@ -1,34 +1,44 @@
 import {
     CapsuleCollider as Bounding,
-    CuboidCollider,
     RigidBody,
     CylinderCollider as Sensor,
 } from '@react-three/rapier';
 
-import Mutant3DModel from './Mutant3DModel';
 import { usePlayerLogic } from '../../hooks/usePlayerLogic/usePlayerLogic';
 import { useRigidBodyColliderHandler } from '../../hooks/useRigidBodyColliderHandler/useRigidBodyColliderHandler';
 import { Context } from '../../providers/PlayerProvider/PlayerProvider';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { HitBox } from '../utility/HitBox/HitBox';
 import { MutantHitBoxes } from '../utility/HitBox/hitBoxes';
-import { Text } from '@react-three/drei';
 import { Footsteps } from '../../containers/scenarios/Level/Footsteps';
+import { useGameStore } from '../../hooks/useGameStore/useGameStore';
 
 const Player: FC<{
     useOrbitControls: boolean;
     teamName: 'Zombie' | 'Mutant';
-}> = ({ useOrbitControls, teamName }) => {
+    Model: FC<{ stateValue: StateValue }>;
+}> = ({ useOrbitControls, teamName, Model }) => {
     const [state, send] = Context.useActor();
+    
+    const { setPlayerRigidBody } = useGameStore((state) => ({
+        playerState: state.playerState,
+        setPlayerRigidBody: state.setPlayerRigidBody,
+    }));
 
-    const { playerBody } = usePlayerLogic(useOrbitControls);
+    const { playerRigidBodyReference } = usePlayerLogic(useOrbitControls);
 
     const { onCollisionEnter } = useRigidBodyColliderHandler({
         send,
         teamName,
     });
 
-    if (state.matches('Dying') && state.context.currentHP >= 0) {
+    useEffect(() => {
+        if (playerRigidBodyReference?.current) {
+            setPlayerRigidBody(playerRigidBodyReference?.current);
+        }
+    }, []);
+
+    if (state.matches('Death') && state.context.currentHP >= 0) {
         return <></>;
     }
 
@@ -36,7 +46,7 @@ const Player: FC<{
         <RigidBody
             lockRotations={true}
             colliders={false}
-            ref={playerBody}
+            ref={playerRigidBodyReference}
             name="Player"
         >
             <Bounding
@@ -45,13 +55,13 @@ const Player: FC<{
                 onCollisionEnter={onCollisionEnter}
             />
             <Sensor args={[0.2, 2]} position={[0, 0.5, 0]} sensor />
-            <Mutant3DModel />
-            {/* <HitBox
+            <Model stateValue={state.value} />
+            <HitBox
                 stateValue={state.value}
                 hitBoxesRecords={MutantHitBoxes}
                 teamName={teamName}
-            /> */}
-            {state.matches('Running') && <Footsteps />}
+            />
+            {state.matches('Move') && <Footsteps />}
         </RigidBody>
     );
 };
