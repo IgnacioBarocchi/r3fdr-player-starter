@@ -48,15 +48,15 @@ export const use3DModelAnimationsHandler = ({
      * @depends on [stateValue] and [actions]
      */
     const animationEffect = () => {
-        console.log(stateValue)
+        console.log(`[${stateValue}]`)
         let timeoutId = 0;
         if(!((stateValue as string) in states)){
+            console.log("$",stateValue)
             return;
         }
-        if(String(stateValue).toLocaleLowerCase().startsWith("taun")){
-            console.log(stateValue)
-        }
+        
         const { animation } = states[stateValue];
+        console.log(`[${JSON.stringify(states[stateValue])}]`)
         const currentAction = actions[animation.name];
 
         const handleCleanup = () => {
@@ -68,7 +68,7 @@ export const use3DModelAnimationsHandler = ({
             playFinalAnimation(actions[states.Dying.animation.name]);
         }
 
-        if (baseLoopableActions.includes(animation.name)) {
+        if (["Move", "Idle"].includes(stateValue as string)) {
             blendAnimationTransition(currentAction);
             return handleCleanup;
         } else {

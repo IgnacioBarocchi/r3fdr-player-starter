@@ -60,7 +60,7 @@ export const usePlayerLogic = (useOrbitControls: boolean) => {
     const playerRigidBodyReference = useRef<RapierRigidBody>(null);
     const [orientation, setOrientation] = useState(Math.PI);
     const [_, getKeys] = useKeyboardControls() as unknown as [null, () => Keys];
-    const [, send] = Context.useActor();
+    const [state, send] = Context.useActor();
 
     useFrame((rootState, delta) => {
         if (!playerRigidBodyReference.current) return;
@@ -71,34 +71,28 @@ export const usePlayerLogic = (useOrbitControls: boolean) => {
 
         send(getMachineStateFromInputtedKeys(keys));
 
-        const linearVelocityYAxis: number | undefined =
-            playerRigidBodyReference.current?.linvel().y;
-        const impulse = getImpulse(
-            linearVelocityYAxis,
-            keys,
-            numberOfKeysPressed,
-            delta
-        );
+        if (!state.matches('Use skill 3') || !state.matches('Use skill 4')) {
+            const impulse = getImpulse(keys, numberOfKeysPressed, delta);
+    
+            playerRigidBodyReference.current.setLinvel(impulse, false);
+            updateOrientation(orientation, setOrientation, keys);
+            const quaternionRotation = new Quaternion();
+            quaternionRotation.setFromEuler(new Euler(0, orientation, 0));
+            playerRigidBodyReference.current.setRotation(quaternionRotation, false);
+        }
 
-        playerRigidBodyReference.current.setLinvel(impulse, false);
 
-        updateOrientation(orientation, setOrientation, keys);
-
-        const quaternionRotation = new Quaternion();
-        quaternionRotation.setFromEuler(new Euler(0, orientation, 0));
-        // console.log(quaternionRotation)
-        playerRigidBodyReference.current.setRotation(quaternionRotation, false);
-
-        const playerVectorialPosition =
-            playerRigidBodyReference.current.translation();
-        const playerVectorialRotation =
-            playerRigidBodyReference.current.rotation();
+        if (state.matches('Use skill 3')) {
+            const impulseVector = new Vector3(0, 0, 5);
+            impulseVector.applyAxisAngle(new Vector3(0, 1, 0), orientation);
+            playerRigidBodyReference.current.setLinvel(impulseVector, false);
+        }
 
         if (!useOrbitControls) {
             updateCameraMovement(
                 rootState,
-                playerVectorialPosition as unknown as Vector3,
-                playerVectorialRotation as unknown as Vector3
+                playerRigidBodyReference.current.translation() as unknown as Vector3,
+                playerRigidBodyReference.current.rotation() as unknown as Vector3
             );
         }
     });
@@ -110,10 +104,3 @@ export const usePlayerLogic = (useOrbitControls: boolean) => {
         getKeys,
     };
 };
-
-// const isIdle = numberOfKeysPressed === 0;
-// const action = isIdle
-//     ? "IDLE"
-//     : ;
-
-//     send(numberOfKeysPressed === 0 && !state.matches("Idle") ? );

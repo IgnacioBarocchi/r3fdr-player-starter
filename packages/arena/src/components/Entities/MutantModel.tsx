@@ -53,9 +53,6 @@ export const Mutant3DModel = ({ stateValue }: { stateValue: StateValue }) => {
                         // @ts-ignore
                         skeleton={nodes.meshmesh008_1.skeleton}
                     />
-                    {/* </RigidBody>
-                        )}
-                    </group> */}
                 </group>
             </group>
         </group>

@@ -9,6 +9,7 @@ import { useControls } from 'leva';
 import { NPC } from '../../../components/UI/SkillBar/NPC.tsx';
 import { getMachineInput } from '../../../Machines/base2.ts';
 import { Mutant3DModel } from '../../../components/Entities/MutantModel.tsx';
+import { GrenadierModel } from '../../../components/Entities/GrenadierModel.tsx';
 
 // const renderDummies = false;
 // const renderZombies = true;
@@ -44,9 +45,9 @@ const LVL1 = () => {
                         useOrbitControls={
                             USE_ORBIT_CONTROLS && mockOrbitControls
                         }
-                        Model={Mutant3DModel}
+                        Model={GrenadierModel}
                     />
-                    <NPC
+                    {/* <NPC
                         machineInput={getMachineInput(
                             'NPC',
                             'a player',
@@ -66,8 +67,7 @@ const LVL1 = () => {
                         )}
 
                         Model={Mutant3DModel}
-                    />
-                    
+                    /> */}
                 </>
             )}
         </Physics>

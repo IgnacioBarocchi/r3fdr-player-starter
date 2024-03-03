@@ -5,38 +5,38 @@ import { getMachineInput } from './base2';
 export const states: MachineStates = {
     Idle: {
         animation: {
-            name: 'Idle',
+            name: 'Saber And Pistol Idle - Idle',
             duration: Infinity,
         },
     },
     Move: {
         animation: {
-            name: 'Running',
+            name: 'Saber And Pistol Run - Move',
             duration: Infinity,
         },
     },
     'Use skill 1': {
         animation: {
-            name: 'CrossPunching',
+            name: 'Saber And Pistol Slash - Use skill 1',
             duration: 1016.66,
         },
     },
     'Use skill 2': {
         animation: {
-            name: 'Kicking',
+            name: 'Saber And Pistol Kick - Use skill 2',
             duration: 1200,
         },
         effect: 'STUN',
     },
     'Use skill 3': {
         animation: {
-            name: 'SidePunching',
+            name: 'Sprinting Forward Roll - Use skill 3',
             duration: 1766.66,
         },
     },
     'Use skill 4': {
         animation: {
-            name: 'Slamming',
+            name: 'Shooting - Use skill 4',
             duration: 2383.33,
         },
         effect: 'AOE',
@@ -44,35 +44,23 @@ export const states: MachineStates = {
     // todo this
     Dying: {
         animation: {
-            name: 'Dying',
+            name: 'Falling Back Death - Death',
             duration: 2283.33,
         },
     },
-    TakingDamage: {
+    'React to skill 1': {
         animation: {
-            name: 'TakingDamage',
+            name: 'Saber And Pistol Impact - React to skill 1',
             duration: 1333.33,
         },
     },
-    Stunned: {
+    'React to skill 2': {
         animation: {
-            name: 'Stunned',
+            name: 'Saber And Pistol Taking Stun - React to skill 2',
             duration: 2150,
         },
     },
 };
-
-export const animationByState = new Map([
-    ['Idle', 'Idle'],
-    ['Move', 'Running'],
-    ['Use skill 1', 'CrossPunching'],
-    ['Use skill 2', 'Kicking'],
-    ['Use skill 3', 'SidePunching'],
-    ['Use skill 4', 'Slamming'],
-    ['Death', 'Dying'],
-    ['Reacting to skill 1', 'TakingDamage'],
-    ['Reacting to skill 2', 'Stunned'],
-]);
 
 // @ts-ignore
 export const MutantMachine = createMachine(
@@ -95,3 +83,74 @@ export const MutantMachine = createMachine(
         ])
     )
 );
+
+// export const states: MachineStates = {
+//     Idle: {
+//         animation: {
+//             name: 'Idle',
+//             duration: Infinity,
+//         },
+//     },
+//     Move: {
+//         animation: {
+//             name: 'Running',
+//             duration: Infinity,
+//         },
+//     },
+//     'Use skill 1': {
+//         animation: {
+//             name: 'CrossPunching',
+//             duration: 1016.66,
+//         },
+//     },
+//     'Use skill 2': {
+//         animation: {
+//             name: 'Kicking',
+//             duration: 1200,
+//         },
+//         effect: 'STUN',
+//     },
+//     'Use skill 3': {
+//         animation: {
+//             name: 'SidePunching',
+//             duration: 1766.66,
+//         },
+//     },
+//     'Use skill 4': {
+//         animation: {
+//             name: 'Slamming',
+//             duration: 2383.33,
+//         },
+//         effect: 'AOE',
+//     },
+//     // todo this
+//     Dying: {
+//         animation: {
+//             name: 'Dying',
+//             duration: 2283.33,
+//         },
+//     },
+//     TakingDamage: {
+//         animation: {
+//             name: 'TakingDamage',
+//             duration: 1333.33,
+//         },
+//     },
+//     Stunned: {
+//         animation: {
+//             name: 'Stunned',
+//             duration: 2150,
+//         },
+//     },
+// };
+// export const animationByState = new Map([
+//     ['Idle', 'Idle'],
+//     ['Move', 'Running'],
+//     ['Use skill 1', 'CrossPunching'],
+//     ['Use skill 2', 'Kicking'],
+//     ['Use skill 3', 'SidePunching'],
+//     ['Use skill 4', 'Slamming'],
+//     ['Death', 'Dying'],
+//     ['Reacting to skill 1', 'TakingDamage'],
+//     ['Reacting to skill 2', 'Stunned'],
+// ]);

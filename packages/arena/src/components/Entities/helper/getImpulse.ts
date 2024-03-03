@@ -1,29 +1,53 @@
-import { Keys } from "../../../lib/keysMap";
+import { Keys } from '../../../lib/keysMap';
 
 export default function getImpulse(
-  linvelY: number,
-  keys: Keys,
-  numberOfKeysPressed: number,
-  delta: number,
+    keys: Keys,
+    numberOfKeysPressed: number,
+    delta: number,
+    scaler: number = 20
 ) {
-  let { forward, backward, leftward, rightward } = keys;
-  const scaler = 20;
-  const speed = 6 * scaler;
-  // * Reduce speed value if it's diagonal movement to always keep the same speed
-  const normalizedSpeed =
-    numberOfKeysPressed == 1
-      ? speed * delta
-      : Math.sqrt(2) * (speed / 2) * delta;
+    let { forward, backward, leftward, rightward } = keys;
+    const speed = 6 * scaler;
+    // * Reduce speed value if it's diagonal movement to always keep the same speed
+    const normalizedSpeed =
+        numberOfKeysPressed == 1
+            ? speed * delta
+            : Math.sqrt(2) * (speed / 2) * delta;
 
-  if (forward && backward && numberOfKeysPressed === 2) forward = false;
+    if (forward && backward && numberOfKeysPressed === 2) forward = false;
 
-  if (leftward && rightward && numberOfKeysPressed === 2) leftward = false;
+    if (leftward && rightward && numberOfKeysPressed === 2) leftward = false;
 
-  let impulse = {
-    x: leftward ? -normalizedSpeed : rightward ? normalizedSpeed : 0,
-    y: linvelY,
-    z: forward ? -normalizedSpeed : backward ? normalizedSpeed : 0,
-  };
+    let impulse = {
+        x: leftward ? -normalizedSpeed : rightward ? normalizedSpeed : 0,
+        y: 0,
+        z: forward ? -normalizedSpeed : backward ? normalizedSpeed : 0,
+    };
 
-  return impulse;
+    return impulse;
 }
+
+// export default function getImpulseRoll(
+//     numberOfKeysPressed: number,
+//     delta: number,
+//     scaler: number = 20
+// ) {
+//     const speed = 6 * scaler;
+//     // * Reduce speed value if it's diagonal movement to always keep the same speed
+//     const normalizedSpeed =
+//         numberOfKeysPressed == 1
+//             ? speed * delta
+//             : Math.sqrt(2) * (speed / 2) * delta;
+
+//     if (forward && backward && numberOfKeysPressed === 2) forward = false;
+
+//     if (leftward && rightward && numberOfKeysPressed === 2) leftward = false;
+
+//     let impulse = {
+//         x: leftward ? -normalizedSpeed : rightward ? normalizedSpeed : 0,
+//         y: 0,
+//         z: forward ? -normalizedSpeed : backward ? normalizedSpeed : 0,
+//     };
+
+//     return impulse;
+// }
