@@ -40,13 +40,13 @@ export default function Terrain({ position, scale, rotation }: WallProps) {
                     <boxGeometry />
                     <meshStandardMaterial
                         map={colorMap}
-                        metalnessMap={metalMap}
-                        displacementMap={displacementMap}
-                        bumpMap={normalMap}
-                        bumpScale={0.02}
-                        aoMap={aoMap4}
-                        roughnessMap={roughnessMap}
-                        roughness={100}
+                        // metalnessMap={metalMap}
+                        // displacementMap={displacementMap}
+                        // bumpMap={normalMap}
+                        // bumpScale={0.02}
+                        // aoMap={aoMap4}
+                        // roughnessMap={roughnessMap}
+                        // roughness={100}
 
                     />
                 </mesh>

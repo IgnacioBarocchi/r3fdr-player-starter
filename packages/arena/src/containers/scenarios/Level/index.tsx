@@ -10,6 +10,7 @@ import { NPC } from '../../../components/UI/SkillBar/NPC.tsx';
 import { getMachineInput } from '../../../Machines/base2.ts';
 import { Mutant3DModel } from '../../../components/Entities/MutantModel.tsx';
 import { GrenadierModel } from '../../../components/Entities/GrenadierModel.tsx';
+import { Imp3DModel } from '../../../components/Entities/Imp3DModel.tsx';
 
 // const renderDummies = false;
 // const renderZombies = true;
@@ -47,10 +48,10 @@ const LVL1 = () => {
                         }
                         Model={GrenadierModel}
                     />
-                    {/* <NPC
+                    <NPC
                         machineInput={getMachineInput(
                             'NPC',
-                            'a player',
+                            'an NPC',
                             new Map([
                                 ['Use skill 1', 1016.66],
                                 ['Use skill 2', 1200],
@@ -66,8 +67,8 @@ const LVL1 = () => {
                             ])
                         )}
 
-                        Model={Mutant3DModel}
-                    /> */}
+                        Model={Imp3DModel}
+                    />
                 </>
             )}
         </Physics>

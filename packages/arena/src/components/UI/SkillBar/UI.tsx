@@ -4,6 +4,7 @@ import { HPBar } from './HPBar';
 import { ActionBar } from './ActionBar';
 
 const Container = styled.div`
+    width: 250px;
     display: flex;
     flex-direction: column;
     align-items: center;

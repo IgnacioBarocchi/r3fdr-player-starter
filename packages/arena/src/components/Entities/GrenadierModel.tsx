@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 
 import { use3DModelAnimationsHandler } from '../../hooks/useGameStore/use3DModelAnimationsHandler';
 import { use3DModelLoader } from '../../hooks/use3DModelLoader/use3DModelLoader';
 import { useGLTF } from '@react-three/drei';
 import { states } from '../../Machines/MutantMachine';
 import { StateValue } from 'xstate';
+import { applyProps } from '@react-three/fiber';
 
 type GLTFResult = GLTF & {
     nodes: {
@@ -48,7 +49,7 @@ export const GrenadierModel = ({ stateValue }: { stateValue: StateValue }) => {
     });
 
     useEffect(animationEffect, [stateValue, actions]);
-
+   
     return (
         <group ref={group} dispose={null} scale={120}>
             <group name="Scene">
@@ -57,8 +58,13 @@ export const GrenadierModel = ({ stateValue }: { stateValue: StateValue }) => {
                     rotation={[Math.PI / 2, 0, 0]}
                     scale={0.01}
                 >
-                    <primitive object={nodes.mixamorigHips} />
+                    <primitive
+                        object={nodes.mixamorigHips}
+                        emissiveIntensity={100}
+                    />
                     <skinnedMesh
+                        receiveShadow={false}
+                        castShadow={false}
                         name="mesh"
                         geometry={nodes.mesh.geometry}
                         material={materials['Material.001']}
@@ -70,4 +76,4 @@ export const GrenadierModel = ({ stateValue }: { stateValue: StateValue }) => {
     );
 };
 
-useGLTF.preload('/models/Grenadier.gltf');
+useGLTF.preload(path);

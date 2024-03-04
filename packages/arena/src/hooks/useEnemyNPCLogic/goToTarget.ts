@@ -1,9 +1,7 @@
-import { Euler, Group, Quaternion, Vector, Vector3 } from 'three';
+import { Vector3 } from 'three';
 
-import { MutableRefObject } from 'react';
 import { RapierRigidBody } from '@react-three/rapier';
-import getNormalizedTurnAngle from '../../lib/getNormalizedTurnAngle';
-import { lookAt, lookAt2 } from './lookat';
+import { lookAt2 } from './lookat';
 
 const getMeleeNPCMeleeNPCImpulse = (
     playerPosition: Vector3,
@@ -19,35 +17,26 @@ const getMeleeNPCMeleeNPCImpulse = (
     return impulse;
 };
 
-type Params = {
-    source3DModelGroup: MutableRefObject<Group>;
-    sourceBody: MutableRefObject<RapierRigidBody>;
-    targetGroup: Group;
-    speed: number;
-};
-
 export const goToTarget2 = (params: {
     sourcePosition: Vector3;
     targetPosition: Vector3;
     speed: number;
-    sourceRigidBody: RapierRigidBody
+    sourceRigidBody: RapierRigidBody;
 }) => {
     const { sourcePosition, targetPosition, sourceRigidBody, speed } = params;
 
     lookAt2(targetPosition, sourceRigidBody);
+    // linvelTowards(sourceRigidBody, sourcePosition, speed)
     impulseTowards2(targetPosition, sourceRigidBody, sourcePosition, speed);
 };
 
-export const goToTarget = (references: Params) => {
-    const { source3DModelGroup, sourceBody, targetGroup, speed } = references;
-
-    const meleeNPCPosition = source3DModelGroup.current?.getWorldPosition(
-        new Vector3()
-    );
-    const targetPosition = targetGroup.getWorldPosition(new Vector3());
-    lookAt(targetPosition, sourceBody);
-    impulseTowards(targetPosition, sourceBody, meleeNPCPosition, speed);
-};
+// @ts-ignore
+const linvelTowards = (sourceRigidBody:RapierRigidBody, sourcePosition, speed) =>{
+    const impulseVector = new Vector3(0, 0, 5);
+    const orientation = sourceRigidBody.rotation().y;
+    impulseVector.applyAxisAngle(new Vector3(0, 1, 0), orientation);
+    sourceRigidBody.setLinvel(impulseVector, false)
+}
 
 const impulseTowards2 = (
     targetPosition: Vector3,
@@ -68,33 +57,24 @@ const impulseTowards2 = (
     );
 };
 
-const impulseTowards = (
-    targetPosition: Vector3,
-    sourceBody: MutableRefObject<RapierRigidBody>,
-    meleeNPCPosition: Vector3,
-    speed: number
-) => {
-    const meleeNPCImpulseForce = getMeleeNPCMeleeNPCImpulse(
-        targetPosition,
-        meleeNPCPosition,
-        speed
-    );
+// const impulseTowards = (
+//     targetPosition: Vector3,
+//     sourceBody: MutableRefObject<RapierRigidBody>,
+//     meleeNPCPosition: Vector3,
+//     speed: number
+// ) => {
+//     const meleeNPCImpulseForce = getMeleeNPCMeleeNPCImpulse(
+//         targetPosition,
+//         meleeNPCPosition,
+//         speed
+//     );
 
-    sourceBody.current.applyImpulseAtPoint(
-        meleeNPCImpulseForce,
-        targetPosition,
-        true
-    );
-};
-
-const copyBodyRotation = (
-    sourceBody: MutableRefObject<RapierRigidBody>,
-    targetGroup: Group
-) => {
-    const targetRotation = targetGroup.getWorldQuaternion(new Quaternion());
-
-    sourceBody.current.setRotation(targetRotation, false);
-};
+//     sourceBody.current.applyImpulseAtPoint(
+//         meleeNPCImpulseForce,
+//         targetPosition,
+//         true
+//     );
+// };
 
 // console.log(targetRotation.y)
 // sourceBody.current.setRotation(
@@ -176,3 +156,20 @@ const copyBodyRotation = (
 // copyBodyRotation(sourceBody, targetGroup);
 
 // !
+
+// export const goToTarget = (references: Params) => {
+//     const { source3DModelGroup, sourceBody, targetGroup, speed } = references;
+
+//     const meleeNPCPosition = source3DModelGroup.current?.getWorldPosition(
+//         new Vector3()
+//     );
+//     const targetPosition = targetGroup.getWorldPosition(new Vector3());
+//     lookAt(targetPosition, sourceBody);
+//     impulseTowards(targetPosition, sourceBody, meleeNPCPosition, speed);
+// };
+// type Params = {
+//     source3DModelGroup: MutableRefObject<Group>;
+//     sourceBody: MutableRefObject<RapierRigidBody>;
+//     targetGroup: Group;
+//     speed: number;
+// };

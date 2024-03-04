@@ -1,4 +1,4 @@
-import { Camera, OrthographicCamera, PerspectiveCamera } from 'three';
+import { Camera, OrthographicCamera, PerspectiveCamera} from 'three';
 import { KeyboardControls, OrbitControls } from '@react-three/drei';
 
 import { Canvas } from '@react-three/fiber';
@@ -7,6 +7,7 @@ import { ReactNode } from 'react';
 import { ReactThreeFiber } from '@react-three/fiber';
 import keysMap from '../../lib/keysMap';
 import { Context } from '../PlayerProvider/PlayerProvider';
+
 
 export type CameraOptions = (
     | Camera
@@ -36,13 +37,14 @@ const WithWorld = ({ children }: { children: ReactNode }) => {
     const [state] = Context.useActor();
 
     return (
-        <Canvas shadows camera={camera}>
-            <Perf position="bottom-left" />
-            <OrbitControls makeDefault />
-            <KeyboardControls map={keysMap}>{children}</KeyboardControls>
-            {state.matches('Dying') && (
-                <fog attach="fog" color="red" far={100} near={1} />
-            )}
+        <Canvas camera={camera} flat dpr={[1, 1.5]} gl={{ antialias: false }}>
+                <ambientLight intensity={1} />
+                <Perf position="bottom-left" />
+                <OrbitControls makeDefault />
+                <KeyboardControls map={keysMap}>{children}</KeyboardControls>
+                {state.matches('Dying') && (
+                    <fog attach="fog" color="red" far={100} near={1} />
+                )}
         </Canvas>
     );
 };

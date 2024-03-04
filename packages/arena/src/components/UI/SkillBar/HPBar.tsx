@@ -12,8 +12,8 @@ const horizontalShaking = keyframes`
    `;
 
 const HPBarContainer = styled.div<{ hit: boolean }>`
-    width: 268px;
-    height: 20px;
+    width: 100%;
+    height: 10px;
     background: linear-gradient(
         0deg,
         rgba(60, 60, 60, 1) 0%,
@@ -44,6 +44,20 @@ const HPBarFill = styled.div<{ percentage: number }>`
     transition: width 0.3s ease-in-out;
 `;
 
+const M = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+`;
+
+const A = styled.div`
+    z-index: 3;
+    width: 1px;
+    border: 1px solid #838383;
+    height: 10px;
+    background: #2F2F2F;
+`;
+
 export const HPBar = () => {
     const [state] = Context.useActor();
 
@@ -53,7 +67,15 @@ export const HPBar = () => {
                 percentage={
                     (state.context.currentHP * 100) / state.context.initialHP
                 }
-            />
+            >
+                <M>
+                    <A />
+                    <A />
+                    <A />
+                    <A />
+                    <A />
+                </M>
+            </HPBarFill>
         </HPBarContainer>
     );
 };

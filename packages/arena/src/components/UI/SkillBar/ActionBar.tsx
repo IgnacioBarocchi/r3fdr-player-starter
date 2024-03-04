@@ -3,6 +3,7 @@ import { Context } from '../../../providers/PlayerProvider/PlayerProvider';
 import { baseSkills } from '../../../Machines/BaseEntityMachine';
 import { states } from '../../../Machines/MutantMachine';
 
+// const iconWith = 50px
 const generatePulseAnimation = (imageUrl: string) => keyframes`
     0% {
         background: url(${imageUrl}) rgba(255, 255, 255, 1);
@@ -38,8 +39,9 @@ const Icon = styled.div<{
 `;
 
 const Skills = styled.div`
+    width: 100%;
     display: flex;
-    gap: 16px;
+    justify-content: space-between;
 `;
 
 const SkillBox = styled.div`
@@ -51,13 +53,13 @@ const SkillBox = styled.div`
 `;
 
 const Key = styled.div`
-    background: #9C9A99;
+    background: #9c9a99;
     font-family: Times New Roman;
     color: black;
     font-weight: bold;
     width: 24px;
     text-align: center;
-    border: 3px ridge #15100D;
+    border: 3px ridge #15100d;
     border-radius: 4px;
 `;
 

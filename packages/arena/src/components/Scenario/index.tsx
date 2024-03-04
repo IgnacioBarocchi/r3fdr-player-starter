@@ -9,7 +9,7 @@ const Scenario = () => {
         <PlayerProvider>
             <UI />
             <WithWorld>
-                <spotLight position={[0, 20, 0]} intensity={6} penumbra={1}/>
+                {/* <spotLight position={[0, 20, 0]} intensity={6} penumbra={1}/> */}
                 <Light/>
                 <LVL1 />
             </WithWorld>
