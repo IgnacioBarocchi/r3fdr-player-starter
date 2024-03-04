@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import { Context } from '../../../providers/PlayerProvider/PlayerProvider';
-import { baseSkills } from '../../../Machines/BaseEntityMachine';
-import { states } from '../../../Machines/MutantMachine';
+import { animationDurationByAnimationName } from '../../../Machines/PlayerMachine';
+import { animationNameByState } from '../../../Machines/PlayerMachine';
 
 // const iconWith = 50px
 const generatePulseAnimation = (imageUrl: string) => keyframes`
@@ -68,19 +68,23 @@ export const ActionBar = () => {
 
     return (
         <Skills>
-            {baseSkills.map((skill, i) => {
-                return (
-                    <SkillBox>
-                        <Icon
-                            key={skill + i}
-                            active={state.matches(skill)}
-                            duration={states[skill].animation.duration}
-                            image={`images/skills/skill_${i + 1}.png`}
-                        />
-                        <Key>{['J', 'K', 'L', 'I'][i]}</Key>
-                    </SkillBox>
-                );
-            })}
+            {['Use skill 1', 'Use skill 2', 'Use skill 3', 'Use skill 4'].map(
+                (skill, i) => {
+                    return (
+                        <SkillBox key={skill}>
+                            <Icon
+                                key={skill + i}
+                                active={state.matches(skill)}
+                                duration={animationDurationByAnimationName.get(
+                                    animationNameByState.get(skill)!
+                                )!}
+                                image={`images/skills/skill_${i + 1}.png`}
+                            />
+                            <Key>{['J', 'K', 'L', 'I'][i]}</Key>
+                        </SkillBox>
+                    );
+                }
+            )}
         </Skills>
     );
 };

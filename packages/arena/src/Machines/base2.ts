@@ -34,6 +34,21 @@ const actionDurationByStateKey: Map<NonLoopableStates, number> = new Map([
     ['Death', 1000],
 ]);
 
+export type FSMStates =
+    | 'Idle'
+    | 'Move'
+    | 'Use skill 1'
+    | 'Use skill 2'
+    | 'Use skill 3'
+    | 'Use skill 4'
+    | 'React to skill 1'
+    | 'React to skill 2'
+    | 'React to skill 3'
+    | 'React to skill 4'
+    | 'Engage'
+    | 'Provoke'
+    | 'Death';
+
 export const getMachineInput = (
     id = 'Base',
     description = 'Super type that respects LSP',

@@ -6,14 +6,11 @@ import Player from '../../../components/Entities/Player.tsx';
 import Terrain from './Terrain.tsx';
 import { Vector3 } from 'three';
 import { useControls } from 'leva';
-import { NPC } from '../../../components/UI/SkillBar/NPC.tsx';
+import { NPC } from '../../../components/Entities/NPC.tsx';
 import { getMachineInput } from '../../../Machines/base2.ts';
-import { Mutant3DModel } from '../../../components/Entities/MutantModel.tsx';
 import { GrenadierModel } from '../../../components/Entities/GrenadierModel.tsx';
-import { Imp3DModel } from '../../../components/Entities/Imp3DModel.tsx';
-
-// const renderDummies = false;
-// const renderZombies = true;
+import { ImpModel } from '../../../components/Entities/ImpModel.tsx';
+import { GRENADIER_ENTITY_NAME } from '../../../Machines/GrenadierInfo.tsx';
 
 const LVL1 = () => {
     const {
@@ -38,10 +35,10 @@ const LVL1 = () => {
                 position={new Vector3(0, 0.2, 0)}
                 scale={new Vector3(100, 0.2, 100)}
             />
-            {/* <OutskirtsDoodads /> */}
             {!terrainIsLoading && (
                 <>
                     <Player
+                        name={GRENADIER_ENTITY_NAME}
                         teamName="Mutant"
                         useOrbitControls={
                             USE_ORBIT_CONTROLS && mockOrbitControls
@@ -67,7 +64,7 @@ const LVL1 = () => {
                             ])
                         )}
 
-                        Model={Imp3DModel}
+                        Model={ImpModel}
                     />
                 </>
             )}
@@ -76,8 +73,3 @@ const LVL1 = () => {
 };
 
 export default LVL1;
-
-/* <ZombieNPC enemyId="a" onDead={() => {}} /> */
-/* <ZombieNPC enemyId='x' onDead={()=>{}}/> */
-/* {renderZombies && <ZombieSpawner position={[5, 0, 5]} />} */
-/* {renderDummies && <Dummies teamName="Zombie" />} */

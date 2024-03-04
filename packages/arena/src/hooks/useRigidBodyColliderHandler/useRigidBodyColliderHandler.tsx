@@ -33,3 +33,13 @@ export const useRigidBodyColliderHandler = (params: {
 
     return { onCollisionEnter };
 };
+// (({ other: { rigidBodyObject } }) => {
+//     if (
+//         !rigidBodyObject?.name 
+        
+//     ) {
+//         return;
+//     }
+
+//     const [skill, attacker] = rigidBodyObject.name.split("|");
+//     params.ignoredEntities.includes(rigidBodyObject.name)

@@ -8,18 +8,19 @@ import { usePlayerLogic } from '../../hooks/usePlayerLogic/usePlayerLogic';
 import { useRigidBodyColliderHandler } from '../../hooks/useRigidBodyColliderHandler/useRigidBodyColliderHandler';
 import { Context } from '../../providers/PlayerProvider/PlayerProvider';
 import { FC, useEffect } from 'react';
-import { HitBox } from '../utility/HitBox/HitBox';
-import { MutantHitBoxes } from '../utility/HitBox/hitBoxes';
 import { Footsteps } from '../../containers/scenarios/Level/Footsteps';
 import { useGameStore } from '../../hooks/useGameStore/useGameStore';
+import { FSMStateComponents } from '../../Machines/GrenadierInfo';
+import { FSMStates } from '../../Machines/base2';
 
 const Player: FC<{
     useOrbitControls: boolean;
     teamName: 'Zombie' | 'Mutant';
-    Model: FC<{ stateValue: StateValue }>;
-}> = ({ useOrbitControls, teamName, Model }) => {
+    Model: FC<{ stateValue: FSMStates }>;
+    name: string;
+}> = ({ useOrbitControls, teamName, name, Model }) => {
     const [state, send] = Context.useActor();
-    
+
     const { setPlayerRigidBody } = useGameStore((state) => ({
         playerState: state.playerState,
         setPlayerRigidBody: state.setPlayerRigidBody,
@@ -47,7 +48,7 @@ const Player: FC<{
             lockRotations={true}
             colliders={false}
             ref={playerRigidBodyReference}
-            name="Player"
+            name={name}
         >
             <Bounding
                 args={[0.2, 0.6]}
@@ -56,11 +57,9 @@ const Player: FC<{
             />
             <Sensor args={[0.2, 2]} position={[0, 0.5, 0]} sensor />
             <Model stateValue={state.value} />
-            <HitBox
-                stateValue={state.value}
-                hitBoxesRecords={MutantHitBoxes}
-                teamName={teamName}
-            />
+            {FSMStateComponents.hasOwnProperty(state.value as FSMStates)
+                ? FSMStateComponents[state.value as FSMStates]()
+                : null}
             {state.matches('Move') && <Footsteps />}
         </RigidBody>
     );

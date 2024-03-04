@@ -3,13 +3,11 @@ import {
     CapsuleCollider as Bounding,
     CylinderCollider as Sensor,
 } from '@react-three/rapier';
-import { Footsteps } from '../../../containers/scenarios/Level/Footsteps';
-import { HitBox } from '../../utility/HitBox/HitBox';
-import { MutantHitBoxes } from '../../utility/HitBox/hitBoxes';
-import { useRigidBodyColliderHandler } from '../../../hooks/useRigidBodyColliderHandler/useRigidBodyColliderHandler';
-import { useRigidBodySensorHandler } from '../../../hooks/useRigidBodySensorHandler/useRigidBodySensorHandler';
+import { Footsteps } from '../../containers/scenarios/Level/Footsteps';
+import { useRigidBodyColliderHandler } from '../../hooks/useRigidBodyColliderHandler/useRigidBodyColliderHandler';
+import { useRigidBodySensorHandler } from '../../hooks/useRigidBodySensorHandler/useRigidBodySensorHandler';
 import { FC } from 'react';
-import { useNPCLogic } from '../../../hooks/useEnemyNPCLogic/useNPCLogic';
+import { useNPCLogic } from '../../hooks/useEnemyNPCLogic/useNPCLogic';
 import { StateValue } from 'xstate';
 
 // @ts-ignore
@@ -41,7 +39,7 @@ export const NPC: FC<{
             lockRotations={true}
             colliders={false}
             ref={NPCRigidBodyReference}
-            name="Zombie"
+            name="NPC"
         >
             <Bounding
                 args={[0.2, 0.6]}
@@ -56,11 +54,6 @@ export const NPC: FC<{
                 onIntersectionEnter={onIntersectionEnter}
             />
             <Model stateValue={state.value} />
-            <HitBox
-                stateValue={state.value}
-                hitBoxesRecords={MutantHitBoxes}
-                teamName={'Zombie'}
-            />
             {state.matches('Move') && <Footsteps />}
         </RigidBody>
     );

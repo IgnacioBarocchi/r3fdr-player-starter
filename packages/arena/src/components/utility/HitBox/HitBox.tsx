@@ -1,47 +1,48 @@
-import { BallCollider, CuboidCollider, RigidBody } from '@react-three/rapier';
+import { CuboidCollider, RigidBody } from '@react-three/rapier';
+import { FC } from 'react';
 
-import { PositionalAudio } from '@react-three/drei';
-import { StateValue } from 'xstate';
-import { HitBoxesRecords } from './hitBoxes';
-
-export const HitBox = ({
-    stateValue,
-    hitBoxesRecords,
-    teamName,
-}: {
-    stateValue: StateValue;
-    hitBoxesRecords: HitBoxesRecords;
-    teamName: 'Zombie' | 'Mutant';
-}) => {
-    const record = hitBoxesRecords[stateValue as string];
-
-    if (!record) {
-        return null;
-    }
-
-    const { rigidBody: rigidBodyProps, size } =
-        hitBoxesRecords[stateValue as string];
-
+export const HitBox: FC<{
+    FSMSkill: 'Use skill 1' | 'Use skill 2' | 'Use skill 3' | 'Use skill 4';
+    sender: string;
+    ignoredEntities: string[];
+    colliderDimensions: [number, number, number];
+    colliderPosition: [number, number, number];
+}> = ({ FSMSkill, sender, colliderDimensions, colliderPosition }) => {
     return (
         <group>
             <RigidBody
-                {...rigidBodyProps}
-                name={rigidBodyProps.name + '|' + teamName}
+                name={`${FSMSkill}|${sender}`}
+                position={colliderPosition}
                 colliders={false}
                 lockRotations={true}
                 gravityScale={0}
-                shape={'ball'}
+                type="fixed"
             >
-                <BallCollider args={[size]} sensor/>
-                {/* <CuboidCollider sensor args={[.2, .2, 5]} /> */}
+                <CuboidCollider args={colliderDimensions} />
             </RigidBody>
-            <PositionalAudio
-                load
-                autoplay
-                loop={false}
-                distance={1}
-                url="/sounds/Entity/kick.mp3"
-            />
         </group>
     );
 };
+
+// onIntersectionEnter={({ other: { rigidBodyObject } }) => {
+//     if (
+//         !rigidBodyObject?.name ||
+//         ignoredEntities.includes(rigidBodyObject.name)
+//     ) {
+//         return;
+//     }
+
+//     // if (
+//     //     rigidBodyObject?.name === 'Player' &&
+//     //     params.teamName === 'Zombie'
+//     // ) {
+//     //     // @ts-ignore
+//     //     params.send({
+//     //         type: 'PLAYER_REACHABLE_CHANGE',
+//     //         reachable: true,
+//     //     });
+//     //     if (Math.random() > 0.5) {
+//     //         params.send('TAUNT');
+//     //     }
+//     // }
+// }}

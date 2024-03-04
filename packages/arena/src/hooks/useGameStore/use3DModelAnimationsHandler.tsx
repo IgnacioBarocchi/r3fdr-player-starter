@@ -1,10 +1,9 @@
 import { AnimationAction, LoopOnce } from 'three';
 import { StateValue } from 'xstate';
-import { MachineStates } from '../../Machines/MutantMachine';
-import { baseLoopableActions } from '../../Machines/BaseEntityMachine';
 
 export type AnimationsHandlerParams = {
-    states: MachineStates;
+    animationDurationByAnimationName: Map<string, number>;
+    animationNameByState: Map<string, string>;
     stateValue: StateValue;
     actions: {
         [x: string]: AnimationAction | null;
@@ -40,7 +39,8 @@ const playFinalAnimation = (action: AnimationAction | null) => {
 };
 
 export const use3DModelAnimationsHandler = ({
-    states,
+    animationNameByState,
+    animationDurationByAnimationName,
     stateValue,
     actions,
 }: AnimationsHandlerParams) => {
@@ -48,27 +48,26 @@ export const use3DModelAnimationsHandler = ({
      * @depends on [stateValue] and [actions]
      */
     const animationEffect = () => {
-        console.log(`[${stateValue}]`)
         let timeoutId = 0;
-        if(!((stateValue as string) in states)){
-            console.log("$",stateValue)
-            return;
-        }
-        
-        const { animation } = states[stateValue];
-        console.log(`[${JSON.stringify(states[stateValue])}]`)
-        const currentAction = actions[animation.name];
+        // console.log(`[${stateValue}]`);
+
+        const animationName = animationNameByState.get(stateValue as string);
+        const animationDuration = animationDurationByAnimationName.get(
+            animationName!
+        );
+
+        const currentAction = actions[animationName!];
 
         const handleCleanup = () => {
             easeOutAnimation(currentAction);
             clearTimeout(timeoutId);
         };
 
-        if (stateValue === "Dying") {
-            playFinalAnimation(actions[states.Dying.animation.name]);
-        }
+        // if (stateValue === 'Dying') {
+        //     playFinalAnimation(actions[states.Dying.animation.name]);
+        // }
 
-        if (["Move", "Idle"].includes(stateValue as string)) {
+        if (['Move', 'Idle'].includes(stateValue as string)) {
             blendAnimationTransition(currentAction);
             return handleCleanup;
         } else {
@@ -77,7 +76,7 @@ export const use3DModelAnimationsHandler = ({
             timeoutId = setTimeout(() => {
                 stopAnimation(currentAction);
                 handleCleanup();
-            }, animation.duration);
+            }, animationDuration);
         }
         return handleCleanup;
     };
